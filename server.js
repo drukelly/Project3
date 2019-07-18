@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+// const db = require('./models/sqldb')
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -12,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
-require(path.join(__dirname, './routing/apiRoutes.js'))(app)
+require(path.join(__dirname, './routes/apiRoutes.js'))(app)
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {

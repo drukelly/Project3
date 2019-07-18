@@ -72,7 +72,7 @@ class Signup extends React.Component {
                     name='password'
                     value={this.state.password}
                     onChange={this.handleChange}
-                    maxlength='15'
+                    maxLength='15'
                 /><br />
                 <button type='submit'>Submit</button>
             </form>
