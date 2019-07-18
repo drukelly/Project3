@@ -14,7 +14,7 @@ function Nav () {
         <Link to='/' className={window.location.pathname === '/' ? 'nav-link active' : 'nav-link'}> Home </Link>
       </li>
       <li className='nav-item'>
-        <Link to='/login' className={window.location.pathname === '/login' ? 'nav-link active' : 'nav-link'}> Login </Link>
+        <Link to='/players' className={window.location.pathname === '/players' ? 'nav-link active' : 'nav-link'}> Players </Link>
       </li>
     </ul>
   )
