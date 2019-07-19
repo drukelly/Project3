@@ -1,7 +1,7 @@
 const knex = require('../config/connection.js')
 
 class Team {
-  constructor (table = 'players') {
+  constructor (table = 'baseball') {
     this.table = table
   }
 

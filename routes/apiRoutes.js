@@ -13,6 +13,7 @@ module.exports = function (app) {
   app.get('/api/team', function (req, res) {
     Team.findAll()
       .then(results => {
+        console.log(results)
         res.json(results)
       })
   })
