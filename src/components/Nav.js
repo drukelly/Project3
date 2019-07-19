@@ -9,12 +9,15 @@ import { Link } from 'react-router-dom'
  */
 function Nav () {
   return (
-    <ul className='nav nav-tabs'>
-      <li className='nav-item'>
-        <Link to='/' className={window.location.pathname === '/' ? 'nav-link active' : 'nav-link'}> Home </Link>
+    <ul className='bottom-0 fixed flex items-center list justify-around pl0 w-100'>
+      <li className='tc'>
+        <Link to='/teams' className={window.location.pathname === '/teams' ? 'active link' : 'link'}> Teams </Link>
       </li>
-      <li className='nav-item'>
-        <Link to='/login' className={window.location.pathname === '/login' ? 'nav-link active' : 'nav-link'}> Login </Link>
+      <li className='tc'>
+        <Link to='/players' className={window.location.pathname === '/players' ? 'active link' : 'link'}> Players </Link>
+      </li>
+      <li className='tc'>
+        <Link to='/settings' className={window.location.pathname === '/settings' ? 'active link' : 'link'}> Settings </Link>
       </li>
     </ul>
   )

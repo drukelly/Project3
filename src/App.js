@@ -1,8 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Nav from './components/Nav'
-import Home from './components/pages/Home'
-import Login from './components/pages/Login'
+import Teams from './components/pages/Teams'
+import Players from './components/pages/Players'
+import Settings from './components/pages/Settings'
+
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -28,9 +30,10 @@ function App () {
   return (
     <Router>
       <div>
+        <Route exact path='/teams' component={Teams} />
+        <Route exact path='/players' component={Players} />
+        <Route exact path='/settings' component={Settings} />
         <Nav />
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
       </div>
     </Router>
   )
