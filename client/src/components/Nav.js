@@ -1,5 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import NavItem from './NavItem'
+import styled from 'styled-components'
+
+const NavWrapper = styled.nav`
+  align-content: center;
+  background-color: black;
+  display: flex;
+  width: 100%;
+`
 
 /**
  * Link: Provides declarative, accessible navigation around your application.
@@ -9,14 +17,16 @@ import { Link } from 'react-router-dom'
  */
 function Nav () {
   return (
-    <ul className='nav nav-tabs'>
-      <li className='nav-item'>
-        <Link to='/' className={window.location.pathname === '/' ? 'nav-link active' : 'nav-link'}> Home </Link>
-      </li>
-      <li className='nav-item'>
-        <Link to='/players' className={window.location.pathname === '/players' ? 'nav-link active' : 'nav-link'}> Players </Link>
-      </li>
-    </ul>
+    <NavWrapper>
+      <NavItem url='/' image='/images/home.png' label='Home' />
+      <NavItem url='/players' image='/images/players.png' label='Players' />
+      {/* <Link to='/' className={window.location.pathname === '/' ? 'active' : 'link'}>
+        Home
+      </Link>
+      <Link to='/players' className={window.location.pathname === '/players' ? 'active' : 'link'}>
+        Players
+      </Link> */}
+    </NavWrapper>
   )
 }
 

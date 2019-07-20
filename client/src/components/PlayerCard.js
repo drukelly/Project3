@@ -7,6 +7,10 @@ const Image = styled.img`
   width: 100px;
 `
 
+const Wrapper = styled.section`
+  padding-top: 200px;
+`
+
 class PlayerCard extends React.Component {
     state = {
         players: [],
@@ -28,7 +32,7 @@ class PlayerCard extends React.Component {
     }
     render() {
         return (
-          <div>
+          <Wrapper>
             {this.state.players.map((player) => (
               <Link to={'/players/' + player.id} key={player.id} className='link blue'>
                 <div className='flex items-center w-100'>
@@ -42,7 +46,7 @@ class PlayerCard extends React.Component {
                 </div>
               </Link>
             ))}
-          </div>
+          </Wrapper>
         )
     }
 }
