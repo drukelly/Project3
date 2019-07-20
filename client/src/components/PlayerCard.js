@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 
 class PlayerCard extends React.Component {
     state = {
-        players: [],
-        link: ''
+        players: []
     }
     componentDidMount() {
         fetch('/api/team')
@@ -14,11 +13,6 @@ class PlayerCard extends React.Component {
                 this.setState({ players: res })
                 console.log('state players', this.state.players)
             })
-    }
-    showCardDetail = (event) => {
-        console.log(event.target.id)
-        this.setState({link: '/players/' + event.target.id})
-        console.log(this.state.link)
     }
     render() {
         return (
