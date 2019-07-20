@@ -5,6 +5,7 @@ import Home from './components/pages/Home'
 import Login from './components/pages/Login'
 import Players from './components/pages/Players'
 import Signup from './components/pages/Signup'
+import TeamsView from './components/pages/TeamsView'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -34,6 +35,7 @@ function App () {
         <Route exact path='/login' component={Login} />
         <Route exact path='/players' component={Players} />
         <Route exact path='/signup' component={Signup} />
+        <Route exact path='/teams' component={TeamsView} />
         <Nav />
       </div>
     </Router>

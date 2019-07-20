@@ -30,8 +30,8 @@ class Signup extends Component {
         event.preventDefault()
         console.log('sign-up-form, username: ')
         console.log(this.state.username)
-        fetch('/', {
-            method: 'POST',
+        fetch("/signup", {
+            method: "POST",
             body: {
                 username: this.state.username,
                 password: this.state.password
@@ -47,6 +47,7 @@ class Signup extends Component {
                         redirectTo: '/login'
                     })
                 } else {
+                    console.log(response)
                     console.log('Sign-up error')
                 }
             }).catch(error => {

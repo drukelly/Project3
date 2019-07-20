@@ -68,12 +68,24 @@ exports.up = function (knex, Promise) {
       })
     }
   })
+  knex.schema.hasTable('users').then(exists => {
+    if (!exists) {
+      return knex.schema.createTable('users', (table) => {
+        table.increments('id')
+        table.string('username').unique().notNullable()
+        table.string('password').notNullable()
+        table.boolean('admin').notNullable().defaultTo(false)
+        table.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'))
+      })
+    }
+  })
 }
 
 exports.down = function (knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('baseball'),
     knex.schema.dropTable('basketball'),
-    knex.schema.dropTable('hockey')
+    knex.schema.dropTable('hockey'),
+    knex.schema.dropTable('users')
   ])
 }
