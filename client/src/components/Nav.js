@@ -3,9 +3,15 @@ import NavItem from './NavItem'
 import styled from 'styled-components'
 
 const NavWrapper = styled.nav`
-  align-content: center;
+  align-items: center;
   background-color: black;
+  bottom: 0;
+  color: white;
   display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 1rem 2rem;
+  position: fixed;
   width: 100%;
 `
 

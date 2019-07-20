@@ -8,6 +8,7 @@ const Image = styled.img`
 `
 
 const Wrapper = styled.section`
+padding-bottom: 100px;
   padding-top: 200px;
 `
 
