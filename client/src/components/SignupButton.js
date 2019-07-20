@@ -1,9 +1,20 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 // this also works with react-router-native
 
+const Button = styled.button`
+  background: transparent;
+  border: 2px solid;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 1rem auto;
+  width: 80%;
+  padding: 1rem;
+`
+
 const SignupButton = withRouter(({ history }) => (
-  <button type='button' onClick={() => { history.push('/signup') }}> Create Account </button>
+  <Button type='button' onClick={() => { history.push('/signup') }}> Create Account </Button>
 ))
 
 export default SignupButton
