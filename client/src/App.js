@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
+import Players from './components/pages/Players'
+import Signup from './components/pages/Signup'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -28,9 +30,11 @@ function App () {
   return (
     <Router>
       <div>
-        <Nav />
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/players' component={Players} />
+        <Route exact path='/signup' component={Signup} />
+        <Nav />
       </div>
     </Router>
   )
