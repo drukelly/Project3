@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import FormField from '../FormField'
 import styled from 'styled-components'
 
@@ -13,7 +13,7 @@ const Button = styled.button`
     padding: 1rem;
 `
 
-class Signup extends React.Component {
+class Signup extends Component {
     state = {
         username: '',
         password: ''
@@ -30,8 +30,8 @@ class Signup extends React.Component {
         event.preventDefault()
         console.log('sign-up-form, username: ')
         console.log(this.state.username)
-        fetch("/", {
-            method: "POST",
+        fetch('/', {
+            method: 'POST',
             body: {
                 username: this.state.username,
                 password: this.state.password
@@ -56,7 +56,7 @@ class Signup extends React.Component {
     }
     render() {
         return (
-            <form class="pa4">
+            <form className='pa4'>
                 <h1 className='lh-title tc'>Create An Account</h1>
                 <FormField htmlFor='name' type='text' name='name' />
                 <FormField htmlFor='email' type='email' name='email' label='E-Mail Address' />
