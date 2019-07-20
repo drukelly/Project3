@@ -30,11 +30,11 @@ function App () {
   return (
     <Router>
       <div>
-        <Nav />
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/players' component={Players} />
         <Route exact path='/signup' component={Signup} />
+        <Nav />
       </div>
     </Router>
   )

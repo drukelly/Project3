@@ -17,4 +17,4 @@ exports.seed = function (knex, Promise) {
         { image: 'https://a.espncdn.com/combiner/i?img=/i/headshots/nhl/players/full/5096.png', name: 'Martin Jones', jersey_number: '22', position: 'Goalie' }
       ])
     })
-  }
+}

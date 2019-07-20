@@ -1,5 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const Image = styled.img`
+  margin: .5em 1em;
+  width: 100px;
+`
+
+const Wrapper = styled.section`
+  padding-top: 200px;
+`
 
 class PlayerCard extends React.Component {
     state = {
@@ -16,28 +26,21 @@ class PlayerCard extends React.Component {
     }
     render() {
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Jersey Number</th>
-                        <th>Position</th>
-                        <th>Games Played</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.players.map((player) => (
-                        <tr key={player.id} id={player.id}>
-                                <td><Link to={'/players/' + player.id}><img src={player.image} id={player.id} alt={player.name}/></Link></td>
-                                <td>{player.name}</td>
-                                <td>{player.jersey_number}</td>
-                                <td>{player.position}</td>
-                                <td>{player.games_played}</td>
-                            </tr>
-                    ))}
-                </tbody>
-            </table>
+          <Wrapper>
+            {this.state.players.map((player) => (
+              <Link to={'/players/' + player.id} key={player.id} className='link blue'>
+                <div className='flex items-center w-100'>
+                  <Image src={player.image} id={player.id} alt={player.name} />
+                  <div className='flex items-center justify-around'>
+                    <div>{player.jersey_number}</div>
+                    <div className='b'>{player.name}</div>
+                    <div>{player.position}</div>
+                    <div>{player.games_played}</div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </Wrapper>
         )
     }
 }

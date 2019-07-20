@@ -1,13 +1,21 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Image = styled.img`
+  width: 75px;
+`
 
 const TeamHeader = (props) => {
-    return (
-        <div>
-            <img src='https://s15-us2.startpage.com/cgi-bin/serveimage?url=http%3A%2F%2Ft0.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcSdzLLlhSmrS-tsm_L6kXykSrb5m-8vjZA1kN7S2dDsSNJxohZ5&sp=24ee967ae5bd101a694d689864835b73&anticache=617727' alt='Oakland Roots' />
-            <h2>Oakland Roots</h2>
-            <h3>12-4-0</h3> | <h3>2nd Place</h3>
-        </div>
-    )
+  return (
+    <div className='bg-gray fixed pa4 tc white w-100'>
+      <Image src={props.teamLogo} alt={props.teamName} />
+      <h2 className='fw3 lh-title ma0 pa0 tracked ttu'>{props.teamName}</h2>
+      <div className='f7 flex items-center justify-around'>
+        <h3 className='lh-title ma0 pa0'>{props.wins}-{props.losses}-{props.tie}</h3>
+        <h3 className='lh-title ma0 pa0'>{props.seeding} Place</h3>
+      </div>
+    </div>
+  )
 }
 
 export default TeamHeader
