@@ -17,4 +17,4 @@ exports.seed = function (knex, Promise) {
         { image: 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4065836.png', name: 'Omari Spellman', jersey_number: '22', position: 'Power Forward' }
       ])
     })
-  }
+}

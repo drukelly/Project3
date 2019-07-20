@@ -3,13 +3,12 @@ import TeamHeader from './../TeamHeader'
 import PlayerCard from './../PlayerCard'
 
 const Coach = () => {
-    return (
-        <div>
-            <h1>Howdy</h1>
-            <TeamHeader />
-            <PlayerCard />
-        </div>
-    )
+  return (
+    <div>
+      <TeamHeader teamName='Oakland Roots' teamLogo='' wins='12' losses='4' tie='0' seeding='2nd' />
+      <PlayerCard />
+    </div>
+  )
 }
 
 export default Coach

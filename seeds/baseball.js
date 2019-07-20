@@ -18,4 +18,4 @@ exports.seed = function (knex, Promise) {
         { image: 'https://txstatebobcats.com/images/2016/10/11/Quincy_Charleston_2017_headshot.JPG', name: 'Quincy Charleston', jersey_number: '32', position: 'Pitcher' }
       ])
     })
-  }
+}
