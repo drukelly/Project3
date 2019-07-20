@@ -1,16 +1,12 @@
 import React from 'react'
-import styled from 'styled-components'
+import Header from '../Header'
+import Player from '../Player'
 
-function Players () {
-  const Header = styled.header`
-    background-color: #4b4444;
-    color: white;
-    padding: 2em;
-    text-align: center;
-  `
+const Players = () => {
   return (
     <div>
-      <Header name='Oakland Roots' teamLogo='' />
+      <Header name='Oakland Roots' teamLogo='/images/oakland-roots.png' wins='12' losses='4' seeding='2nd' />
+      <Player />
     </div>
   )
 }

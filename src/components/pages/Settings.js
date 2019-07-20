@@ -3,7 +3,7 @@ import React from 'react'
 function Settings () {
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Settings</h1>
       <p>
         Nunc pharetra finibus est at efficitur. Praesent sed congue diam. Integer gravida dui
         mauris, ut interdum nunc egestas sed. Aenean sed mollis diam. Nunc aliquet risus ac finibus

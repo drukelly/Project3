@@ -1,4 +1,5 @@
 import React from 'react'
+import NavImage from './NavImage'
 import { Link } from 'react-router-dom'
 
 /**
@@ -7,17 +8,26 @@ import { Link } from 'react-router-dom'
  * But the Link component prevents our entire React application from reloading when we go to different URLs.
  * Instead, only the components that need to change will change.
  */
-function Nav () {
+const Nav = () => {
   return (
-    <ul className='bottom-0 fixed flex items-center list justify-around pl0 w-100'>
-      <li className='tc'>
-        <Link to='/teams' className={window.location.pathname === '/teams' ? 'active link' : 'link'}> Teams </Link>
+    <ul className='bg-black bottom-0 fixed flex items-center list justify-around ma0 pl0 pt3 pb4 w-100 white'>
+      <li className={window.location.pathname === '/teams' ? 'active tc' : 'tc'}>
+        <Link to='/teams' className='f6 link white'>
+          <NavImage icon='/images/teams.png' />
+          Teams
+        </Link>
       </li>
-      <li className='tc'>
-        <Link to='/players' className={window.location.pathname === '/players' ? 'active link' : 'link'}> Players </Link>
+      <li className={window.location.pathname === '/players' ? 'active tc' : 'tc'}>
+        <Link to='/players' className='f6 link white'>
+          <NavImage icon='/images/players.png' />
+          Players
+        </Link>
       </li>
-      <li className='tc'>
-        <Link to='/settings' className={window.location.pathname === '/settings' ? 'active link' : 'link'}> Settings </Link>
+      <li className={window.location.pathname === '/settings' ? 'active tc' : 'tc'}>
+        <Link to='/settings' className='f6 link white'>
+          <NavImage icon='/images/settings.png' />
+          Settings
+        </Link>
       </li>
     </ul>
   )
