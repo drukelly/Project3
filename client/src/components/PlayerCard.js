@@ -30,6 +30,7 @@ class PlayerCard extends Component {
                 console.log(res)
                 this.setState({ players: res })
                 console.log('state players', this.state.players)
+                console.log(this.state.players)
             })
     }
     showCardDetail = (event) => {
@@ -41,7 +42,7 @@ class PlayerCard extends Component {
         return (
           <Wrapper>
             {this.state.players.map((player) => (
-              <Link to={'/players/' + player.id} key={player.id} className='link near-black'>
+              <Link to={`/players/${player.id}`} key={player.id} className='link near-black'>
                 <div className='b--black-10 bb flex items-center w-100'>
                   <Image style={{backgroundImage: `url(${player.image})`}} id={player.id} alt={player.name} />
                   <div className='f6 lh-copy pv2'>

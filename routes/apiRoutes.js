@@ -80,4 +80,14 @@ module.exports = function (app) {
         res.json(results)
       })
   })
+
+  // get one player
+  app.get('/api/players/:id', function (req, res) {
+    console.log(req.params)
+    Team.picked(req.params.id)
+      .then(results => {
+        console.log(`one player ${results}`)
+        res.json(results)
+      })
+  })
 }
