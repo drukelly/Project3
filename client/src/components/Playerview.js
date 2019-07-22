@@ -8,7 +8,7 @@ class Playerview extends Component {
         // value: 'update'
 
         }
-
+    //for click edit functionality
     // changeEditMode = () => {
     //     this.setState({
     //         isInEditMode: !this.state.isInEditMode
@@ -40,8 +40,8 @@ class Playerview extends Component {
     // }
 
     componentDidMount() {
-        var id = this.props.match.params.id
-        console.log(`${this.props.match.params.id}`)
+        var id = this.props.id
+        console.log(`${this.props.id}`)
         fetch(`/api/players/` + id)
             .then(results => results.json())
             .then(res => {
@@ -74,7 +74,7 @@ class Playerview extends Component {
 
     render() {
         return (
-
+            //for click edit functionality
             // <div>{this.state.isInEditMode ? 
             // this.renderEditView() :
             // this.renderDefaultView()}
