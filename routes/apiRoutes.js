@@ -77,6 +77,16 @@ module.exports = function (app) {
       })
   })
 
+  // get one player
+ app.get('/api/players/:id', function (req, res) {
+  console.log(req.params)
+  Team.picked(req.params.id)
+    .then(results => {
+      console.log(`one player ${results}`)
+      res.json(results)
+    })
+})
+
   // Delete an example by id
   app.delete('/api/examples/:id', function (req, res) {
     Team.destroy(req.params)
