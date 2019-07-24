@@ -1,10 +1,12 @@
 const bcrypt = require('bcryptjs');
+const knex = require('../../config/connection')
 
 // Define userSchema
 class User {
-    constructor (username, password) {
+    constructor (username, password, table = 'users') {
         this.username = {type: String, unique: false, required: false},
-        this.password = {type: String, unique: false, required: false}
+        this.password = {type: String, unique: false, required: false},
+        this.table = table
     }
     checkPassword (inputPassword) {
         console.log(inputPassword)
@@ -13,6 +15,10 @@ class User {
     hasPassword (plainTextPassword) {
         return bcrypt.hashSync(plainTextPassword, 10)
     }
+//     findOne (user) {
+//         return knex.select('username')
+            
+//     }
 }
 // const userSchema = new Schema({
 

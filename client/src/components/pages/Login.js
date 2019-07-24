@@ -17,16 +17,22 @@ class Login extends Component {
     username: '',
     password: ''
   }
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+        [name]: value
+    });
+    console.log(this.state.username, this.state.password)
+}
   handleSubmit = event => {
         event.preventDefault()
         console.log('login-form, username: ')
         console.log(this.state.username)
-        fetch('/', {
+        let user = {username: this.state.username, password: this.state.password}
+        fetch('/login', {
             method: 'post',
-            body: {
-                username: this.state.username,
-                password: this.state.password
-            },
+            body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -53,6 +59,7 @@ class Login extends Component {
                 <label className='db f6 mb2' htmlFor='username'>Username</label>
                 <input
                     className='b--black-20 br1 ba input-reset ph2 pv1 w-100'
+                    onChange={this.handleChange}
                     type='text'
                     name='username'
                     value={this.state.username} />
@@ -61,6 +68,7 @@ class Login extends Component {
                 <label className='db f6 mb2' htmlFor='password'>Password</label>
                 <input
                     className='b--black-20 br1 ba input-reset ph2 pv1 w-100'
+                    onChange={this.handleChange}
                     type='text'
                     name='password'
                     maxLength='15' />

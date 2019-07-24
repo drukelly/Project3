@@ -57,7 +57,7 @@ class Signup extends Component {
     }
     render() {
         return (
-            <form className='pa4'>
+            <form method='POST' className='pa4'>
                 <h1 className='lh-title tc'>Create An Account</h1>
                 <FormField htmlFor='name' type='text' name='name' />
                 <FormField htmlFor='email' type='email' name='email' label='E-Mail Address' />

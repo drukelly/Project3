@@ -1,7 +1,9 @@
 // Dependencies
 const Team = require('../models/sqldb')
-const User = require('../database/models/user')
+// const User = require('../database/models/user')
 const passport = require('passport')
+const path = require('path')
+
 
 /**
  * apiRoutes: This routes file returns data to the client/view
@@ -83,65 +85,65 @@ module.exports = function (app) {
       })
   })
 
-  app.post('/signup', (req, res) => {
-    console.log('user signup');
+  // app.post('/signup', (req, res) => {
+  //   console.log('user signup');
 
-    const { username, password } = req.body
-    // ADD VALIDATION
-    User.findOne({ username: username }, (err, user) => {
-        if (err) {
-            console.log('User.js post error: ', err)
-        } else if (user) {
-            res.json({
-                error: `Sorry, already a user with the username: ${username}`
-            })
-        }
-        else {
-            const newUser = new User({
-                username: username,
-                password: password
-            })
-            newUser.save((err, savedUser) => {
-                if (err) return res.json(err)
-                res.json(savedUser)
-            })
-        }
-    })
-})
+  //   const { username, password } = req.body
+  //   // ADD VALIDATION
+  //   User.findOne({ username: username }, (err, user) => {
+  //     if (err) {
+  //       console.log('User.js post error: ', err)
+  //     } else if (user) {
+  //       res.json({
+  //         error: `Sorry, already a user with the username: ${username}`
+  //       })
+  //     }
+  //     else {
+  //       const newUser = new User({
+  //         username: username,
+  //         password: password
+  //       })
+  //       newUser.save((err, savedUser) => {
+  //         if (err) return res.json(err)
+  //         res.json(savedUser)
+  //       })
+  //     }
+  //   })
+  // })
 
-app.post(
-    '/login',
-    function (req, res, next) {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.body)
-        next()
+  app.post('/login', passport.authenticate('local'),
+    function (req, res) {
+      console.log('routes/user.js, login, req.body: ');
+      console.log(req.body)
     },
-    passport.authenticate('local'),
-    (req, res) => {
-        console.log('logged in', req.user);
-        var userInfo = {
-            username: req.user.username
-        };
-        res.send(userInfo);
-    }
-)
+    // (req, res) => {
+    //   console.log('logged in', req.user);
+    //   var userInfo = {
+    //     username: req.user.username
+    //   };
+    //   res.send(userInfo);
+    // }
+  )
 
-app.get('/signup', (req, res, next) => {
+  app.get('/signup', (req, res, next) => {
     console.log('===== user!!======')
     console.log(req.user)
     if (req.user) {
-        res.json({ user: req.user })
+      res.json({ user: req.user })
     } else {
-        res.json({ user: null })
+      res.json({ user: null })
     }
-})
+  })
 
-app.post('/logout', (req, res) => {
+  app.post('/logout', (req, res) => {
     if (req.user) {
-        req.logout()
-        res.send({ msg: 'logging out' })
+      req.logout()
+      res.send({ msg: 'logging out' })
     } else {
-        res.send({ msg: 'no user to log out' })
+      res.send({ msg: 'no user to log out' })
     }
-})
+  })
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/public/index.html'))
+  })
 }

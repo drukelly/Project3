@@ -61,6 +61,12 @@ class Team {
     return knex(this.table)
       .truncate()
   }
+
+  picked (id) {
+    return knex.select()
+      .table(this.table)
+      .where('id', id)
+  }
 }
 
 module.exports = new Team()
