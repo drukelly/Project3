@@ -23,7 +23,8 @@ class PlayerCard extends Component {
         players: []
     }
     componentDidMount() {
-        fetch('/api/team')
+      console.log('player card props', this.props)
+        fetch(`/api/team/${this.props.sport}`)
             .then(results => results.json())
             .then(res => {
                 console.log(res)
@@ -31,6 +32,7 @@ class PlayerCard extends Component {
                 console.log('state players', this.state.players)
                 console.log(this.state.players)
             })
+            .catch(err => console.log(err))
     }
     render() {
         return (

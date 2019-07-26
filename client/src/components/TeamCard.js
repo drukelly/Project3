@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Players from './pages/Players'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import Players from './pages/Players'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class TeamCard extends React.Component {
     state = {
@@ -25,7 +25,11 @@ class TeamCard extends React.Component {
         return (
             <div>
                 {this.state.teams.map((team) => (
-                    <Link to={`teams/${team.sport}`}>
+                    <Link to={{
+                        pathname: `/teams/${team.sport}`,
+                        state: team
+                        }}
+                        key={team.sport}>
                         <img src={team.image} alt={team.sport} />
                         <h2>{team.sport}</h2>
                         <h2>{team.name}</h2>
