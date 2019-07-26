@@ -77,7 +77,7 @@ class Login extends Component {
                     maxLength='15' />
             </div>
             <Button type='submit' onClick={this.handleSubmit}> Log In </Button>
-            <p className='tc'>No Account? <a href='/signup' className='blue link'>Sign-Up</a></p>
+            <p className='f6 tc'>No Account? <a href='/signup' className='blue link'>Sign-Up</a></p>
         </form>
     )
   }

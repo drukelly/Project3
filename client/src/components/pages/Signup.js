@@ -66,7 +66,7 @@ class Signup extends Component {
     }
     render() {
         return (
-            <form action='/signup' method='POST' className='pa4'>
+            <form action='/signup' method='POST' className='pa4' style={{ paddingBottom: 100 }}>
                 <h1 className='lh-title tc'>Create An Account</h1>
                 <div>{}</div>
                 <FormField
@@ -125,7 +125,7 @@ class Signup extends Component {
                         maxLength='15' />
                 </div>
                 <Button type='submit' onClick={this.handleSubmit}> Create Account </Button>
-                <p className='tc'>Have An Account? <a href='/login' className='blue link'>Login</a></p>
+                <p className='f6 tc'>Have An Account? <a href='/login' className='blue link'>Login</a></p>
             </form>
         )
     }
