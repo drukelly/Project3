@@ -71,7 +71,7 @@ class CreatePlayer extends Component {
   render() {
     return (
       <Wrapper className='pa4'>
-        <h1 className='lh-title tc'>Add Player</h1>
+        <h1 className='lh-title mt0 tc'>Add Player</h1>
         <FormField htmlFor='name' type='text' name='name' onChange={this.handleChange} />
         <FormField htmlFor='image' type='text' name='image' label='Photo (URL)' onChange={this.handleChange} />
         <FormField htmlFor='jersey_number' type='number' name='jersey_number' label='Jersey Number' onChange={this.handleChange} />
