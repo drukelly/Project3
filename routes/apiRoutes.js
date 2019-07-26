@@ -88,7 +88,7 @@ module.exports = function (app) {
   })
 
   // post one player as active
-  app.post('/api/players/:id', function (req, res) {
+  app.put('/api/players/:id', function (req, res) {
     console.log(req.params)
     Team.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
       .then(results => {

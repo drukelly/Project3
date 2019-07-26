@@ -53,22 +53,35 @@ class Playerview extends Component {
     active () {
         alert('Player is now active!')
         var id = this.props.id
+        var on_team = 1
         fetch('/api/players/' + id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(id)
+            body: JSON.stringify({id, on_team}),
           })
             .then(data => {
               console.log(data)
             })
             .catch(function (error) {
                 console.log(error);
-              });
-
+            });
     }
 
     inactive() {
         alert('Player is no longer active!')
+            var id = this.props.id
+            var on_team = 0
+            fetch('/api/players/' + id, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({id, on_team}),
+              })
+                .then(data => {
+                  console.log(data)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                  });
     }
 
     render() {
@@ -90,7 +103,7 @@ class Playerview extends Component {
                                 <div>{player.position === 'Pitcher' ? `ERA: ${player.era} W: ${player.wins} - L: ${player.losses}` : `BA: ${player.batting_average}`}</div>
                                 <div className="form-group" style={{margin:'15px'}}>
                                 <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
-                                <div>{player.on_team === 0 ? <button onClick={this.active.bind(this)}>Mark Player Active</button> : <button onClick={this.inactive}>Mark Player Inactive</button>}</div>           
+                                <div>{player.on_team === 0 ? <button onClick={this.active.bind(this)}>Mark Player Active</button> : <button onClick={this.inactive.bind(this)}>Mark Player Inactive</button>}</div>           
                         </div>
                     ))}
             </div>
