@@ -39,7 +39,7 @@ class Team {
       })
   }
 
-//   Adds a new player to the team
+  // Adds a new player to the team
   addPlayer (values) {
     console.log(values)
     return knex(values.sport)
