@@ -67,13 +67,14 @@ module.exports = function (app) {
   // Create a new player for the team
   app.post('/api/team', function (req, res) {
     var player = req.body
-    console.log(`2nd => ${player}`)
     Team.addPlayer(player)
       .then(results => {
         console.log(`
         ********
         Team.addPlayer()
-        ${results}`)
+        ${results}
+        ********
+        `)
         res.json(results)
       })
   })

@@ -42,7 +42,6 @@ class Team {
 //   Adds a new player to the team
   addPlayer (values) {
     return knex(values.sport)
-      .returning('id')
       .insert({
         name: values.name,
         image: values.image,

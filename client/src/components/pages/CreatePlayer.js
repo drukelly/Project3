@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom' 
 import FormField from '../FormField'
 import styled from 'styled-components'
 
@@ -23,7 +24,8 @@ class CreatePlayer extends Component {
     image: '',
     jersey_number: '',
     sport: '',
-    position: ''
+    position: '',
+    redirectTo: ''
   }
   handleChange = (event) => {
     const name = event.target.name;
@@ -50,14 +52,16 @@ class CreatePlayer extends Component {
       }
     })
     .then(response => {
-      if (response.data) {
-        console.log('player creation successful')
+      if (response) {
+        console.log(`after submit: => ${response}`)
         this.setState({
-          redirectTo: '/players'
+          redirectTo: `/teams/${this.state.sport}/`
         })
+        console.log(this.state.redirectTo)
       } else {
+        console.log('---player creation error---')
         console.log(response)
-        console.log('player creation error')
+        console.log('---player creation error---')
       }
     }).catch(error => {
       console.log('fatal error (player creation)')
@@ -74,6 +78,7 @@ class CreatePlayer extends Component {
         <FormField htmlFor='sport' type='text' name='sport' onChange={this.handleChange} />
         <FormField htmlFor='position' type='text' name='position' onChange={this.handleChange} />
         <Button type='submit' onClick={this.handleSubmit}> Add Player </Button>
+        { this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : '' }
       </Wrapper>
       )
     }
