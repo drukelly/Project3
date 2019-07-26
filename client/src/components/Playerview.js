@@ -121,8 +121,11 @@ class PlayerView extends Component {
                   <DetailStatLine stat='K' value={player.so} />
                 </div>
                 :
-                <div>
+                <div className='flex items-center justify-center w-100'>
                   <DetailStatLine stat='BA' value={player.batting_average} />
+                  <DetailStatLine stat='HR' value={player.hr} />
+                  <DetailStatLine stat='H' value={player.hits} />
+                  <DetailStatLine stat='SB' value={player.sb} />
                 </div>
               }
             </div>
