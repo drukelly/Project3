@@ -125,7 +125,7 @@ class Signup extends Component {
                         maxLength='15' />
                 </div>
                 <Button type='submit' onClick={this.handleSubmit}> Create Account </Button>
-                <p>Have An Account? <a href='/login'>Login</a></p>
+                <p className='tc'>Have An Account? <a href='/login' className='blue link'>Login</a></p>
             </form>
         )
     }
