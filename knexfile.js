@@ -6,7 +6,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'nodeUser',
+      user: 'root',
       password: '',
       database: 'sports_db',
       debug: ['ComQueryPacket', 'RowDataPacket']
