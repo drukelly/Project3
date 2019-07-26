@@ -2,20 +2,20 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+const Wrapper = styled.section`
+  padding-bottom: 100px;
+  padding-top: 179px;
+`
+
 const Image = styled.div`
-  background-repeat: no-repeat;
+  background-color: beige;
   background-position: 50% 50%;
+  background-repeat: no-repeat;
   background-size: cover;
-  border: 1px solid silver;
   border-radius: 60px;
   height: 60px;
   margin: .5em 1em;
   width: 60px;
-`
-
-const Wrapper = styled.section`
-padding-bottom: 100px;
-  padding-top: 189px;
 `
 
 class PlayerCard extends Component {
@@ -39,7 +39,7 @@ class PlayerCard extends Component {
       <Wrapper>
         {this.state.players.map((player) => (
           <Link to={`/players/${player.id}`} key={player.id} className='link near-black'>
-            <div className='b--black-10 bb flex items-center w-100'>
+            <div className='bg-animate hover-bg-blue hover-white b--black-10 bb flex items-center w-100'>
               <Image style={{ backgroundImage: `url(${player.image})` }} id={player.id} alt={player.name} />
               <div className='f6 lh-copy pv2'>
                 <div>#{player.jersey_number} {player.position}</div>

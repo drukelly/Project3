@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 //display 1 thing only
-class Playerview extends Component {
+class PlayerView extends Component {
     state = {
         players: [],
         // isInEditMode: false,
@@ -103,4 +103,4 @@ class Playerview extends Component {
     }
 }
 
-export default Playerview
+export default PlayerView
