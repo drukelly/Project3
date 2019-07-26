@@ -39,7 +39,7 @@ class Team {
       })
   }
 
-//   Adds a new player to the team
+  //   Adds a new player to the team
   addPlayer (values) {
     console.log(values)
     return knex(values.sport)
@@ -72,6 +72,12 @@ class Team {
     return knex.select()
       .table(this.table)
       .where('id', id)
+  }
+
+  active (where, values) {
+    return knex(this.table)
+      .where(where)
+      .update(values)
   }
 }
 

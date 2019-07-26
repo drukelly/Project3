@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-//display 1 thing only
 class Playerview extends Component {
     state = {
         players: [],
@@ -53,10 +52,11 @@ class Playerview extends Component {
 
     active () {
         alert('Player is now active!')
-        fetch('/api/current', {
+        var id = this.props.id
+        fetch('/api/players/' + id, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: this.inputTeam.value
+            body: JSON.stringify(id)
           })
             .then(data => {
               console.log(data)
@@ -64,7 +64,6 @@ class Playerview extends Component {
             .catch(function (error) {
                 console.log(error);
               });
-              this.inputTeam.value = true;
 
     }
 
@@ -89,10 +88,9 @@ class Playerview extends Component {
                                 {player.jersey_number}<br/>
                                 {player.position}<br/>
                                 <div>{player.position === 'Pitcher' ? `ERA: ${player.era} W: ${player.wins} - L: ${player.losses}` : `BA: ${player.batting_average}`}</div>
-                               { /* this doesn't work yet */ }
                                 <div className="form-group" style={{margin:'15px'}}>
                                 <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
-                                <div>{player.on_team === false ? <button onClick={this.active.bind(this)}>Mark Player Active</button> : <button onClick={this.inactive}>Mark Player Inactive</button>}</div>           
+                                <div>{player.on_team === 0 ? <button onClick={this.active.bind(this)}>Mark Player Active</button> : <button onClick={this.inactive}>Mark Player Inactive</button>}</div>           
                         </div>
                     ))}
             </div>

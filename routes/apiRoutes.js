@@ -78,14 +78,24 @@ module.exports = function (app) {
   })
 
   // get one player
- app.get('/api/players/:id', function (req, res) {
-  console.log(req.params)
-  Team.picked(req.params.id)
-    .then(results => {
-      console.log(`one player ${results}`)
-      res.json(results)
-    })
-})
+  app.get('/api/players/:id', function (req, res) {
+    console.log(req.params)
+    Team.picked(req.params.id)
+      .then(results => {
+        // console.log(`one player ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post one player as active
+  app.post('/api/players/:id', function (req, res) {
+    console.log(req.params)
+    Team.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+      .then(results => {
+        console.log(`are you on the team ${results}`)
+        res.json(results)
+      })
+  })
 
   // Delete an example by id
   app.delete('/api/examples/:id', function (req, res) {
@@ -120,7 +130,6 @@ module.exports = function (app) {
   //     }
   //   })
   // })
-
 
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/public/index.html'))
