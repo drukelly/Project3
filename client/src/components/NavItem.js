@@ -4,8 +4,9 @@ import styled from 'styled-components'
 
 const Image = styled.img`
   display: block;
+  height: 32px;
   margin: 0 auto .5rem;
-  width: 50%;
+  width: 32px;
 `
 
 const NavItem = props => {
