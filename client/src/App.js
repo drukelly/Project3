@@ -34,10 +34,11 @@ function App () {
       <div>
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
-        <Route exact path='/players' component={Players} />
+        {/* <Route exact path='/players' component={Players} /> */}
         <Route exact path='/players/:id' component={Playview} />
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/teams' component={TeamsView} />
+        <Route exact path='/teams/:team' component={Players} />
         <Nav />
       </div>
     </Router>

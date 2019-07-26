@@ -14,9 +14,9 @@ class Team {
   }
 
   // Find all in table
-  findAll () {
+  findAll (table) {
     return knex.select()
-      .table(this.table)
+      .table(table)
   }
 
   // Selects all players who are on the current team

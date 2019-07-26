@@ -72,6 +72,9 @@ exports.up = function (knex, Promise) {
     if (!exists) {
       return knex.schema.createTable('users', (table) => {
         table.increments('id')
+        table.string('name').notNullable()
+        table.string('email').notNullable()
+        table.string('phone_number').notNullable()
         table.string('username').unique().notNullable()
         table.string('password').notNullable()
         table.boolean('admin').notNullable().defaultTo(false)
@@ -82,7 +85,7 @@ exports.up = function (knex, Promise) {
 }
 
 exports.down = function (knex, Promise) {
-  return Promise.all([
+  return ([
     knex.schema.dropTable('baseball'),
     knex.schema.dropTable('basketball'),
     knex.schema.dropTable('hockey'),
