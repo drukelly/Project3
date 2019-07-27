@@ -32,34 +32,32 @@ class Playerview extends Component {
     changeEditMode = () => {
         this.setState({
             isInEditMode: !this.state.isInEditMode
-
         })
     }
 
-    // updateComponentstatValue = (event) => {
-    //     this.setState({
-    //         isInEditMode: false,
-    //         [event.target.name]: event.target.temp           
-    //     })
-    // }
+    updateComponentstatValue = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value           
+        })
+        console.log(this.state.era)
+    }
 
     updateStats = (event) => {
         this.setState({
-            isInEditMode: false,
-            [event.target.name]: event.target.value          
-        })
+            isInEditMode: false,})
         event.preventDefault()
+        console.log(this.state.wins)
         var id = this.props.id
         console.log(id)
         let updatedStats = {
             wins: this.state.wins,
-            losses:this.id.losses,
-            era: this.id.era,
-            so: this.id.so,
-            batting_average: this.id.batting_average,
-            hr: this.id.hr,
-            hits: this.id.hits,
-            sb: this.id.sb
+            losses:this.state.losses,
+            era: this.state.era,
+            so: this.state.so,
+            batting_average: this.state.batting_average,
+            hr: this.state.hr,
+            hits: this.state.hits,
+            sb: this.state.sb
           }
         fetch('/api/players/' + id, {
             method: 'POST',
@@ -86,42 +84,55 @@ class Playerview extends Component {
                                 type='text'
                                 name='era'
                                 placeholder=''
-                                value = {this.state.era}/>
+                                value = {this.state.era}
+                                onChange={this.updateComponentstatValue}/>
                             <button onClick={this.changeEditMode}>X</button>
                             <button onClick={this.updateStats}>OK</button>
                         </div>
                         } />
                     
                     
-                    <div name = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={
+                    <div onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={
                         <div> 
                             <input
                                 type='text'
-                                defaultstatValue={player.wins}
-                                ref ='theTextInput'/>
+                                name='wins'
+                                placeholder=''
+                                value = {this.state.wins}
+                                onChange={this.updateComponentstatValue}/>
                             <button onClick={this.changeEditMode}>X</button>
-                            {console.log(this)}
-                            <button onClick={this.updateComponentstatValue}>OK</button>
-                        </div>
+                            <button onClick={this.updateStats}>OK</button>
+                    </div>
                         } />
                     </div>
-                    <div name = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={
+                    <div onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={
                         <div> 
                             <input
                                 type='text'
-                                defaultstatValue={player.losses}
-                                ref ='theTextInput'/>
+                                name='losses'
+                                placeholder=''
+                                value = {this.state.losses}
+                                onChange={this.updateComponentstatValue}/>
                             <button onClick={this.changeEditMode}>X</button>
-                            {console.log(this)}
-                            <button onClick={this.updateComponentstatValue}>OK</button>
+                            <button onClick={this.updateStats}>OK</button>
                         </div>
                         } />
                     </div>
-                    <div name = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
+                    <div onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={                                                               
+                         <div> 
+                            <input
+                                type='text'
+                                name='so'
+                                placeholder=''
+                                value = {this.state.so}
+                                onChange={this.updateComponentstatValue}/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            <button onClick={this.updateStats}>OK</button>
+                        </div>} /></div>
                 </div>
                 :
                 <div id='flex items-center justify-center w-100'>
-                    <div name ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
+                    <div name ='batting_average' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
                     <div name ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
                     <div name ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
                     <div name ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
