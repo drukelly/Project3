@@ -27,22 +27,26 @@ class Team {
   }
 
   // Updates statistics for players who were selected for the team
-  update (values) {
+  update (id) {
     return knex(this.table)
-      .where('id', values.id)
+      .where('id', id)
       .update({
-        goals: knex.raw(`?? + ${values.goals}`, ['goals']),
-        assists: knex.raw(`?? + ${values.assists}`, ['assists']),
-        mins: knex.raw(`?? + ${values.mins}`, ['mins']),
-        yel: knex.raw(`?? + ${values.yel}`, ['yel']),
-        red: knex.raw(`?? + ${values.red}`, ['red'])
+        wins: knex.raw(`?? + ${id.wins}`, ['wins']),
+        losses: knex.raw(`?? + ${id.losses}`, ['losses']),
+        era: knex.raw(`?? + ${id.era}`, ['era']),
+        batting_average: knex.raw(`?? + ${id.batting_average}`, ['batting_average']),
+        so: knex.raw(`?? + ${id.so}`, ['so']),
+        hr: knex.raw(`?? + ${id.hr}`, ['hr']),
+        hits: knex.raw(`?? + ${id.hits}`, ['hits']),
+        sb: knex.raw(`?? + ${id.sb}`, ['sb'])
       })
   }
 
-  // Adds a new player to the team
+  //   Adds a new player to the team
   addPlayer (values) {
     console.log(values)
     return knex(values.sport)
+      .returning('id')
       .insert({
         name: values.name,
         image: values.image,
@@ -71,6 +75,12 @@ class Team {
     return knex.select()
       .table(this.table)
       .where('id', id)
+  }
+
+  active (where, values) {
+    return knex(this.table)
+      .where(where)
+      .update(values)
   }
 }
 

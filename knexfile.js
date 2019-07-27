@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 // Update with your config settings.
 
 module.exports = {
@@ -8,9 +6,9 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: process.env.mysql_user,
+      user: 'newuser',
       password: '',
-      database: process.env.mysql_db,
+      database: 'sports_db',
       debug: ['ComQueryPacket', 'RowDataPacket']
     }
   },
@@ -20,9 +18,9 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: process.env.mysql_user,
+      user: 'newuser',
       password: '',
-      database: process.env.mysql_test_db,
+      database: 'testdb',
       debug: ['ComQueryPacket', 'RowDataPacket']
     }
   },
@@ -30,11 +28,11 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      host: process.env.mysql_prod_host,
+      host: 'u0zbt18wwjva9e0v.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
       port: 3306,
-      user: process.env.mysql_prod_user,
-      password: process.env.mysql_prod_pass,
-      database: process.env.mysql_prod_db
+      user: 'gq4k2wlnd8mhqib5',
+      password: 'gpvaqckh6wj70nsm',
+      database: 'k3fghfef366f3jb2'
     }
   }
 

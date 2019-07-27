@@ -66,14 +66,13 @@ module.exports = function (app) {
   // Create a new player for the team
   app.post('/api/team', function (req, res) {
     var player = req.body
+    console.log(`2nd => ${player}`)
     Team.addPlayer(player)
       .then(results => {
         console.log(`
         ********
         Team.addPlayer()
-        ${results}
-        ********
-        `)
+        ${results}`)
         res.json(results)
       })
   })
@@ -83,7 +82,27 @@ module.exports = function (app) {
     console.log(req.params)
     Team.picked(req.params.id)
       .then(results => {
-        console.log(`one player ${results}`)
+        // console.log(`one player ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post one player as active or inactive
+  app.put('/api/players/:id', function (req, res) {
+    console.log(req.params)
+    Team.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+      .then(results => {
+        console.log(`are you on the team ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post to update stats
+  app.post('/api/players/:id', function (req, res) {
+    console.log(req.params)
+    Team.update(req.body.id)
+      .then(results => {
+        console.log(`are you on the team ${results}`)
         res.json(results)
       })
   })
