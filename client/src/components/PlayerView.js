@@ -109,7 +109,7 @@ class PlayerView extends Component {
               <BackButton src='/images/btn-back.png' alt='Go Back' />
               <div className='absolute bottom-0 f4 flex flex-column pa4'>
                 <div className='lh-copy'><span className='bg-black-80 pa2 white'>#{player.jersey_number} <span className='b'>{player.name}</span></span></div>
-                <div className='f7 lh-copy' style={{ paddingTop: 6 }}><span className='bg-black-80 ph2 pv1 white'>{player.position}</span></div>
+                <div className='f7 lh-copy' style={{ paddingTop: 7.5 }}><span className='bg-black-80 ph2 pv1 white'>{player.position}</span></div>
               </div>
             </PlayerPhoto>
             <div className='bg-near-black pa3 tc white'>
