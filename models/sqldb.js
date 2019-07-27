@@ -31,9 +31,9 @@ class Team {
     return knex(this.table)
       .where('id', id)
       .update({
-        wins: (`${id.wins}`, ['wins']),
-        losses: knex.raw(`${id.losses}`, ['losses']),
-        era: knex.raw(${id.era}`, ['era']),
+        wins: knex.raw(`?? + ${id.wins}`, ['wins']),
+        losses: knex.raw(`?? + ${id.losses}`, ['losses']),
+        era: knex.raw(`?? + ${id.era}`, ['era']),
         batting_average: knex.raw(`?? + ${id.batting_average}`, ['batting_average']),
         so: knex.raw(`?? + ${id.so}`, ['so']),
         hr: knex.raw(`?? + ${id.hr}`, ['hr']),
