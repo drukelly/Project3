@@ -87,10 +87,20 @@ module.exports = function (app) {
       })
   })
 
-  // post one player as active
+  // post one player as active or inactive
   app.put('/api/players/:id', function (req, res) {
     console.log(req.params)
     Team.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+      .then(results => {
+        console.log(`are you on the team ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post to update stats
+  app.post('/api/players/:id', function (req, res) {
+    console.log(req.params)
+    Team.update(req.body.id)
       .then(results => {
         console.log(`are you on the team ${results}`)
         res.json(results)

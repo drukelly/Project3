@@ -27,15 +27,14 @@ class Team {
   }
 
   // Updates statistics for players who were selected for the team
-  update (values) {
+  update (id) {
     return knex(this.table)
-      .where('id', values.id)
+      .where('id', id)
       .update({
-        goals: knex.raw(`?? + ${values.goals}`, ['goals']),
-        assists: knex.raw(`?? + ${values.assists}`, ['assists']),
-        mins: knex.raw(`?? + ${values.mins}`, ['mins']),
-        yel: knex.raw(`?? + ${values.yel}`, ['yel']),
-        red: knex.raw(`?? + ${values.red}`, ['red'])
+        wins: knex.raw(`?? + ${id.wins}`, ['wins']),
+        losses: knex.raw(`?? + ${id.losses}`, ['losses']),
+        era: knex.raw(`?? + ${id.era}`, ['era']),
+        batting_average: knex.raw(`?? + ${id.batting_average}`, ['batting_average'])
       })
   }
 
