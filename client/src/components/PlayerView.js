@@ -92,7 +92,7 @@ class Playerview extends Component {
                         } />
                     
                     
-                    <div onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={
+                    <DetailStatLine stat='W' statValue={
                         <div> 
                             <input
                                 type='text'
@@ -102,10 +102,10 @@ class Playerview extends Component {
                                 onChange={this.updateComponentstatValue}/>
                             <button onClick={this.changeEditMode}>X</button>
                             <button onClick={this.updateStats}>OK</button>
-                    </div>
+                      </div>
                         } />
-                    </div>
-                    <div onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={
+                    
+                    <DetailStatLine stat='L' statValue={
                         <div> 
                             <input
                                 type='text'
@@ -117,8 +117,7 @@ class Playerview extends Component {
                             <button onClick={this.updateStats}>OK</button>
                         </div>
                         } />
-                    </div>
-                    <div onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={                                                               
+                    <DetailStatLine stat='K' statValue={                                                               
                          <div> 
                             <input
                                 type='text'
@@ -128,18 +127,60 @@ class Playerview extends Component {
                                 onChange={this.updateComponentstatValue}/>
                             <button onClick={this.changeEditMode}>X</button>
                             <button onClick={this.updateStats}>OK</button>
-                        </div>} /></div>
+                        </div>} />
                 </div>
+              
                 :
+
                 <div id='flex items-center justify-center w-100'>
-                    <div name ='batting_average' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
-                    <div name ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
-                    <div name ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
-                    <div name ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
+                    <DetailStatLine stat='BA' statValue={                        
+                        <div> 
+                            <input
+                                type='text'
+                                name='batting_average'
+                                placeholder=''
+                                value = {this.state.batting_average}
+                                onChange={this.updateComponentstatValue}/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            <button onClick={this.updateStats}>OK</button>
+                        </div>} />
+                    <DetailStatLine stat='HR' statValue={                        
+                        <div> 
+                            <input
+                                type='text'
+                                name='hr'
+                                placeholder=''
+                                value = {this.state.hr}
+                                onChange={this.updateComponentstatValue}/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            <button onClick={this.updateStats}>OK</button>
+                        </div>} />
+                    <DetailStatLine stat='H' statValue={                        
+                        <div> 
+                            <input
+                                type='text'
+                                name='hits'
+                                placeholder=''
+                                value = {this.state.hits}
+                                onChange={this.updateComponentstatValue}/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            <button onClick={this.updateStats}>OK</button>
+                        </div>} />
+                    <DetailStatLine stat='SB' statValue={                        
+                        <div> 
+                            <input
+                                type='text'
+                                name='sb'
+                                placeholder=''
+                                value = {this.state.sb}
+                                onChange={this.updateComponentstatValue}/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            <button onClick={this.updateStats}>OK</button>
+                        </div>} />
                 </div>
               
                 }
-             </div>
+            </div>
     </div>
     ))}
 </div>
