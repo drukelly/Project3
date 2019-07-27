@@ -40,39 +40,53 @@ class Playerview extends Component {
     updateComponentValue = () => {
         this.setState({
             isInEditMode: false,
-            value: this.refs.theTextInput.value
+            value: this.refs.theTextInput.value,
+            
         })
     }
 
     renderEditView = () => {
-        return <div id='era'>
-            <input
-                type='text'
-                defaultValue={this.state.value}
-                ref ='theTextInput'/>
-            <button onClick={this.changeEditMode}>X</button>
-            <button onClick={this.updateComponentValue}>OK</button>
-        </div>
-    }
-
-    renderDefaultView = () => {
-        return <div>
-                { <div>
-        {this.state.players.map((player) => (
-          <div>
-            <PlayerPhoto key={player.id} id={player.id} style={{ backgroundImage: `url(${player.image})`}}>
-              <BackButton src='/images/btn-back.png' alt='Go Back' />
-              <div className='absolute bottom-0 f4 flex flex-column pa4'>
-                <div className='lh-copy'><span className='bg-black-80 pa2 white'>#{player.jersey_number} <span className='b'>{player.name}</span></span></div>
-                <div className='f7 lh-copy' style={{ paddingTop: 6 }}><span className='bg-black-80 ph2 pv1 white'>{player.position}</span></div>
-              </div>
-            </PlayerPhoto>
+        return <div>{this.state.players.map((player) => (
+    <div key={player.id} id={player.id}>
             <div className='bg-near-black pa3 tc white'>
               {player.position === 'Pitcher' ?
                 <div className='flex items-center justify-center w-100'>
-                    <div id ='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' value={player.era} /></div>
-                    <div id = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' value={player.wins} /></div>
-                    <div id = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' value={player.losses} /></div>
+                    <div id ='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' value={
+                        <div> 
+                            <input
+                                type='text'
+                                defaultValue={this.state.value}
+                                ref ='theTextInput'/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            {console.log(this)}
+                            <button onClick={this.updateComponentValue}>OK</button>
+                        </div>
+                        } />
+                    </div>
+                    <div id = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' value={
+                        <div> 
+                            <input
+                                type='text'
+                                defaultValue={this.state.value}
+                                ref ='theTextInput'/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            {console.log(this)}
+                            <button onClick={this.updateComponentValue}>OK</button>
+                        </div>
+                        } />
+                    </div>
+                    <div id = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' value={
+                        <div> 
+                            <input
+                                type='text'
+                                defaultValue={this.state.value}
+                                ref ='theTextInput'/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            {console.log(this)}
+                            <button onClick={this.updateComponentValue}>OK</button>
+                        </div>
+                        } />
+                    </div>
                     <div id = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' value={player.so} /></div>
                 </div>
                 :
@@ -82,19 +96,38 @@ class Playerview extends Component {
                     <div id ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' value={player.hits} /></div>
                     <div id ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' value={player.sb} /></div>
                 </div>
-              }
+              
+                }
+             </div>
+    </div>
+    ))}
+</div>
+    }
+
+    renderDefaultView = () => {
+        return <div>{this.state.players.map((player) => (
+            <div key={player.id} id={player.id}>
+                    <div className='bg-near-black pa3 tc white'>
+                      {player.position === 'Pitcher' ?
+                        <div className='flex items-center justify-center w-100'>
+                            <div id ='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' value={player.era} /></div>
+                            <div id = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' value={player.wins} /></div>
+                            <div id = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' value={player.losses} /></div>
+                            <div id = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' value={player.so} /></div>
+                        </div>
+                        :
+                        <div id='flex items-center justify-center w-100'>
+                            <div id ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' value={player.batting_average} /></div>
+                            <div id ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' value={player.hr} /></div>
+                            <div id ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' value={player.hits} /></div>
+                            <div id ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' value={player.sb} /></div>
+                        </div>
+                      
+                        }
+                     </div>
             </div>
-            <div className="form-group" style={{margin:'15px'}}>
-            <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
-            <div className='tc'>
-              {player.on_team === 0 ?
-                <Button onClick={this.active.bind(this)}>Activate Player</Button> :
-                <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
-              </div>
-          </div>
-        ))}
-      </div>}
-                </div>
+            ))}
+        </div>
     }
 
     updateStats () {
@@ -171,10 +204,34 @@ class Playerview extends Component {
 
     render() {
         return (
-            <div>{this.state.isInEditMode ? 
-            this.renderEditView() :
-            this.renderDefaultView()}
-            </div>
+            // <div>{this.state.isInEditMode ? 
+            // this.renderEditView() :
+            // this.renderDefaultView()}
+            // </div>
+            <div>
+                {this.state.players.map((player) => (
+                  <div>
+                    <PlayerPhoto key={player.id} id={player.id} style={{ backgroundImage: `url(${player.image})`}}>
+                      <BackButton src='/images/btn-back.png' alt='Go Back' />
+                      <div className='absolute bottom-0 f4 flex flex-column pa4'>
+                        <div className='lh-copy'><span className='bg-black-80 pa2 white'>#{player.jersey_number} <span className='b'>{player.name}</span></span></div>
+                        <div className='f7 lh-copy' style={{ paddingTop: 6 }}><span className='bg-black-80 ph2 pv1 white'>{player.position}</span></div>
+                      </div>
+                    </PlayerPhoto>
+                        <div>{this.state.isInEditMode ? 
+                        this.renderEditView() :
+                        this.renderDefaultView()}
+                        </div>
+                    <div className="form-group" style={{margin:'15px'}}>
+                    <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
+                    <div className='tc'>
+                      {player.on_team === 0 ?
+                        <Button onClick={this.active.bind(this)}>Activate Player</Button> :
+                        <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
+                      </div>
+                  </div>
+                ))}
+              </div>
         )
     }
 }
