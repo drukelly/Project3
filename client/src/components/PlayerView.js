@@ -99,21 +99,21 @@ class PlayerView extends Component {
               } />
               <DetailStatLine stat='W' statValue={
                 <div>
-                  <input type='number' name='wins' value={player.wins} onChange={this.updateComponentStatValue} defaultValue={player.wins} step='1' style={{ width: 75 }} />
+                  <input type='number' name='wins' value={this.state.wins} onChange={this.updateComponentStatValue} defaultValue={player.wins} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='L' statValue={
                 <div>
-                  <input type='number' name='losses' value={player.losses} onChange={this.updateComponentStatValue} defaultValue={player.losses} step='1' style={{ width: 75 }} />
+                  <input type='number' name='losses' value={this.state.losses} onChange={this.updateComponentStatValue} defaultValue={player.losses} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='K' statValue={
                 <div>
-                  <input type='number' name='so' value={player.so} onChange={this.updateComponentStatValue} defaultValue={player.so} step='1' style={{ width: 75 }} />
+                  <input type='number' name='so' value={this.state.so} onChange={this.updateComponentStatValue} defaultValue={player.so} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
@@ -125,28 +125,28 @@ class PlayerView extends Component {
             <div className='flex items-center justify-center w-100'>
               <DetailStatLine stat='BA' statValue={
                 <div>
-                  <input type='number' name='batting_average' value={player.batting_average} onChange={this.updateComponentStatValue} step='0.01' defaultValue={player.batting_average} />
+                  <input type='number' name='batting_average' value={this.state.batting_average} onChange={this.updateComponentStatValue} step='0.01' defaultValue={player.batting_average} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='HR' statValue={
                 <div>
-                  <input type='number' name='hr' value={player.hr} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hr} />
+                  <input type='number' name='hr' value={this.state.hr} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hr} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='H' statValue={
                 <div> 
-                  <input type='number' name='hits' value={player.hits} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hits} />
+                  <input type='number' name='hits' value={this.state.hits} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hits} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='SB' statValue={
                 <div>
-                  <input type='number' name='sb' value={player.sb} onChange={this.updateComponentStatValue} step='1' defaultValue={player.sb} />
+                  <input type='number' name='sb' value={this.state.sb} onChange={this.updateComponentStatValue} step='1' defaultValue={player.sb} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
@@ -168,19 +168,19 @@ class PlayerView extends Component {
             {player.position === 'Pitcher' ?
             
             <div className='flex items-center justify-center w-100'>
-              <div name ='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' statValue={player.era} /></div>
-              <div name = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
-              <div name = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
-              <div name = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
+              <div name='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' statValue={player.era} /></div>
+              <div name='w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
+              <div name='l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
+              <div name='so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
             </div>
             
             :
             
             <div className='flex items-center justify-center w-100'>
-              <div name ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
-              <div name ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
-              <div name ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
-              <div name ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
+              <div name='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
+              <div name='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
+              <div name='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
+              <div name='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
             </div>
             
             }
