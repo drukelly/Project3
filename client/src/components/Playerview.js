@@ -40,7 +40,7 @@ class Playerview extends Component {
     updateComponentValue = () => {
         this.setState({
             isInEditMode: false,
-            value: this.refs.theTextInput.value,
+            fieldToUpdate: this.refs.theTextInput.fieldToUpdate,
             
         })
     }
@@ -55,7 +55,7 @@ class Playerview extends Component {
                         <div> 
                             <input
                                 type='text'
-                                defaultValue={this.state.value}
+                                defaultValue={this.state.fieldToUpdate}
                                 ref ='theTextInput'/>
                             <button onClick={this.changeEditMode}>X</button>
                             {console.log(this)}
@@ -67,7 +67,7 @@ class Playerview extends Component {
                         <div> 
                             <input
                                 type='text'
-                                defaultValue={this.state.value}
+                                defaultValue={this.state.fieldToUpdate}
                                 ref ='theTextInput'/>
                             <button onClick={this.changeEditMode}>X</button>
                             {console.log(this)}
@@ -79,7 +79,7 @@ class Playerview extends Component {
                         <div> 
                             <input
                                 type='text'
-                                defaultValue={this.state.value}
+                                defaultValue={this.state.fieldToUpdate}
                                 ref ='theTextInput'/>
                             <button onClick={this.changeEditMode}>X</button>
                             {console.log(this)}
