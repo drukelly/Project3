@@ -16,7 +16,7 @@ const DetailStatLine = props => {
   return (
     <Stat>
       <dt className='gray lh-copy'>{props.stat}</dt>
-      <dd className='f4 lh-copy ma0 pa0 tc'>{props.value}</dd>
+      <dd className='f4 lh-copy ma0 pa0 tc'>{props.statValue}</dd>
     </Stat>
   )
 }

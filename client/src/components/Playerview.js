@@ -27,113 +27,32 @@ class Playerview extends Component {
     state = {
         players: [],
         isInEditMode: false,
-        // value: 'update'
-
         }
     //for click edit functionality
     changeEditMode = () => {
         this.setState({
             isInEditMode: !this.state.isInEditMode
+
         })
     }
 
-    updateComponentValue = () => {
+    // updateComponentstatValue = (event) => {
+    //     this.setState({
+    //         isInEditMode: false,
+    //         [event.target.name]: event.target.temp           
+    //     })
+    // }
+
+    updateStats = (event) => {
         this.setState({
             isInEditMode: false,
-            fieldToUpdate: this.refs.theTextInput.fieldToUpdate,
-            
+            [event.target.name]: event.target.value          
         })
-    }
-
-    renderEditView = () => {
-        return <div>{this.state.players.map((player) => (
-    <div key={player.id} id={player.id}>
-            <div className='bg-near-black pa3 tc white'>
-              {player.position === 'Pitcher' ?
-                <div className='flex items-center justify-center w-100'>
-                    <div id ='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' value={
-                        <div> 
-                            <input
-                                type='text'
-                                defaultValue={this.state.fieldToUpdate}
-                                ref ='theTextInput'/>
-                            <button onClick={this.changeEditMode}>X</button>
-                            {console.log(this)}
-                            <button onClick={this.updateComponentValue}>OK</button>
-                        </div>
-                        } />
-                    </div>
-                    <div id = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' value={
-                        <div> 
-                            <input
-                                type='text'
-                                defaultValue={this.state.fieldToUpdate}
-                                ref ='theTextInput'/>
-                            <button onClick={this.changeEditMode}>X</button>
-                            {console.log(this)}
-                            <button onClick={this.updateComponentValue}>OK</button>
-                        </div>
-                        } />
-                    </div>
-                    <div id = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' value={
-                        <div> 
-                            <input
-                                type='text'
-                                defaultValue={this.state.fieldToUpdate}
-                                ref ='theTextInput'/>
-                            <button onClick={this.changeEditMode}>X</button>
-                            {console.log(this)}
-                            <button onClick={this.updateComponentValue}>OK</button>
-                        </div>
-                        } />
-                    </div>
-                    <div id = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' value={player.so} /></div>
-                </div>
-                :
-                <div id='flex items-center justify-center w-100'>
-                    <div id ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' value={player.batting_average} /></div>
-                    <div id ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' value={player.hr} /></div>
-                    <div id ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' value={player.hits} /></div>
-                    <div id ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' value={player.sb} /></div>
-                </div>
-              
-                }
-             </div>
-    </div>
-    ))}
-</div>
-    }
-
-    renderDefaultView = () => {
-        return <div>{this.state.players.map((player) => (
-            <div key={player.id} id={player.id}>
-                    <div className='bg-near-black pa3 tc white'>
-                      {player.position === 'Pitcher' ?
-                        <div className='flex items-center justify-center w-100'>
-                            <div id ='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' value={player.era} /></div>
-                            <div id = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' value={player.wins} /></div>
-                            <div id = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' value={player.losses} /></div>
-                            <div id = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' value={player.so} /></div>
-                        </div>
-                        :
-                        <div id='flex items-center justify-center w-100'>
-                            <div id ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' value={player.batting_average} /></div>
-                            <div id ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' value={player.hr} /></div>
-                            <div id ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' value={player.hits} /></div>
-                            <div id ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' value={player.sb} /></div>
-                        </div>
-                      
-                        }
-                     </div>
-            </div>
-            ))}
-        </div>
-    }
-
-    updateStats () {
+        event.preventDefault()
         var id = this.props.id
+        console.log(id)
         let updatedStats = {
-            wins: this.id.wins,
+            wins: this.state.wins,
             losses:this.id.losses,
             era: this.id.era,
             so: this.id.so,
@@ -153,6 +72,92 @@ class Playerview extends Component {
             .catch(function (error) {
                 console.log(error);
             });   
+    }
+
+    renderEditView = () => {
+        return <div>{this.state.players.map((player) => (
+    <div key={player.id} id={player.id}>
+            <div className='bg-near-black pa3 tc white'>
+              {player.position === 'Pitcher' ?
+                <div className='flex items-center justify-center w-100'>
+                    <DetailStatLine stat='ERA' statValue={
+                        <div> 
+                            <input
+                                type='text'
+                                name='era'
+                                placeholder=''
+                                value = {this.state.era}/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            <button onClick={this.updateStats}>OK</button>
+                        </div>
+                        } />
+                    
+                    
+                    <div name = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={
+                        <div> 
+                            <input
+                                type='text'
+                                defaultstatValue={player.wins}
+                                ref ='theTextInput'/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            {console.log(this)}
+                            <button onClick={this.updateComponentstatValue}>OK</button>
+                        </div>
+                        } />
+                    </div>
+                    <div name = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={
+                        <div> 
+                            <input
+                                type='text'
+                                defaultstatValue={player.losses}
+                                ref ='theTextInput'/>
+                            <button onClick={this.changeEditMode}>X</button>
+                            {console.log(this)}
+                            <button onClick={this.updateComponentstatValue}>OK</button>
+                        </div>
+                        } />
+                    </div>
+                    <div name = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
+                </div>
+                :
+                <div id='flex items-center justify-center w-100'>
+                    <div name ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
+                    <div name ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
+                    <div name ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
+                    <div name ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
+                </div>
+              
+                }
+             </div>
+    </div>
+    ))}
+</div>
+    }
+
+    renderDefaultView = () => {
+        return <div>{this.state.players.map((player) => (
+            <div key={player.id} id={player.id}>
+                    <div className='bg-near-black pa3 tc white'>
+                      {player.position === 'Pitcher' ?
+                        <div className='flex items-center justify-center w-100'>
+                            <div name ='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' statValue={player.era} /></div>
+                            <div name = 'w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
+                            <div name = 'l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
+                            <div name = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
+                        </div>
+                        :
+                        <div id='flex items-center justify-center w-100'>
+                            <div name ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
+                            <div name ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
+                            <div name ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
+                            <div name ='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
+                        </div>
+                      
+                        }
+                     </div>
+            </div>
+            ))}
+        </div>
     }
 
 
@@ -204,10 +209,6 @@ class Playerview extends Component {
 
     render() {
         return (
-            // <div>{this.state.isInEditMode ? 
-            // this.renderEditView() :
-            // this.renderDefaultView()}
-            // </div>
             <div>
                 {this.state.players.map((player) => (
                   <div>
