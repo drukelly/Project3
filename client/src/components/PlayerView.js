@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import BackButton from './BackButton'
 import DetailStatLine from './DetailStatLine'
 import styled from 'styled-components'
@@ -198,7 +199,7 @@ class Playerview extends Component {
                             <div name = 'so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
                         </div>
                         :
-                        <div id='flex items-center justify-center w-100'>
+                        <div className='flex items-center justify-center w-100'>
                             <div name ='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
                             <div name ='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
                             <div name ='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
@@ -240,6 +241,10 @@ class Playerview extends Component {
                 .catch(function (error) {
                     console.log(error);
                 })
+                const button = (
+                  <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>
+                )
+                ReactDOM.render(button, document.getElementById('ButtonState'))
     }
 
     inactive() {
@@ -257,6 +262,10 @@ class Playerview extends Component {
                 .catch(function (error) {
                     console.log(error);
                   });
+        const button = (
+          <Button onClick={this.active.bind(this)}>Activate Player</Button>
+        )
+        ReactDOM.render(button, document.getElementById('ButtonState'))
     }
 
     render() {
@@ -277,7 +286,7 @@ class Playerview extends Component {
                         </div>
                     <div className="form-group" style={{margin:'15px'}}>
                     <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
-                    <div className='tc'>
+                    <div id="ButtonState" className='tc'>
                       {player.on_team === 0 ?
                         <Button onClick={this.active.bind(this)}>Activate Player</Button> :
                         <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
