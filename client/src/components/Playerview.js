@@ -99,7 +99,7 @@ class Playerview extends Component {
 
     updateStats () {
         var id = this.props.id
-        let newStats = {
+        let updatedStats = {
             wins: this.id.wins,
             losses:this.id.losses,
             era: this.id.era,
@@ -112,7 +112,7 @@ class Playerview extends Component {
         fetch('/api/players/' + id, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({newStats}),
+            body: JSON.stringify({updatedStats}),
           })
             .then(data => {
               console.log(data)
@@ -149,7 +149,7 @@ class Playerview extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                });
+                })
     }
 
     inactive() {
