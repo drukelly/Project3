@@ -4,7 +4,6 @@ const Team = require('../models/sqldb')
 const passport = require('passport')
 const path = require('path')
 
-
 /**
  * apiRoutes: This routes file returns data to the client/view
  * It differs from the htmlRoutes.js file in that it responds to the client/view requests with data
@@ -14,8 +13,8 @@ const path = require('path')
 
 module.exports = function (app) {
   // Get all players for the team
-  app.get('/api/team', function (req, res) {
-    Team.findAll()
+  app.get('/api/team/:sport', function (req, res) {
+    Team.findAll(req.params.sport)
       .then(results => {
         console.log(results)
         res.json(results)
@@ -72,20 +71,22 @@ module.exports = function (app) {
         console.log(`
         ********
         Team.addPlayer()
-        ${results}`)
+        ${results}
+        ********
+        `)
         res.json(results)
       })
   })
 
   // get one player
- app.get('/api/players/:id', function (req, res) {
-  console.log(req.params)
-  Team.picked(req.params.id)
-    .then(results => {
-      console.log(`one player ${results}`)
-      res.json(results)
-    })
-})
+  app.get('/api/players/:id', function (req, res) {
+    console.log(req.params)
+    Team.picked(req.params.id)
+      .then(results => {
+        console.log(`one player ${results}`)
+        res.json(results)
+      })
+  })
 
   // Delete an example by id
   app.delete('/api/examples/:id', function (req, res) {
@@ -121,38 +122,6 @@ module.exports = function (app) {
   //   })
   // })
 
-  app.post('/login', passport.authenticate('local'),
-    function (req, res) {
-      console.log('routes/user.js, login, req.body: ');
-      console.log(req.body)
-    },
-    // (req, res) => {
-    //   console.log('logged in', req.user);
-    //   var userInfo = {
-    //     username: req.user.username
-    //   };
-    //   res.send(userInfo);
-    // }
-  )
-
-  app.get('/signup', (req, res, next) => {
-    console.log('===== user!!======')
-    console.log(req.user)
-    if (req.user) {
-      res.json({ user: req.user })
-    } else {
-      res.json({ user: null })
-    }
-  })
-
-  app.post('/logout', (req, res) => {
-    if (req.user) {
-      req.logout()
-      res.send({ msg: 'logging out' })
-    } else {
-      res.send({ msg: 'no user to log out' })
-    }
-  })
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/public/index.html'))
   })

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Image = styled.img`
-  width: 75px;
+  width: 64px;
 `
 
 const TeamHeader = (props) => {

@@ -14,9 +14,9 @@ class Team {
   }
 
   // Find all in table
-  findAll () {
+  findAll (table) {
     return knex.select()
-      .table(this.table)
+      .table(table)
   }
 
   // Selects all players who are on the current team
@@ -39,11 +39,16 @@ class Team {
       })
   }
 
-//   Adds a new player to the team
+  // Adds a new player to the team
   addPlayer (values) {
-    return knex(this.table)
-      .returning('id')
-      .insert(values)
+    console.log(values)
+    return knex(values.sport)
+      .insert({
+        name: values.name,
+        image: values.image,
+        jersey_number: values.jersey_number,
+        position: values.position
+      })
   }
 
   addToTeam (where, values) {

@@ -53,7 +53,7 @@ class Login extends Component {
   }
   render() {
     return (
-        <form className='pa4'>
+        <form action='/login' method='POST' className='pa4'>
             <h1 className='lh-title tc'>Log In</h1>
             <div className='mb3'>
                 <label className='db f6 mb2' htmlFor='username'>Username</label>
@@ -62,18 +62,22 @@ class Login extends Component {
                     onChange={this.handleChange}
                     type='text'
                     name='username'
-                    value={this.state.username} />
+                    placeholder='Enter Username'
+                    value={typeof username !== undefined ? this.state.username : ''} />
             </div>
             <div className='mb3'>
                 <label className='db f6 mb2' htmlFor='password'>Password</label>
                 <input
                     className='b--black-20 br1 ba input-reset ph2 pv1 w-100'
                     onChange={this.handleChange}
-                    type='text'
+                    type='password'
                     name='password'
+                    placeholder='Enter Password'
+                    value={typeof password !== undefined ? this.state.password : ''}
                     maxLength='15' />
             </div>
-            <Button type='submit'> Log In </Button>
+            <Button type='submit' onClick={this.handleSubmit}> Log In </Button>
+            <p className='f6 tc'>No Account? <a href='/signup' className='blue link'>Sign-Up</a></p>
         </form>
     )
   }

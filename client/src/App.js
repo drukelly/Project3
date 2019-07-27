@@ -5,8 +5,9 @@ import Home from './components/pages/Home'
 import Login from './components/pages/Login'
 import Players from './components/pages/Players'
 import Signup from './components/pages/Signup'
+import CreatePlayer from './components/pages/CreatePlayer'
 import TeamsView from './components/pages/TeamsView'
-import Playview from './components/pages/Playview'
+import PlayView from './components/pages/PlayView'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -34,10 +35,12 @@ function App () {
       <div>
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
-        <Route exact path='/players' component={Players} />
-        <Route exact path='/players/:id' component={Playview} />
+        {/* <Route exact path='/players' component={Players} /> */}
+        <Route exact path='/players/:id' component={PlayView} />
         <Route exact path='/signup' component={Signup} />
+        <Route exact path='/create' component={CreatePlayer} />
         <Route exact path='/teams' component={TeamsView} />
+        <Route exact path='/teams/:team' component={Players} />
         <Nav />
       </div>
     </Router>

@@ -25,13 +25,8 @@ function Nav () {
   return (
     <NavWrapper>
       <NavItem url='/' image='/images/home.png' label='Home' />
-      <NavItem url='/players' image='/images/players.png' label='Players' />
-      {/* <Link to='/' className={window.location.pathname === '/' ? 'active' : 'link'}>
-        Home
-      </Link>
-      <Link to='/players' className={window.location.pathname === '/players' ? 'active' : 'link'}>
-        Players
-      </Link> */}
+      <NavItem url='/teams' image='/images/teams.png' label='Teams' />
+      {/* <NavItem url='/players' image='/images/players.png' label='Players' /> */}
     </NavWrapper>
   )
 }
