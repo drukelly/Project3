@@ -28,6 +28,7 @@ module.exports = function (app) {
     })
 
     app.post('/signup', (req, res) => {
+        console.log('route', req.body)
         User.inputValidation(req.body)
         // console.log('sign-up submission', req.body)
         // const { name, email, phone, username, password, password2 } = req.body

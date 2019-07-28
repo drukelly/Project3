@@ -75,7 +75,7 @@ class Signup extends Component {
                     name='name'
                     placeholder='Enter your Name'
                     value={this.state.name}
-                    handleChange={this.handleChange} />
+                    onChange={this.handleChange} />
                 <FormField
                     htmlFor='email'
                     type='email'
@@ -83,7 +83,7 @@ class Signup extends Component {
                     label='E-Mail Address'
                     placeholder='Enter your E-mail'
                     value={this.state.email}
-                    handleChange={this.handleChange} />
+                    onChange={this.handleChange} />
                 <FormField
                     htmlFor='phone'
                     type='tel'
@@ -91,7 +91,7 @@ class Signup extends Component {
                     label='Phone Number'
                     placeholder='Enter your Phone Number'
                     value={this.state.phone}
-                    handleChange={this.handleChange} />
+                    onChange={this.handleChange} />
                 <div className='mb3'>
                     <label className='db f6 mb2' htmlFor='username'>Username</label>
                     <input
