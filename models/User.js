@@ -1,4 +1,5 @@
 const knex = require('../config/connection.js')
+const bcrypt = require('bcryptjs')
 
 class User {
   constructor(table = 'users') {
@@ -17,7 +18,7 @@ class User {
     this.email = email
     this.phone = phone
     this.username = username
-    this.password = password
+    // this.password = password
     console.log(data)
     console.log(name, email, phone, username, password, password2)
     let errors = []
@@ -36,15 +37,22 @@ class User {
     if (errors.length > 0) {
       console.log(errors[0].msg)
     } else {
-      console.log('pass')
-      console.log(data)
+      // console.log('pass')
+      // console.log(data)
+      let salt = bcrypt.genSaltSync(10)
+      let hash = bcrypt.hashSync(this.password, salt)
+      // Set password to hashed
+      console.log('hash', hash)
+      this.password = hash
+      console.log('hashed password', this.password)
+
       return knex(this.table)
         .insert({
           name: data.name,
           email: data.email,
           phone_number: data.phone,
           username: data.username,
-          password: data.password
+          password: this.password
         })
     }
   }

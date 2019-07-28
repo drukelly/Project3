@@ -3,10 +3,14 @@ const path = require('path')
 const User = require('../models/User')
 
 module.exports = function (app) {
-    app.post('/login', passport.authenticate('local'),
-        function (req, res) {
+    // Login Handle
+    app.post('/login', (req, res, next) => {
             console.log('routes/user.js, login, req.body: ');
             console.log(req.body)
+            passport.authenticate('local', {
+                successRedirect: '/teams',
+                failureRedirect: '/login'
+            })(req, res, next)
         },
         // (req, res) => {
         //   console.log('logged in', req.user);
@@ -30,6 +34,16 @@ module.exports = function (app) {
     app.post('/signup', (req, res) => {
         console.log('route', req.body)
         User.inputValidation(req.body)
+            .then(results => {
+                console.log(`
+                ********
+                Team.addPlayer()
+                ${results}
+                ********
+                `)
+                res.json(results)
+            })
+            .catch(err => console.log(err))
         // console.log('sign-up submission', req.body)
         // const { name, email, phone, username, password, password2 } = req.body
         // console.log(name, email, phone, username, password, password2)
