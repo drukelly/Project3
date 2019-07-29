@@ -5,6 +5,7 @@ import DetailStatLine from './DetailStatLine'
 import Modal from './Modal'
 import styled from 'styled-components'
 
+
 const PlayerPhoto = styled.div`
 background-color: beige;
 background-position: 50% 50%;
