@@ -167,7 +167,7 @@ module.exports = function (app) {
       })
   })
 
-  // Delete an example by id hockey
+  // Delete an example by id
   app.delete('/api/examples/:id', function (req, res) {
     Team.destroy(req.params)
       .then(results => {

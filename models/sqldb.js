@@ -147,7 +147,7 @@ class BasketballTeam {
         // hits: knex.raw(`?? + ${values.hits}`, ['hits']),
         // sb: knex.raw(`?? + ${values.sb}`, ['sb'])
         rebounds: values.rebounds,
-        losses: values.losses,
+        field_goals: values.field_goals,
         ast: values.ast,
         pts: values.pts
       })

@@ -58,17 +58,7 @@ class PlayerView extends Component {
   
   updateStats = event => {
     event.preventDefault()
-    this.setState({ 
-      isInEditMode: false,
-      wins: this.state.wins,
-      losses:this.state.losses,
-      era: this.state.era,
-      batting_average: this.state.batting_average,
-      so: this.state.so,
-      hr: this.state.hr,
-      hits: this.state.hits,
-      sb: this.state.sb
-     })
+    this.setState({ isInEditMode: false})
     let id = this.props.id
     console.log(id)
     let updatedStats = {
