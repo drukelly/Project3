@@ -82,14 +82,14 @@ module.exports = function (app) {
     console.log(req.params)
     Team.picked(req.params.id)
       .then(results => {
-        // console.log(`one player ${results}`)
+        console.log(`one player ${results}`)
         res.json(results)
       })
   })
 
   // post one player as active or inactive
   app.put('/api/players/:id', function (req, res) {
-    console.log(req.params)
+    console.log(`what are you now ${req.body}`)
     Team.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
       .then(results => {
         console.log(`are you on the team ${results}`)
@@ -99,10 +99,10 @@ module.exports = function (app) {
 
   // post to update stats
   app.post('/api/players/:id', function (req, res) {
-    console.log(req.params)
-    Team.update(req.body.id)
+    console.log(`what are you ${req.body}`)
+    Team.update(req.body)
       .then(results => {
-        console.log(`are you on the team ${results}`)
+        console.log(`are you on the team ${req.body}`)
         res.json(results)
       })
   })

@@ -27,18 +27,26 @@ class Team {
   }
 
   // Updates statistics for players who were selected for the team
-  update (id) {
+  update (values) {
     return knex(this.table)
-      .where('id', id)
+      .where('id', values.id)
       .update({
-        wins: knex.raw(`?? + ${id.wins}`, ['wins']),
-        losses: knex.raw(`?? + ${id.losses}`, ['losses']),
-        era: knex.raw(`?? + ${id.era}`, ['era']),
-        batting_average: knex.raw(`?? + ${id.batting_average}`, ['batting_average']),
-        so: knex.raw(`?? + ${id.so}`, ['so']),
-        hr: knex.raw(`?? + ${id.hr}`, ['hr']),
-        hits: knex.raw(`?? + ${id.hits}`, ['hits']),
-        sb: knex.raw(`?? + ${id.sb}`, ['sb'])
+        // wins: knex.raw(`?? + ${values.wins}`, ['wins']),
+        // losses: knex.raw(`?? + ${values.losses}`, ['losses']),
+        // era: values.era,
+        // batting_average: values.batting_average,
+        // so: knex.raw(`?? + ${values.so}`, ['so']),
+        // hr: knex.raw(`?? + ${values.hr}`, ['hr']),
+        // hits: knex.raw(`?? + ${values.hits}`, ['hits']),
+        // sb: knex.raw(`?? + ${values.sb}`, ['sb'])
+        wins: values.wins,
+        losses: values.losses,
+        era: values.era,
+        batting_average: values.batting_average,
+        so: values.so,
+        hr: values.hr,
+        hits: values.hits,
+        sb: values.sb
       })
   }
 

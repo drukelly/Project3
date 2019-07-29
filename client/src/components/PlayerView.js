@@ -31,7 +31,7 @@ class PlayerView extends Component {
       players: [],
       isInEditMode: false,
       message: '',
-      showDialog: false
+      showDialog: false,
     }
     this.dismissModal = this.dismissModal.bind(this)
   }
@@ -48,30 +48,35 @@ class PlayerView extends Component {
   }
 
   updateComponentStatValue = event => {
+    console.log(event)
     this.setState({
       [event.target.name]: event.target.value
     })
+    console.log(event.target.value)
     this._handleChangeEvent = event.target.value
   }
   
   updateStats = event => {
     event.preventDefault()
+    this.setState({ isInEditMode: false })
     let id = this.props.id
+    console.log(id)
     let updatedStats = {
+      id: this.props.id,
       wins: this.state.wins,
       losses:this.state.losses,
       era: this.state.era,
-      so: this.state.so,
       batting_average: this.state.batting_average,
+      so: this.state.so,
       hr: this.state.hr,
       hits: this.state.hits,
       sb: this.state.sb
     }
-    this.setState({ isInEditMode: false })
+    console.log(updatedStats.wins)
     fetch('/api/players/' + id, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({updatedStats}),
+      body: JSON.stringify(updatedStats),
     })
     .then(data => {
       console.log(data)
@@ -198,7 +203,6 @@ class PlayerView extends Component {
     .then(res => {
       console.log(res)
       this.setState({ players: res })
-      console.log('state players', this.state.players[0].on_team)
     })
   }
 
