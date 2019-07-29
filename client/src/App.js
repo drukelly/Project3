@@ -8,6 +8,8 @@ import Signup from './components/pages/Signup'
 import CreatePlayer from './components/pages/CreatePlayer'
 import TeamsView from './components/pages/TeamsView'
 import PlayView from './components/pages/PlayView'
+import PlayViewHockey from './components/pages/PlayViewHockey'
+import PlayViewBasketball from './components/pages/PlayViewBasketball'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -36,7 +38,9 @@ function App () {
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         {/* <Route exact path='/players' component={Players} /> */}
-        <Route exact path='/players/:id' component={PlayView} />
+        <Route exact path='/players/baseball/:id' component={PlayView} />
+        <Route exact path='/players/basketball/:id' component={PlayViewBasketball} />
+        <Route exact path='/players/hockey/:id' component={PlayViewHockey} />
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/create' component={CreatePlayer} />
         <Route exact path='/teams' component={TeamsView} />

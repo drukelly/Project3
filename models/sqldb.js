@@ -4,7 +4,6 @@ class Team {
   constructor (table = 'baseball') {
     this.table = table
   }
-
   // Count number of each position
   findPosition () {
     return knex.select('position')
@@ -92,4 +91,82 @@ class Team {
   }
 }
 
-module.exports = new Team()
+class HockeyTeam {
+  constructor (table = 'hockey') {
+    this.table = table
+  }
+
+  // Updates statistics for players who were selected for the team
+  update (values) {
+    return knex(this.table)
+      .where('id', values.id)
+      .update({
+        // wins: knex.raw(`?? + ${values.wins}`, ['wins']),
+        // losses: knex.raw(`?? + ${values.losses}`, ['losses']),
+        // era: values.era,
+        // batting_average: values.batting_average,
+        // so: knex.raw(`?? + ${values.so}`, ['so']),
+        // hr: knex.raw(`?? + ${values.hr}`, ['hr']),
+        // hits: knex.raw(`?? + ${values.hits}`, ['hits']),
+        // sb: knex.raw(`?? + ${values.sb}`, ['sb'])
+        wins: values.wins,
+        losses: values.losses,
+        assists: values.assists,
+        goals_scored: values.goals_scored
+      })
+  }
+  picked (id) {
+    return knex.select()
+      .table(this.table)
+      .where('id', id)
+  }
+
+  active (where, values) {
+    return knex(this.table)
+      .where(where)
+      .update(values)
+  }
+}
+
+class BasketballTeam {
+  constructor (table = 'basketball') {
+    this.table = table
+  }
+
+  // Updates statistics for players who were selected for the team
+  update (values) {
+    return knex(this.table)
+      .where('id', values.id)
+      .update({
+        // wins: knex.raw(`?? + ${values.wins}`, ['wins']),
+        // losses: knex.raw(`?? + ${values.losses}`, ['losses']),
+        // era: values.era,
+        // batting_average: values.batting_average,
+        // so: knex.raw(`?? + ${values.so}`, ['so']),
+        // hr: knex.raw(`?? + ${values.hr}`, ['hr']),
+        // hits: knex.raw(`?? + ${values.hits}`, ['hits']),
+        // sb: knex.raw(`?? + ${values.sb}`, ['sb'])
+        rebounds: values.rebounds,
+        losses: values.losses,
+        ast: values.ast,
+        pts: values.pts
+      })
+  }
+  picked (id) {
+    return knex.select()
+      .table(this.table)
+      .where('id', id)
+  }
+
+  active (where, values) {
+    return knex(this.table)
+      .where(where)
+      .update(values)
+  }
+}
+
+module.exports = {
+  Team: new Team(),
+  HockeyTeam: new HockeyTeam(),
+  BasketballTeam: new BasketballTeam()
+}
