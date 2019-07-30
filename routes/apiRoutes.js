@@ -1,5 +1,5 @@
 // Dependencies
-const Team = require('../models/sqldb')
+const { Team, HockeyTeam, BasketballTeam } = require('../models/sqldb')
 // const User = require('../database/models/user')
 const passport = require('passport')
 const path = require('path')
@@ -66,24 +66,103 @@ module.exports = function (app) {
   // Create a new player for the team
   app.post('/api/team', function (req, res) {
     var player = req.body
+    console.log(`2nd => ${player}`)
     Team.addPlayer(player)
       .then(results => {
         console.log(`
         ********
         Team.addPlayer()
-        ${results}
-        ********
-        `)
+        ${results}`)
         res.json(results)
       })
   })
 
   // get one player
-  app.get('/api/players/:id', function (req, res) {
+  app.get('/api/players/baseball/:id', function (req, res) {
     console.log(req.params)
     Team.picked(req.params.id)
       .then(results => {
         console.log(`one player ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post one player as active or inactive
+  app.put('/api/players/baseball/:id', function (req, res) {
+    console.log(`what are you now ${req.body}`)
+    Team.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+      .then(results => {
+        console.log(`are you on the team ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post to update stats
+  app.post('/api/players/baseball/:id', function (req, res) {
+    console.log(`what are you ${req.body}`)
+    Team.update(req.body)
+      .then(results => {
+        console.log(`are you on the team ${req.body}`)
+        res.json(results)
+      })
+  })
+
+  // get one player hockey
+  app.get('/api/players/hockey/:id', function (req, res) {
+    console.log(req.params)
+    HockeyTeam.picked(req.params.id)
+      .then(results => {
+        console.log(`one player ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post one player as active or inactive hockey
+  app.put('/api/players/hockey/:id', function (req, res) {
+    console.log(`what are you now ${req.body}`)
+    HockeyTeam.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+      .then(results => {
+        console.log(`are you on the team ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post to update stats hockey
+  app.post('/api/players/hockey/:id', function (req, res) {
+    console.log(`what are you ${req.body}`)
+    HockeyTeam.update(req.body)
+      .then(results => {
+        console.log(`are you on the team ${req.body}`)
+        res.json(results)
+      })
+  })
+
+  // get one player basketball
+  app.get('/api/players/basketball/:id', function (req, res) {
+    console.log(req.params)
+    BasketballTeam.picked(req.params.id)
+      .then(results => {
+        console.log(`one player ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post one player as active or inactive basketball
+  app.put('/api/players/basketball/:id', function (req, res) {
+    console.log(`what are you now ${req.body}`)
+    BasketballTeam.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+      .then(results => {
+        console.log(`are you on the team ${results}`)
+        res.json(results)
+      })
+  })
+
+  // post to update stats basketball
+  app.post('/api/players/basketball/:id', function (req, res) {
+    console.log(`what are you ${req.body}`)
+    BasketballTeam.update(req.body)
+      .then(results => {
+        console.log(`are you on the team ${req.body}`)
         res.json(results)
       })
   })

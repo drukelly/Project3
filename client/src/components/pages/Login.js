@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
+import Modal from './../Modal'
 
 const Button = styled.button`
     background: transparent;
@@ -47,15 +48,24 @@ class Login extends Component {
                     })
                 } else {
                     console.log('login error')
+                    this.setState({
+                        message: 'Login Error',
+                        showDialog: true
+                      })
                 }
             }).catch(error => {
                 console.log('login server error: ')
                 console.log(error)
+                this.setState({
+                    message: `Login Server Error: ${error}`,
+                    showDialog: true
+                  })
             })
     }
     render(props) {
         return (
             <form action='/login' method='POST' className='pa4'>
+                {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
                 <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{display: this.props.location.state === undefined ? 'none' : this.props.location.state.style}}>
                     <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
                         <title>info icon</title>

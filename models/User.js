@@ -1,5 +1,6 @@
 const knex = require('../config/connection.js')
 const bcrypt = require('bcryptjs')
+// let salt = bcrypt.genSaltSync(10)
 
 class User {
   constructor(table = 'users') {
@@ -39,8 +40,9 @@ class User {
     } else {
       // console.log('pass')
       // console.log(data)
-      let salt = bcrypt.genSaltSync(10)
-      let hash = bcrypt.hashSync(this.password, salt)
+      // let salt = bcrypt.genSaltSync(10)
+      console.log('password type', typeof this.password)
+      let hash = bcrypt.hashSync(this.password, 10)
       // Set password to hashed
       console.log('hash', hash)
       this.password = hash

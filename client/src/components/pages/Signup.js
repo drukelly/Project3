@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormField from '../FormField'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
+import Modal from './../Modal'
 
 const Button = styled.button`
     background: transparent;
@@ -23,11 +24,17 @@ class Signup extends Component {
         password: '',
         password2: '',
         redirectTo: '',
-        created: ''
+        created: '',
+        showDialog: false
     }
     update() {
         this.forceUpdate()
     }
+    dismissModal = () => {
+        this.setState({
+          showDialog: false
+        })
+      }
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -65,19 +72,28 @@ class Signup extends Component {
                 } else {
                     console.log(response)
                     console.log('Sign-up error')
-                    this.setState({created: 'Sign-up Error'})
+                    this.setState({
+                        created: 'Sign-up Error',
+                        message: 'Sign-up Error',
+                        showDialog: true
+                    })
                     this.update()
                 }
             }).catch(error => {
                 console.log('Sign up server error: ')
                 console.log(error)
-                this.setState({created: `Sign-up Server Error: ${error}`})
+                this.setState({
+                    created: `Sign-up Server Error: ${error}`,
+                    message: `Sign-up Server Error: ${error}`,
+                    showDialog: true
+                })
                 this.update()
             })
     }
     render() {
         return (
             <form action='/signup' method='POST' className='pa4' style={{ paddingBottom: 100 }}>
+                {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
                 <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{display: !this.state.created ? 'none' : 'run-in'}}>
                     <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
                         <title>info icon</title>
