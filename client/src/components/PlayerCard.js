@@ -38,12 +38,12 @@ class PlayerCard extends Component {
     return (
       <Wrapper>
         {this.state.players.map((player) => (
-          <Link to={`/players/${player.id}`} key={player.id} className='link near-black'>
+          <Link to={`/players/${this.props.sport}/${player.id}`} key={player.id} className='link near-black'>
             <div className='bg-animate hover-bg-blue hover-white b--black-10 bb flex items-center w-100'>
               <Image style={{ backgroundImage: `url(${player.image})` }} id={player.id} alt={player.name} />
               <div className='f6 lh-copy pv2'>
                 <div>#{player.jersey_number} {player.position}</div>
-                <div className='b'>{player.name}</div>
+                <div className='b'><strong>{player.on_team ? '***' : null} </strong>{player.name}<strong> {player.on_team ? '***' : null}</strong></div>
                 <div>
                   {this.props.sport === 'baseball' && player.position === 'Pitcher'
                     ? `ERA: ${player.era} W: ${player.wins} - L: ${player.losses}`

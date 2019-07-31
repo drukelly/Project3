@@ -4,7 +4,6 @@ class Team {
   constructor (table = 'baseball') {
     this.table = table
   }
-
   // Count number of each position
   findPosition () {
     return knex.select('position')
@@ -31,18 +30,30 @@ class Team {
     return knex(this.table)
       .where('id', values.id)
       .update({
-        goals: knex.raw(`?? + ${values.goals}`, ['goals']),
-        assists: knex.raw(`?? + ${values.assists}`, ['assists']),
-        mins: knex.raw(`?? + ${values.mins}`, ['mins']),
-        yel: knex.raw(`?? + ${values.yel}`, ['yel']),
-        red: knex.raw(`?? + ${values.red}`, ['red'])
+        // wins: knex.raw(`?? + ${values.wins}`, ['wins']),
+        // losses: knex.raw(`?? + ${values.losses}`, ['losses']),
+        // era: values.era,
+        // batting_average: values.batting_average,
+        // so: knex.raw(`?? + ${values.so}`, ['so']),
+        // hr: knex.raw(`?? + ${values.hr}`, ['hr']),
+        // hits: knex.raw(`?? + ${values.hits}`, ['hits']),
+        // sb: knex.raw(`?? + ${values.sb}`, ['sb'])
+        wins: values.wins,
+        losses: values.losses,
+        era: values.era,
+        batting_average: values.batting_average,
+        so: values.so,
+        hr: values.hr,
+        hits: values.hits,
+        sb: values.sb
       })
   }
 
-  // Adds a new player to the team
+  //   Adds a new player to the team
   addPlayer (values) {
     console.log(values)
     return knex(values.sport)
+      .returning('id')
       .insert({
         name: values.name,
         image: values.image,
@@ -72,6 +83,90 @@ class Team {
       .table(this.table)
       .where('id', id)
   }
+
+  active (where, values) {
+    return knex(this.table)
+      .where(where)
+      .update(values)
+  }
 }
 
-module.exports = new Team()
+class HockeyTeam {
+  constructor (table = 'hockey') {
+    this.table = table
+  }
+
+  // Updates statistics for players who were selected for the team
+  update (values) {
+    return knex(this.table)
+      .where('id', values.id)
+      .update({
+        // wins: knex.raw(`?? + ${values.wins}`, ['wins']),
+        // losses: knex.raw(`?? + ${values.losses}`, ['losses']),
+        // era: values.era,
+        // batting_average: values.batting_average,
+        // so: knex.raw(`?? + ${values.so}`, ['so']),
+        // hr: knex.raw(`?? + ${values.hr}`, ['hr']),
+        // hits: knex.raw(`?? + ${values.hits}`, ['hits']),
+        // sb: knex.raw(`?? + ${values.sb}`, ['sb'])
+        wins: values.wins,
+        losses: values.losses,
+        assists: values.assists,
+        goals_scored: values.goals_scored
+      })
+  }
+  picked (id) {
+    return knex.select()
+      .table(this.table)
+      .where('id', id)
+  }
+
+  active (where, values) {
+    return knex(this.table)
+      .where(where)
+      .update(values)
+  }
+}
+
+class BasketballTeam {
+  constructor (table = 'basketball') {
+    this.table = table
+  }
+
+  // Updates statistics for players who were selected for the team
+  update (values) {
+    return knex(this.table)
+      .where('id', values.id)
+      .update({
+        // wins: knex.raw(`?? + ${values.wins}`, ['wins']),
+        // losses: knex.raw(`?? + ${values.losses}`, ['losses']),
+        // era: values.era,
+        // batting_average: values.batting_average,
+        // so: knex.raw(`?? + ${values.so}`, ['so']),
+        // hr: knex.raw(`?? + ${values.hr}`, ['hr']),
+        // hits: knex.raw(`?? + ${values.hits}`, ['hits']),
+        // sb: knex.raw(`?? + ${values.sb}`, ['sb'])
+        rebounds: values.rebounds,
+        field_goals: values.field_goals,
+        ast: values.ast,
+        pts: values.pts
+      })
+  }
+  picked (id) {
+    return knex.select()
+      .table(this.table)
+      .where('id', id)
+  }
+
+  active (where, values) {
+    return knex(this.table)
+      .where(where)
+      .update(values)
+  }
+}
+
+module.exports = {
+  Team: new Team(),
+  HockeyTeam: new HockeyTeam(),
+  BasketballTeam: new BasketballTeam()
+}

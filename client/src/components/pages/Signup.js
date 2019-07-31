@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import FormField from '../FormField'
 import styled from 'styled-components'
+import { Redirect } from 'react-router-dom'
+import Modal from './../Modal'
 
 const Button = styled.button`
     background: transparent;
@@ -20,8 +22,19 @@ class Signup extends Component {
         phone: '',
         username: '',
         password: '',
-        password2: ''
+        password2: '',
+        redirectTo: '',
+        created: '',
+        showDialog: false
     }
+    update() {
+        this.forceUpdate()
+    }
+    dismissModal = () => {
+        this.setState({
+          showDialog: false
+        })
+      }
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -50,23 +63,44 @@ class Signup extends Component {
             }
         })
             .then(response => {
-                if (response.data) {
+                if (response.status === 200) {
                     console.log('successful signup')
                     this.setState({
                         redirectTo: '/login'
                     })
+                    this.update()
                 } else {
                     console.log(response)
                     console.log('Sign-up error')
+                    this.setState({
+                        created: 'Sign-up Error',
+                        message: 'Sign-up Error',
+                        showDialog: true
+                    })
+                    this.update()
                 }
             }).catch(error => {
                 console.log('Sign up server error: ')
                 console.log(error)
+                this.setState({
+                    created: `Sign-up Server Error: ${error}`,
+                    message: `Sign-up Server Error: ${error}`,
+                    showDialog: true
+                })
+                this.update()
             })
     }
     render() {
         return (
             <form action='/signup' method='POST' className='pa4' style={{ paddingBottom: 100 }}>
+                {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
+                <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{display: !this.state.created ? 'none' : 'run-in'}}>
+                    <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
+                        <title>info icon</title>
+                        <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
+                    </svg>
+                    <span className="lh-title ml3">{this.state.created}</span>
+                </div>
                 <h1 className='lh-title tc'>Create An Account</h1>
                 <div>{}</div>
                 <FormField
@@ -75,7 +109,7 @@ class Signup extends Component {
                     name='name'
                     placeholder='Enter your Name'
                     value={this.state.name}
-                    handleChange={this.handleChange} />
+                    onChange={this.handleChange} />
                 <FormField
                     htmlFor='email'
                     type='email'
@@ -83,7 +117,7 @@ class Signup extends Component {
                     label='E-Mail Address'
                     placeholder='Enter your E-mail'
                     value={this.state.email}
-                    handleChange={this.handleChange} />
+                    onChange={this.handleChange} />
                 <FormField
                     htmlFor='phone'
                     type='tel'
@@ -91,7 +125,7 @@ class Signup extends Component {
                     label='Phone Number'
                     placeholder='Enter your Phone Number'
                     value={this.state.phone}
-                    handleChange={this.handleChange} />
+                    onChange={this.handleChange} />
                 <div className='mb3'>
                     <label className='db f6 mb2' htmlFor='username'>Username</label>
                     <input
@@ -108,7 +142,7 @@ class Signup extends Component {
                         className='b--black-20 br1 ba input-reset ph2 pv1 w-100'
                         type='password'
                         name='password'
-                        placeholder='Enter a Password'
+                        placeholder='Enter at least 8 characters'
                         onChange={this.handleChange}
                         value={typeof password !== undefined ? this.state.password : ''}
                         maxLength='15' />
@@ -125,6 +159,12 @@ class Signup extends Component {
                         maxLength='15' />
                 </div>
                 <Button type='submit' onClick={this.handleSubmit}> Create Account </Button>
+                {this.state.redirectTo ? <Redirect to={{
+                    pathname: this.state.redirectTo,
+                    state: {
+                        style: 'run-in'
+                    }
+                    }} /> : ''}
                 <p className='f6 tc'>Have An Account? <a href='/login' className='blue link'>Login</a></p>
             </form>
         )

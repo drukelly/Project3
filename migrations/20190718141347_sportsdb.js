@@ -76,8 +76,8 @@ exports.up = function (knex, Promise) {
         table.string('phone_number').notNullable()
         table.string('username').unique().notNullable()
         table.string('password').notNullable()
-        table.boolean('admin').notNullable().defaultTo(false)
-        table.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'))
+        table.boolean('admin').defaultTo(false)
+        table.timestamp('created_at').defaultTo(knex.raw('now()'))
       })
     }
   })

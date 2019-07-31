@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom' 
+import { Redirect } from 'react-router-dom'
 import FormField from '../FormField'
 import styled from 'styled-components'
 
@@ -25,7 +25,9 @@ class CreatePlayer extends Component {
     jersey_number: '',
     sport: '',
     position: '',
-    redirectTo: ''
+    redirectTo: '',
+    teamName: '',
+    teamLogo: ''
   }
   handleChange = (event) => {
     const name = event.target.name;
@@ -35,22 +37,29 @@ class CreatePlayer extends Component {
     });
   }
   handleSubmit = (event) => {
-    let newPlayer = {
-      name: this.state.name,
-      image: this.state.image,
-      jersey_number: this.state.jersey_number,
-      sport: this.state.sport,
-      position: this.state.position
-    }
     event.preventDefault()
-    console.log('create new player: ')
-    fetch("/api/team", {
-      method: "POST",
-      body: JSON.stringify(newPlayer),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    event.persist()
+    let sport = event.target.previousSibling.previousSibling.children[1].value
+    sport === 'baseball'
+      ? this.setState({ teamName: 'Oakland Roots', teamLogo: '/images/baseball.png' })
+      : sport === 'basketball'
+        ? this.setState({ teamName: 'Toon Squad', teamLogo: '/images/basketball.png' })
+        : this.setState({ teamName: 'Hamilton Mustangs', teamLogo: '/images/hockey.png' })
+  let newPlayer = {
+    name: this.state.name,
+    image: this.state.image,
+    jersey_number: this.state.jersey_number,
+    sport: this.state.sport,
+    position: this.state.position
+  }
+  console.log('create new player: ')
+  fetch("/api/team", {
+    method: "POST",
+    body: JSON.stringify(newPlayer),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
     .then(response => {
       if (response) {
         console.log(`after submit: => ${response}`)
@@ -67,21 +76,27 @@ class CreatePlayer extends Component {
       console.log('fatal error (player creation)')
       console.log(error)
     })
-  }
-  render() {
-    return (
-      <Wrapper className='pa4'>
-        <h1 className='lh-title mt0 tc'>Add Player</h1>
-        <FormField htmlFor='name' type='text' name='name' onChange={this.handleChange} />
-        <FormField htmlFor='image' type='text' name='image' label='Photo (URL)' onChange={this.handleChange} />
-        <FormField htmlFor='jersey_number' type='number' name='jersey_number' label='Jersey Number' onChange={this.handleChange} />
-        <FormField htmlFor='sport' type='text' name='sport' onChange={this.handleChange} />
-        <FormField htmlFor='position' type='text' name='position' onChange={this.handleChange} />
-        <Button type='submit' onClick={this.handleSubmit}> Add Player </Button>
-        { this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : '' }
-      </Wrapper>
-      )
-    }
 }
-  
+render() {
+  return (
+    <Wrapper className='pa4'>
+      <h1 className='lh-title mt0 tc'>Add Player</h1>
+      <FormField htmlFor='name' type='text' name='name' onChange={this.handleChange} />
+      <FormField htmlFor='image' type='text' name='image' label='Photo (URL)' onChange={this.handleChange} />
+      <FormField htmlFor='jersey_number' type='number' name='jersey_number' label='Jersey Number' onChange={this.handleChange} />
+      <FormField htmlFor='sport' type='text' name='sport' onChange={this.handleChange} />
+      <FormField htmlFor='position' type='text' name='position' onChange={this.handleChange} />
+      <Button type='submit' onClick={this.handleSubmit}> Add Player </Button>
+      { this.state.redirectTo ? <Redirect to={{
+          pathname: this.state.redirectTo,
+          state: {
+            name: this.state.teamName,
+            image: this.state.teamLogo,
+            team: this.state.sport
+          }}} /> : '' }
+    </Wrapper>
+  )
+}
+}
+
 export default CreatePlayer
