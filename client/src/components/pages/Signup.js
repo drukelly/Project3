@@ -142,7 +142,7 @@ class Signup extends Component {
                         className='b--black-20 br1 ba input-reset ph2 pv1 w-100'
                         type='password'
                         name='password'
-                        placeholder='Enter a Password'
+                        placeholder='Enter at least 8 characters'
                         onChange={this.handleChange}
                         value={typeof password !== undefined ? this.state.password : ''}
                         maxLength='15' />

@@ -18,16 +18,16 @@ module.exports = function (passport) {
                     console.log('user', user)
                     console.log('password', user[0].password)
                     // console.log(username, typeof password, typeof user.password)
-                        bcrypt.compare(password, user[0].password, (err, isMatch) => {
-                            console.log(password)
-                            console.log(isMatch)
-                            if (err) throw err
-                            if (isMatch) {
-                                return done(null, user)
-                            } else {
-                                return done(null, false, { message: 'Password incorrect' })
-                            }
-                        })
+                    bcrypt.compare(password, user[0].password, (err, isMatch) => {
+                        console.log(password)
+                        console.log(isMatch)
+                        if (err) throw err
+                        if (isMatch) {
+                            return done(null, user)
+                        } else {
+                            return done(null, false, { message: 'Password incorrect' })
+                        }
+                    })
                 })
                 .catch(err => console.log(err))
         })

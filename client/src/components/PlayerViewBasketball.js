@@ -113,7 +113,7 @@ class PlayerViewBasketball extends Component {
               } />
               <DetailStatLine stat='ASSISTS' statValue={
                 <div>
-                  <input type='number' name='assists' value={this.state.ast} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='.1' style={{ width: 75 }} />
+                  <input type='number' name='assists' value={this.state.ast} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>

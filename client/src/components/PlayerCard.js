@@ -43,7 +43,7 @@ class PlayerCard extends Component {
               <Image style={{ backgroundImage: `url(${player.image})` }} id={player.id} alt={player.name} />
               <div className='f6 lh-copy pv2'>
                 <div>#{player.jersey_number} {player.position}</div>
-                <div className='b'>{player.name}</div>
+                <div className='b'><strong>{player.on_team ? '***' : null} </strong>{player.name}<strong> {player.on_team ? '***' : null}</strong></div>
                 <div>
                   {this.props.sport === 'baseball' && player.position === 'Pitcher'
                     ? `ERA: ${player.era} W: ${player.wins} - L: ${player.losses}`
