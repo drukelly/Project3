@@ -90,7 +90,7 @@ module.exports = function (app) {
   // post one player as active or inactive
   app.put('/api/players/baseball/:id', function (req, res) {
     console.log(`what are you now ${req.body}`)
-    Team.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+    Team.active({ id: req.body.id }, { on_team: req.body.on_team })
       .then(results => {
         console.log(`are you on the team ${results}`)
         res.json(results)
@@ -120,7 +120,7 @@ module.exports = function (app) {
   // post one player as active or inactive hockey
   app.put('/api/players/hockey/:id', function (req, res) {
     console.log(`what are you now ${req.body}`)
-    HockeyTeam.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+    HockeyTeam.active({ id: req.body.id }, { on_team: req.body.on_team })
       .then(results => {
         console.log(`are you on the team ${results}`)
         res.json(results)
@@ -150,7 +150,7 @@ module.exports = function (app) {
   // post one player as active or inactive basketball
   app.put('/api/players/basketball/:id', function (req, res) {
     console.log(`what are you now ${req.body}`)
-    BasketballTeam.addToTeam({ id: req.body.id }, { on_team: req.body.on_team })
+    BasketballTeam.active({ id: req.body.id }, { on_team: req.body.on_team })
       .then(results => {
         console.log(`are you on the team ${results}`)
         res.json(results)
