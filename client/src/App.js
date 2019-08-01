@@ -10,7 +10,7 @@ import TeamsView from './components/pages/TeamsView'
 import PlayView from './components/pages/PlayView'
 import PlayViewHockey from './components/pages/PlayViewHockey'
 import PlayViewBasketball from './components/pages/PlayViewBasketball'
-import FormView from './FormView'
+import FormView from './components/pages/FormView'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**

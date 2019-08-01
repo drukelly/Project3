@@ -1,8 +1,8 @@
 import React from 'react'
-import AppForm from './Form'
+import AppForm from '../Form'
 import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import reducers from './Reducers/index'
+import reducers from '../Reducers/index'
 import { Provider } from 'react-redux'
 
 const FormView = () => {
