@@ -81,7 +81,6 @@ class Login extends Component {
                         onChange={this.handleChange}
                         type='text'
                         name='username'
-                        placeholder='Enter Username'
                         value={typeof username !== undefined ? this.state.username : ''} />
                 </div>
                 <div className='mb3'>
@@ -91,13 +90,12 @@ class Login extends Component {
                         onChange={this.handleChange}
                         type='password'
                         name='password'
-                        placeholder='Enter Password'
                         value={typeof password !== undefined ? this.state.password : ''}
                         maxLength='15' />
                 </div>
                 <Button type='submit' onClick={this.handleSubmit}> Log In </Button>
                 {this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : ''}
-                <p className='f6 tc'>No Account? <a href='/signup' className='blue link'>Sign-Up</a></p>
+                <p className='f6 tc'>No Account? <a href='/signup' className='blue link'>Sign Up</a></p>
             </form>
         )
     }

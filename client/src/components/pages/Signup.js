@@ -107,7 +107,6 @@ class Signup extends Component {
                     htmlFor='name'
                     type='text'
                     name='name'
-                    placeholder='Enter your Name'
                     value={this.state.name}
                     onChange={this.handleChange} />
                 <FormField
@@ -115,7 +114,6 @@ class Signup extends Component {
                     type='email'
                     name='email'
                     label='E-Mail Address'
-                    placeholder='Enter your E-mail'
                     value={this.state.email}
                     onChange={this.handleChange} />
                 <FormField
@@ -123,7 +121,6 @@ class Signup extends Component {
                     type='tel'
                     name='phone'
                     label='Phone Number'
-                    placeholder='Enter your Phone Number'
                     value={this.state.phone}
                     onChange={this.handleChange} />
                 <div className='mb3'>
@@ -132,7 +129,6 @@ class Signup extends Component {
                         className='b--black-20 br1 ba input-reset ph2 pv1 w-100'
                         type='text'
                         name='username'
-                        placeholder='Enter a Username'
                         value={typeof username !== undefined ? this.state.username : ''}
                         onChange={this.handleChange} />
                 </div>
@@ -165,7 +161,7 @@ class Signup extends Component {
                         style: 'run-in'
                     }
                     }} /> : ''}
-                <p className='f6 tc'>Have An Account? <a href='/login' className='blue link'>Login</a></p>
+                <p className='f6 tc'>Have An Account? <a href='/login' className='blue link'>Log In</a></p>
             </form>
         )
     }

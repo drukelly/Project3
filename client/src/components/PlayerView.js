@@ -209,7 +209,6 @@ class PlayerView extends Component {
   }
 
   active () {
-    // todo: modal instead of alert
     this.setState({
       message: 'Player is now active!',
       showDialog: true
@@ -232,7 +231,6 @@ class PlayerView extends Component {
   }
 
   inactive () {
-    // todo: modal instead of alert
     this.setState({
       message: 'Player is no longer active!',
       showDialog: true

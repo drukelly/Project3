@@ -23,6 +23,16 @@ margin: 1rem auto;
 padding: 1rem;
 width: 80%;
 `
+
+const EditInput = styled.input`
+background: lavender;
+border: none;
+color: black;
+font-size: .88rem;
+padding: .25rem;
+text-align: center;
+`
+
 class PlayerViewBasketball extends Component {
   constructor (props) {
     super (props)
@@ -91,29 +101,29 @@ class PlayerViewBasketball extends Component {
           <div className='bg-near-black pa3 tc white'>
             <div className='flex flex-wrap items-center justify-center w-100' id='statState'>
               <DetailStatLine stat='PTS' statValue={
-                <div> 
-                  <input type='number' name='pts' value={this.state.pts} onChange={this.updateComponentStatValue} defaultValue={player.pts} step='1' style={{ width: 75 }} />
+                <div className='flex items-center justify-around w-100'> 
+                  <EditInput type='number' name='pts' value={this.state.pts} onChange={this.updateComponentStatValue} defaultValue={player.pts} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
-              <DetailStatLine stat='REBOUNDS' statValue={
-                <div>
-                  <input type='number' name='rebounds' value={this.state.rebounds} onChange={this.updateComponentStatValue} defaultValue={player.rebounds} step='1' style={{ width: 75 }} />
+              <DetailStatLine stat='REB' statValue={
+                <div className='flex items-center justify-around w-100'>
+                  <EditInput type='number' name='rebounds' value={this.state.rebounds} onChange={this.updateComponentStatValue} defaultValue={player.rebounds} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
-              <DetailStatLine stat='FIELD GOALS' statValue={
-                <div>
-                  <input type='number' name='field_goals' value={this.state.field_goals} onChange={this.updateComponentStatValue} defaultValue={player.field_goals} step='1' style={{ width: 75 }} />
+              <DetailStatLine stat='FG%' statValue={
+                <div className='flex items-center justify-around w-100'>
+                  <EditInput type='number' name='field_goals' value={this.state.field_goals} onChange={this.updateComponentStatValue} defaultValue={player.field_goals} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
-              <DetailStatLine stat='ASSISTS' statValue={
-                <div>
-                  <input type='number' name='assists' value={this.state.ast} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='1' style={{ width: 75 }} />
+              <DetailStatLine stat='AST' statValue={
+                <div className='flex items-center justify-around w-100'>
+                  <EditInput type='number' name='assists' value={this.state.ast} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='1' style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
@@ -129,12 +139,12 @@ class PlayerViewBasketball extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa3 tc white'>            
+          <div className='bg-near-black pa3 tc white'>
             <div className='flex items-center justify-center w-100'>
               <div name='pts' onDoubleClick={this.changeEditMode}><DetailStatLine stat='PTS' statValue={player.pts} /></div>
-              <div name='rebounds' onDoubleClick={this.changeEditMode}><DetailStatLine stat='REBOUNDS' statValue={player.rebounds} /></div>
-              <div name='field_goals' onDoubleClick={this.changeEditMode}><DetailStatLine stat='FIELD GOALS' statValue={player.field_goals} /></div>
-              <div name='assists' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ASSISTS' statValue={player.ast} /></div>
+              <div name='rebounds' onDoubleClick={this.changeEditMode}><DetailStatLine stat='REB' statValue={player.rebounds} /></div>
+              <div name='field_goals' onDoubleClick={this.changeEditMode}><DetailStatLine stat='FG%' statValue={player.field_goals} /></div>
+              <div name='assists' onDoubleClick={this.changeEditMode}><DetailStatLine stat='AST' statValue={player.ast} /></div>
             </div>
           </div>
         </div>
@@ -153,7 +163,6 @@ class PlayerViewBasketball extends Component {
   }
 
   active () {
-    // todo: modal instead of alert
     this.setState({
       message: 'Player is now active!',
       showDialog: true
@@ -176,7 +185,6 @@ class PlayerViewBasketball extends Component {
   }
 
   inactive () {
-    // todo: modal instead of alert
     this.setState({
       message: 'Player is no longer active!',
       showDialog: true

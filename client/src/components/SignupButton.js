@@ -4,9 +4,10 @@ import styled from 'styled-components'
 // this also works with react-router-native
 
 const Button = styled.button`
-  background: transparent;
-  border: 2px solid;
+  background: blue;
+  border: 2px solid navy;
   border-radius: 4px;
+  color: white;
   font-weight: bold;
   margin: 1rem auto;
   width: 80%;
