@@ -131,28 +131,28 @@ class PlayerView extends Component {
             <div className='flex items-center justify-center w-100' id='statState'>
               <DetailStatLine stat='BA' statValue={
                 <div>
-                  <input type='number' name='batting_average' value={this.state.batting_average} onChange={this.updateComponentStatValue} step='0.01' defaultValue={player.batting_average} />
+                  <input type='number' name='batting_average' value={this.state.batting_average} onChange={this.updateComponentStatValue} step='0.01' defaultValue={player.batting_average} style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='HR' statValue={
                 <div>
-                  <input type='number' name='hr' value={this.state.hr} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hr} />
+                  <input type='number' name='hr' value={this.state.hr} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hr} style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='H' statValue={
                 <div> 
-                  <input type='number' name='hits' value={this.state.hits} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hits} />
+                  <input type='number' name='hits' value={this.state.hits} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hits} style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
               } />
               <DetailStatLine stat='SB' statValue={
                 <div>
-                  <input type='number' name='sb' value={this.state.sb} onChange={this.updateComponentStatValue} step='1' defaultValue={player.sb} />
+                  <input type='number' name='sb' value={this.state.sb} onChange={this.updateComponentStatValue} step='1' defaultValue={player.sb} style={{ width: 75 }} />
                   <button onClick={this.changeEditMode}>X</button>
                   <button onClick={this.updateStats}>OK</button>
                 </div>
