@@ -5,14 +5,15 @@ import { Redirect } from 'react-router-dom'
 import Modal from './../Modal'
 
 const Button = styled.button`
-    background: transparent;
-    border: 2px solid;
-    border-radius: 4px;
-    display: block;
-    font-weight: bold;
-    margin: 2rem auto;
-    width: 100%;
-    padding: 1rem;
+background: green;
+border-radius: 4px;
+border: 2px solid black;
+color: white;
+display: block;
+font-weight: bold;
+margin: 2rem auto;
+padding: 1rem;
+width: 100%;
 `
 
 class Signup extends Component {

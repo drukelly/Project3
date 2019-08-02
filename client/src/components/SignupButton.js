@@ -4,14 +4,14 @@ import styled from 'styled-components'
 // this also works with react-router-native
 
 const Button = styled.button`
-  background: blue;
-  border: 2px solid navy;
-  border-radius: 4px;
-  color: white;
-  font-weight: bold;
-  margin: 1rem auto;
-  width: 80%;
-  padding: 1rem;
+background: green;
+border-radius: 4px;
+border: 2px solid black;
+color: white;
+font-weight: bold;
+margin: 1rem auto;
+padding: 1rem;
+width: 80%;
 `
 
 const SignupButton = withRouter(({ history }) => (

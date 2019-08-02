@@ -15,14 +15,21 @@ position: relative;
 `
 
 const Button = styled.button`
-background: transparent;
 border-radius: 4px;
-border: 2px solid;
+border: 2px solid black;
+color: white;
 font-weight: bold;
 margin: 1rem auto;
 padding: 1rem;
 width: 80%;
+  &.activate {
+    background-color: green;
+  }
+  &.deactivate {
+    background-color: red;
+  }
 `
+
 class PlayerViewHockey extends Component {
   constructor (props) {
     super (props)
@@ -88,7 +95,7 @@ class PlayerViewHockey extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa3 tc white'>
+          <div className='bg-near-black pa2 tc white'>
             <div className='flex flex-wrap items-center justify-center w-100' id='statState'>
               <DetailStatLine stat='GOALS' statValue={
                 <div> 
@@ -129,12 +136,12 @@ class PlayerViewHockey extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa3 tc white'>            
+          <div className='bg-near-black pa2 tc white'>            
             <div className='flex items-center justify-center w-100'>
               <div name='goals_scored' onDoubleClick={this.changeEditMode}><DetailStatLine stat='GOALS' statValue={player.goals_scored} /></div>
-              <div name='w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
-              <div name='l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
-              <div name='assists' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ASSISTS' statValue={player.assists} /></div>
+              <div name='w' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
+              <div name='l' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
+              <div name='assists' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ASSISTS' statValue={player.assists} /></div>
             </div>
           </div>
         </div>
@@ -170,7 +177,7 @@ class PlayerViewHockey extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
+    const button = (<Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
@@ -192,7 +199,7 @@ class PlayerViewHockey extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.active.bind(this)}>Activate Player</Button>)
+    const button = (<Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
@@ -224,8 +231,8 @@ class PlayerViewHockey extends Component {
               <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
               <div id="ButtonState" className='tc'>
                 {player.on_team === 0 ?
-                  <Button onClick={this.active.bind(this)}>Activate Player</Button> :
-                  <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
+                  <Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button> :
+                  <Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
               </div>
             </div>
         ))}

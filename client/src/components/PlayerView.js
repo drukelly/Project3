@@ -16,14 +16,21 @@ position: relative;
 `
 
 const Button = styled.button`
-background: transparent;
 border-radius: 4px;
-border: 2px solid;
+border: 2px solid black;
+color: white;
 font-weight: bold;
 margin: 1rem auto;
 padding: 1rem;
 width: 80%;
+  &.activate {
+    background-color: green;
+  }
+  &.deactivate {
+    background-color: red;
+  }
 `
+
 class PlayerView extends Component {
   constructor (props) {
     super (props)
@@ -91,7 +98,7 @@ class PlayerView extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa3 tc white'>
+          <div className='bg-near-black pa2 tc white'>
             
             {player.position === 'Pitcher' ?
             
@@ -169,24 +176,24 @@ class PlayerView extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa3 tc white'>
+          <div className='bg-near-black pa2 tc white'>
             
             {player.position === 'Pitcher' ?
             
             <div className='flex items-center justify-center w-100'>
               <div name='era' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ERA' statValue={player.era} /></div>
-              <div name='w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
-              <div name='l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
-              <div name='so' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
+              <div name='w' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
+              <div name='l' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
+              <div name='so' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='K' statValue={player.so} /></div>
             </div>
             
             :
             
             <div className='flex items-center justify-center w-100'>
               <div name='ba' onDoubleClick={this.changeEditMode}><DetailStatLine stat='BA' statValue={player.batting_average} /></div>
-              <div name='hr' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
-              <div name='h' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
-              <div name='sb' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
+              <div name='hr' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='HR' statValue={player.hr} /></div>
+              <div name='h' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='H' statValue={player.hits} /></div>
+              <div name='sb' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='SB' statValue={player.sb} /></div>
             </div>
             
             }
@@ -226,7 +233,7 @@ class PlayerView extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
+    const button = (<Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
@@ -248,7 +255,7 @@ class PlayerView extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.active.bind(this)}>Activate Player</Button>)
+    const button = (<Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
@@ -280,8 +287,8 @@ class PlayerView extends Component {
               <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
               <div id="ButtonState" className='tc'>
                 {player.on_team === 0 ?
-                  <Button onClick={this.active.bind(this)}>Activate Player</Button> :
-                  <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
+                  <Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button> :
+                  <Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
               </div>
             </div>
         ))}

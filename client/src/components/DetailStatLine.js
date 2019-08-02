@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Stat = styled.dl`
-  color: white;
-  margin: 0;
-  padding-left: 2em;
-  padding-right: 2em;
+color: white;
+margin: 0;
+padding-left: 1em;
+padding-right: 1em;
 `
 
 const DetailStatLine = props => {

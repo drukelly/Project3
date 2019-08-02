@@ -15,13 +15,19 @@ position: relative;
 `
 
 const Button = styled.button`
-background: transparent;
 border-radius: 4px;
-border: 2px solid;
+border: 2px solid black;
+color: white;
 font-weight: bold;
 margin: 1rem auto;
 padding: 1rem;
 width: 80%;
+  &.activate {
+    background-color: green;
+  }
+  &.deactivate {
+    background-color: red;
+  }
 `
 
 const EditInput = styled.input`
@@ -31,6 +37,7 @@ color: black;
 font-size: .88rem;
 padding: .25rem;
 text-align: center;
+width: 55px;
 `
 
 class PlayerViewBasketball extends Component {
@@ -98,34 +105,34 @@ class PlayerViewBasketball extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa3 tc white'>
+          <div className='bg-near-black pa2 pb3 tc white'>
             <div className='flex flex-wrap items-center justify-center w-100' id='statState'>
               <DetailStatLine stat='PTS' statValue={
                 <div className='flex items-center justify-around w-100'> 
-                  <EditInput type='number' name='pts' value={this.state.pts} onChange={this.updateComponentStatValue} defaultValue={player.pts} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='pts' value={this.state.pts} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.pts} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='REB' statValue={
                 <div className='flex items-center justify-around w-100'>
-                  <EditInput type='number' name='rebounds' value={this.state.rebounds} onChange={this.updateComponentStatValue} defaultValue={player.rebounds} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='rebounds' value={this.state.rebounds} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.rebounds} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='FG%' statValue={
                 <div className='flex items-center justify-around w-100'>
-                  <EditInput type='number' name='field_goals' value={this.state.field_goals} onChange={this.updateComponentStatValue} defaultValue={player.field_goals} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='field_goals' value={this.state.field_goals} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.field_goals} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='AST' statValue={
                 <div className='flex items-center justify-around w-100'>
-                  <EditInput type='number' name='assists' value={this.state.ast} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='assists' value={this.state.ast} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
             </div>
@@ -139,12 +146,12 @@ class PlayerViewBasketball extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa3 tc white'>
+          <div className='bg-near-black pa2 pb3 tc white'>
             <div className='flex items-center justify-center w-100'>
               <div name='pts' onDoubleClick={this.changeEditMode}><DetailStatLine stat='PTS' statValue={player.pts} /></div>
-              <div name='rebounds' onDoubleClick={this.changeEditMode}><DetailStatLine stat='REB' statValue={player.rebounds} /></div>
-              <div name='field_goals' onDoubleClick={this.changeEditMode}><DetailStatLine stat='FG%' statValue={player.field_goals} /></div>
-              <div name='assists' onDoubleClick={this.changeEditMode}><DetailStatLine stat='AST' statValue={player.ast} /></div>
+              <div name='rebounds' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='REB' statValue={player.rebounds} /></div>
+              <div name='field_goals' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='FG%' statValue={player.field_goals} /></div>
+              <div name='assists' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='AST' statValue={player.ast} /></div>
             </div>
           </div>
         </div>
@@ -180,7 +187,7 @@ class PlayerViewBasketball extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
+    const button = (<Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
@@ -202,7 +209,7 @@ class PlayerViewBasketball extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.active.bind(this)}>Activate Player</Button>)
+    const button = (<Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
@@ -234,8 +241,8 @@ class PlayerViewBasketball extends Component {
               <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
               <div id="ButtonState" className='tc'>
                 {player.on_team === 0 ?
-                  <Button onClick={this.active.bind(this)}>Activate Player</Button> :
-                  <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
+                  <Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button> :
+                  <Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
               </div>
             </div>
         ))}
