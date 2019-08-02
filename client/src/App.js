@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { PrivateRoute } from './helpers/PrivateRoute'
 import Nav from './components/Nav'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
@@ -10,6 +11,7 @@ import TeamsView from './components/pages/TeamsView'
 import PlayView from './components/pages/PlayView'
 import PlayViewHockey from './components/pages/PlayViewHockey'
 import PlayViewBasketball from './components/pages/PlayViewBasketball'
+import FormView from './components/pages/FormView'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -43,8 +45,9 @@ function App () {
         <Route exact path='/players/hockey/:id' component={PlayViewHockey} />
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/create' component={CreatePlayer} />
-        <Route exact path='/teams' component={TeamsView} />
+        <PrivateRoute exact path='/teams' component={TeamsView} />
         <Route exact path='/teams/:team' component={Players} />
+        <Route exact path='/messages' component={FormView} />
         <Nav />
       </div>
     </Router>

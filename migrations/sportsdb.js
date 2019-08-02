@@ -11,7 +11,7 @@ exports.up = function (knex, Promise) {
         table.integer('ab').defaultTo(0)
         table.integer('wins').defaultTo(0)
         table.integer('losses').defaultTo(0)
-        table.decimal('batting_average', 3, 1).defaultTo(0.000)
+        table.decimal('batting_average', 4, 3).defaultTo(0.000)
         table.integer('hr').defaultTo(0)
         table.integer('r').defaultTo(0)
         table.integer('hits').defaultTo(0)
