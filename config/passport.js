@@ -15,9 +15,15 @@ module.exports = function (passport) {
                         return done(null, false, { message: 'That username is not registered' })
                     }
                     // Match password
+                    console.log('entered password', password)
                     console.log('user', user)
                     console.log('password', user[0].password)
+                    console.log('salt', user[0].password.slice(0, 29))
+                    let salt = user[0].password.slice(0, 29)
                     // console.log(username, typeof password, typeof user.password)
+                    // let hash = bcrypt.hashSync(password, salt)
+                    // console.log('hash', hash)
+                    // console.log('password compare', user[0].password)
                     bcrypt.compare(password, user[0].password, (err, isMatch) => {
                         console.log(password)
                         console.log(isMatch)
@@ -27,6 +33,7 @@ module.exports = function (passport) {
                         } else {
                             return done(null, false, { message: 'Password incorrect' })
                         }
+                        // })
                     })
                 })
                 .catch(err => console.log(err))

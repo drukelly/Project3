@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { PrivateRoute } from './helpers/PrivateRoute'
 import Nav from './components/Nav'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'

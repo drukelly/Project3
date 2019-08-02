@@ -40,9 +40,12 @@ class User {
     } else {
       // console.log('pass')
       // console.log(data)
-      // let salt = bcrypt.genSaltSync(10)
+      let salt = bcrypt.genSaltSync(10)
+      console.log('salt', salt)
+      console.log('salt length', salt.length)
+      console.log('entered password signup', password)
       console.log('password type', typeof this.password)
-      let hash = bcrypt.hashSync(this.password, 10)
+      let hash = bcrypt.hashSync(password, salt)
       // Set password to hashed
       console.log('hash', hash)
       this.password = hash

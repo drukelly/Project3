@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 const Image = styled.div`
   background-color: whitesmoke;
   background-position: 50% 50%;

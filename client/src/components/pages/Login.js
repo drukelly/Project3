@@ -18,7 +18,8 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
-        redirectTo: ''
+        redirectTo: '',
+        loggedIn: false
     }
     handleChange = (event) => {
         const name = event.target.name;
@@ -41,9 +42,11 @@ class Login extends Component {
             }
         })
             .then(response => {
-                if (response.data) {
+                console.log('login post response', response)
+                if (response.status === 200) {
                     console.log('successful login')
                     this.setState({
+                        loggedIn: true,
                         redirectTo: '/teams'
                     })
                 } else {
