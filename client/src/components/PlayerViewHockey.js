@@ -170,12 +170,12 @@ class PlayerViewHockey extends Component {
   }
 
   active () {
-    this.setState({
-      message: 'Player is now active!',
-      showDialog: true
-    })
     let id = this.props.id
     let on_team = 1
+    this.setState({
+      message: `${this.state.players[0].name} is now active!`,
+      showDialog: true
+    })
     fetch('/api/players/hockey/' + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -192,12 +192,12 @@ class PlayerViewHockey extends Component {
   }
 
   inactive () {
-    this.setState({
-      message: 'Player is no longer active!',
-      showDialog: true
-    })
     let id = this.props.id
     let on_team = 0
+    this.setState({
+      message: `${this.state.players[0].name} is no longer active!`,
+      showDialog: true
+    })
     fetch('/api/players/hockey/' + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
