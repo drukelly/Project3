@@ -31,8 +31,8 @@ class Login extends Component {
     }
     handleSubmit = event => {
         event.preventDefault()
-        console.log('login-form, username: ')
-        console.log(this.state.username)
+        // console.log('login-form, username: ')
+        // console.log(this.state.username)
         let user = { username: this.state.username, password: this.state.password }
         fetch('/login', {
             method: 'post',
@@ -45,10 +45,12 @@ class Login extends Component {
                 console.log('login post response', response)
                 if (response.status === 200) {
                     console.log('successful login')
+                    sessionStorage.setItem('loggedIn', true)
                     this.setState({
                         loggedIn: true,
                         redirectTo: '/teams'
                     })
+                    
                 } else {
                     console.log('login error')
                     this.setState({

@@ -44,7 +44,7 @@ function App () {
         <Route exact path='/players/hockey/:id' component={PlayViewHockey} />
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/create' component={CreatePlayer} />
-        <Route exact path='/teams' component={TeamsView} />
+        <PrivateRoute exact path='/teams' component={TeamsView} />
         <Route exact path='/teams/:team' component={Players} />
         <Nav />
       </div>

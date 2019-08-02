@@ -1,13 +1,13 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
-import Login from '../components/pages/Login'
+// import Login from '../components/pages/Login'
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      Login.loggedIn ? (
-      // localStorage.getItem('authToken') ? (
+      // browser.cookies.get() ? (
+      sessionStorage.getItem('id') ? (
         <Component {...props} />
       ) : (
           <Redirect
