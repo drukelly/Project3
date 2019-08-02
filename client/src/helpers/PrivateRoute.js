@@ -7,7 +7,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={props =>
       // browser.cookies.get() ? (
-      sessionStorage.getItem('id') ? (
+      sessionStorage.getItem('loggedIn') ? (
         <Component {...props} />
       ) : (
           <Redirect

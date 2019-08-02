@@ -11,6 +11,7 @@ import TeamsView from './components/pages/TeamsView'
 import PlayView from './components/pages/PlayView'
 import PlayViewHockey from './components/pages/PlayViewHockey'
 import PlayViewBasketball from './components/pages/PlayViewBasketball'
+import FormView from './components/pages/FormView'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -46,6 +47,7 @@ function App () {
         <Route exact path='/create' component={CreatePlayer} />
         <PrivateRoute exact path='/teams' component={TeamsView} />
         <Route exact path='/teams/:team' component={Players} />
+        <Route exact path='/messages' component={FormView} />
         <Nav />
       </div>
     </Router>

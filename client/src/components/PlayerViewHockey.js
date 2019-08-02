@@ -15,14 +15,31 @@ position: relative;
 `
 
 const Button = styled.button`
-background: transparent;
 border-radius: 4px;
-border: 2px solid;
+border: 2px solid black;
+color: white;
 font-weight: bold;
 margin: 1rem auto;
 padding: 1rem;
 width: 80%;
+  &.activate {
+    background-color: green;
+  }
+  &.deactivate {
+    background-color: red;
+  }
 `
+
+const EditInput = styled.input`
+background: lavender;
+border: none;
+color: black;
+font-size: .88rem;
+padding: .25rem;
+text-align: center;
+width: 48px;
+`
+
 class PlayerViewHockey extends Component {
   constructor (props) {
     super (props)
@@ -90,32 +107,32 @@ class PlayerViewHockey extends Component {
         <div key={player.id} id={player.id}>
           <div className='bg-near-black pa3 tc white'>
             <div className='flex flex-wrap items-center justify-center w-100' id='statState'>
-              <DetailStatLine stat='GOALS' statValue={
+              <DetailStatLine stat='G' title='Goals' statValue={
                 <div> 
-                  <input type='number' name='goals_scored' value={this.state.goals_scored} onChange={this.updateComponentStatValue} defaultValue={player.goals_scored} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='goals_scored' value={this.state.goals_scored} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.goals_scored} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
-              <DetailStatLine stat='W' statValue={
+              <DetailStatLine stat='W' title='Wins' statValue={
                 <div>
-                  <input type='number' name='wins' value={this.state.wins} onChange={this.updateComponentStatValue} defaultValue={player.wins} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='wins' value={this.state.wins} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.wins} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
-              <DetailStatLine stat='L' statValue={
+              <DetailStatLine stat='L' title='Losses' statValue={
                 <div>
-                  <input type='number' name='losses' value={this.state.losses} onChange={this.updateComponentStatValue} defaultValue={player.losses} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='losses' value={this.state.losses} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.losses} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
-              <DetailStatLine stat='K' statValue={
+              <DetailStatLine stat='A' title='Assists' statValue={
                 <div>
-                  <input type='number' name='assists' value={this.state.assists} onChange={this.updateComponentStatValue} defaultValue={player.assists} step='1' style={{ width: 75 }} />
-                  <button onClick={this.changeEditMode}>X</button>
-                  <button onClick={this.updateStats}>OK</button>
+                  <EditInput type='number' name='assists' value={this.state.assists} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.assists} step='1' />
+                  {/* <button onClick={this.changeEditMode}>X</button> */}
+                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
             </div>
@@ -131,10 +148,10 @@ class PlayerViewHockey extends Component {
         <div key={player.id} id={player.id}>
           <div className='bg-near-black pa3 tc white'>            
             <div className='flex items-center justify-center w-100'>
-              <div name='goals_scored' onDoubleClick={this.changeEditMode}><DetailStatLine stat='GOALS' statValue={player.goals_scored} /></div>
-              <div name='w' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
-              <div name='l' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
-              <div name='assists' onDoubleClick={this.changeEditMode}><DetailStatLine stat='ASSISTS' statValue={player.assists} /></div>
+              <div name='goals_scored' onDoubleClick={this.changeEditMode}><DetailStatLine stat='G' title='Goals' statValue={player.goals_scored} /></div>
+              <div name='w' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' title='Wins' statValue={player.wins} /></div>
+              <div name='l' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' title='Losses' statValue={player.losses} /></div>
+              <div name='assists' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='A' title='Assists' statValue={player.assists} /></div>
             </div>
           </div>
         </div>
@@ -153,13 +170,12 @@ class PlayerViewHockey extends Component {
   }
 
   active () {
-    // todo: modal instead of alert
-    this.setState({
-      message: 'Player is now active!',
-      showDialog: true
-    })
     let id = this.props.id
     let on_team = 1
+    this.setState({
+      message: `${this.state.players[0].name} is now active!`,
+      showDialog: true
+    })
     fetch('/api/players/hockey/' + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -171,18 +187,17 @@ class PlayerViewHockey extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
+    const button = (<Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
   inactive () {
-    // todo: modal instead of alert
-    this.setState({
-      message: 'Player is no longer active!',
-      showDialog: true
-    })
     let id = this.props.id
     let on_team = 0
+    this.setState({
+      message: `${this.state.players[0].name} is no longer active!`,
+      showDialog: true
+    })
     fetch('/api/players/hockey/' + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -194,7 +209,7 @@ class PlayerViewHockey extends Component {
     .catch(error => {
       console.log(error)
     })
-    const button = (<Button onClick={this.active.bind(this)}>Activate Player</Button>)
+    const button = (<Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
 
@@ -214,7 +229,7 @@ class PlayerViewHockey extends Component {
               <BackButton src='/images/btn-back.png' alt='Go Back' />
               <div className='absolute bottom-0 f4 flex flex-column pa4'>
                 <div className='lh-copy'>
-                  <span className='bg-black-80 pa2 white'>#{player.jersey_number} <span className='b'>{player.name}</span></span>
+                  <span className='bg-black-80 pa3 white'>#{player.jersey_number} <span className='b'>{player.name}</span></span>
                 </div>
                 <div className='f7 lh-copy' style={{ paddingTop: 7.5 }}>
                   <span className='bg-black-80 ph2 pv1 white'>{player.position}</span>
@@ -226,8 +241,8 @@ class PlayerViewHockey extends Component {
               <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
               <div id="ButtonState" className='tc'>
                 {player.on_team === 0 ?
-                  <Button onClick={this.active.bind(this)}>Activate Player</Button> :
-                  <Button onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
+                  <Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button> :
+                  <Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
               </div>
             </div>
         ))}
