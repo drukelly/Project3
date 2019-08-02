@@ -25,8 +25,8 @@ class AppForm extends Component {
       return (
         <div className='card post' key={key}>
           <div className='card-block'>
-            <h3 className='card-Event'>
-              {post.Event}
+            <h3 className='card-Title'>
+              {post.Title}
             </h3>
             <p className='card-text'>
               {post.Description}
@@ -73,10 +73,10 @@ class AppForm extends Component {
           <div className='navbar fixed-bottom'>
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className='footerForm'>
               <Field
-                name='Event'
+                name='Title'
                 component={this.renderField}
-                label='Event'
-                class='footer-Event'
+                label='Title'
+                class='footer-Title'
               /> <br />
               <Field
                 name='Description'
