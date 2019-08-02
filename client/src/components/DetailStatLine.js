@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const Stat = styled.dl`
 color: white;
 margin: 0;
-padding-left: 1em;
-padding-right: 1em;
+padding-left: .75em;
+padding-right: .75em;
 `
 
 const DetailStatLine = props => {

@@ -37,7 +37,7 @@ color: black;
 font-size: .88rem;
 padding: .25rem;
 text-align: center;
-width: 55px;
+width: 48px;
 `
 
 class PlayerViewBasketball extends Component {
@@ -105,7 +105,7 @@ class PlayerViewBasketball extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa2 pb3 tc white'>
+          <div className='bg-near-black pa3 tc white'>
             <div className='flex flex-wrap items-center justify-center w-100' id='statState'>
               <DetailStatLine stat='PTS' statValue={
                 <div className='flex items-center justify-around w-100'> 
@@ -146,7 +146,7 @@ class PlayerViewBasketball extends Component {
     return <div>
       {this.state.players.map((player) => (
         <div key={player.id} id={player.id}>
-          <div className='bg-near-black pa2 pb3 tc white'>
+          <div className='bg-near-black pa3 tc white'>
             <div className='flex items-center justify-center w-100'>
               <div name='pts' onDoubleClick={this.changeEditMode}><DetailStatLine stat='PTS' statValue={player.pts} /></div>
               <div name='rebounds' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='REB' statValue={player.rebounds} /></div>
