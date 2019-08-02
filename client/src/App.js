@@ -46,7 +46,7 @@ function App () {
         <Route exact path='/create' component={CreatePlayer} />
         <Route exact path='/teams' component={TeamsView} />
         <Route exact path='/teams/:team' component={Players} />
-        <Route exact path='/messages' component={FormView} />
+        <Route exact path='/events' component={FormView} />
         <Nav />
       </div>
     </Router>

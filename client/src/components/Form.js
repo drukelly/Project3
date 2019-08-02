@@ -3,6 +3,17 @@ import { connect } from 'react-redux'
 import { getPosts, savePost, deletePost } from './Actions/PostActions'
 import { Field, reduxForm, reset } from 'redux-form'
 import _ from 'lodash'
+import styled from 'styled-components'
+// import DateTimePicker from 'react-widgets/lib/DateTimePicker'
+// import Moment from 'moment'
+// import momentLocalizer from 'react-widgets-moment'
+
+const Wrapper = styled.section`
+  padding-bottom: 100px;
+  padding-top: 174px;
+`
+// Moment.locale('en')
+// momentLocalizer()
 
 class AppForm extends Component {
   componentWillMount () {
@@ -14,14 +25,21 @@ class AppForm extends Component {
       return (
         <div className='card post' key={key}>
           <div className='card-block'>
-            <h3 className='card-title'>
-              {post.title}
+            <h3 className='card-Event'>
+              {post.Event}
             </h3>
             <p className='card-text'>
-              {post.body}
+              {post.Description}
+            </p>
+            <h5>
+              {post.Date} {post.Time}
+            </h5>
+            <p>
+              {post.Location}
             </p>
             <button className='btn btn-danger float-right' onClick={() => this.props.deletePost(key)}>Delete</button>
           </div>
+          <br /><br />
         </div>
       )
     })
@@ -38,30 +56,62 @@ class AppForm extends Component {
   }
 
   render () {
+    // const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>
+    //   <DateTimePicker
+    //     onChange={onChange}
+    //     format='DD MMM YYYY'
+    //     time={showTime}
+    //     value={!value ? null : new Date(value)}
+    //   />
     const { handleSubmit } = this.props
     return (
-      <div className='container'>
-        <div className='main'>
-          {this.renderPosts()}
+      <Wrapper>
+        <div className='container'>
+          <div className='main'>
+            {this.renderPosts()}
+          </div>
+          <div className='navbar fixed-bottom'>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className='footerForm'>
+              <Field
+                name='Event'
+                component={this.renderField}
+                label='Event'
+                class='footer-Event'
+              /> <br />
+              <Field
+                name='Description'
+                component={this.renderField}
+                label='Description'
+                class='footer-Description'
+              /> <br />
+              <Field
+                name='Date'
+                component={this.renderField}
+                label='Date'
+                class='footer-date'
+              /> <br />
+              <Field
+                name='Time'
+                component={this.renderField}
+                label='Time'
+                class='footer-time'
+              /> <br />
+              <Field
+                name='Location'
+                component={this.renderField}
+                label='Location'
+                class='footer-Location'
+              /> <br />
+              {/* <Field
+                name='date'
+                showTime={false}
+                component={renderDateTimePicker}
+              /> */}
+              <button type='submit' className='btn footer-button'>Post</button>
+            </form>
+          </div>
         </div>
-        <div className='navbar fixed-bottom'>
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className='footerForm'>
-            <Field
-              name='title'
-              component={this.renderField}
-              label='Title'
-              class='footer-title'
-            />
-            <Field
-              name='body'
-              component={this.renderField}
-              label='Body'
-              class='footer-body'
-            />
-            <button type='submit' className='btn footer-button'>Post</button>
-          </form>
-        </div>
-      </div>
+      </Wrapper>
     )
   }
 }

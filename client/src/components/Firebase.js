@@ -6,7 +6,8 @@ const config = {
   projectId: 'team-f5c1b',
   storageBucket: '',
   messagingSenderId: '726074932355',
-  appId: '1:726074932355:web:174cc778d39aec9d'
+  appId: '1:726074932355:web:174cc778d39aec9d',
+  time: firebase.database.ServerValue.TIMESTAMP
 }
 firebase.initializeApp(config)
 
