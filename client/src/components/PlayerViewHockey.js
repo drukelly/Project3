@@ -107,28 +107,28 @@ class PlayerViewHockey extends Component {
         <div key={player.id} id={player.id}>
           <div className='bg-near-black pa3 tc white'>
             <div className='flex flex-wrap items-center justify-center w-100' id='statState'>
-              <DetailStatLine stat='GOALS' statValue={
+              <DetailStatLine stat='G' title='Goals' statValue={
                 <div> 
                   <EditInput type='number' name='goals_scored' value={this.state.goals_scored} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.goals_scored} step='1' />
                   {/* <button onClick={this.changeEditMode}>X</button> */}
                   {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
-              <DetailStatLine stat='W' statValue={
+              <DetailStatLine stat='W' title='Wins' statValue={
                 <div>
                   <EditInput type='number' name='wins' value={this.state.wins} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.wins} step='1' />
                   {/* <button onClick={this.changeEditMode}>X</button> */}
                   {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
-              <DetailStatLine stat='L' statValue={
+              <DetailStatLine stat='L' title='Losses' statValue={
                 <div>
                   <EditInput type='number' name='losses' value={this.state.losses} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.losses} step='1' />
                   {/* <button onClick={this.changeEditMode}>X</button> */}
                   {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
-              <DetailStatLine stat='A' statValue={
+              <DetailStatLine stat='A' title='Assists' statValue={
                 <div>
                   <EditInput type='number' name='assists' value={this.state.assists} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.assists} step='1' />
                   {/* <button onClick={this.changeEditMode}>X</button> */}
@@ -148,10 +148,10 @@ class PlayerViewHockey extends Component {
         <div key={player.id} id={player.id}>
           <div className='bg-near-black pa3 tc white'>            
             <div className='flex items-center justify-center w-100'>
-              <div name='goals_scored' onDoubleClick={this.changeEditMode}><DetailStatLine stat='GOALS' statValue={player.goals_scored} /></div>
-              <div name='w' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' statValue={player.wins} /></div>
-              <div name='l' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' statValue={player.losses} /></div>
-              <div name='assists' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='A' statValue={player.assists} /></div>
+              <div name='goals_scored' onDoubleClick={this.changeEditMode}><DetailStatLine stat='G' title='Goals' statValue={player.goals_scored} /></div>
+              <div name='w' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='W' title='Wins' statValue={player.wins} /></div>
+              <div name='l' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='L' title='Losses' statValue={player.losses} /></div>
+              <div name='assists' className='bl b--white-10' onDoubleClick={this.changeEditMode}><DetailStatLine stat='A' title='Assists' statValue={player.assists} /></div>
             </div>
           </div>
         </div>
