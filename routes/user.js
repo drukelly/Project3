@@ -5,28 +5,27 @@ const User = require('../models/User')
 module.exports = function (app) {
     // Login Handle
     app.post('/login',
-    passport.authenticate('local'), (req, res) => {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.user)
-            // res.url('name', req.user)
+        passport.authenticate('local'), (req, res) => {
+            console.log('routes/user.js, login, req.body: ');
+            console.log(req.user)
             res.json(req.user)
         })
-    
+
     // app.post('/login', (req, res, next) => {
-        //     {
-            //         successRedirect: '/teams',
-            //         failureRedirect: '/login'
-            //     })(req, res, next)
-            // })
-            //     passport.authenticate('local'), (req, res) => {
-                // },
-        // (req, res) => {
-        //   console.log('logged in', req.user);
-        //   var userInfo = {
-        //     username: req.user.username
-        //   };
-        //   res.send(userInfo);
-        // }
+    //     {
+    //         successRedirect: '/teams',
+    //         failureRedirect: '/login'
+    //     })(req, res, next)
+    // })
+    //     passport.authenticate('local'), (req, res) => {
+    // },
+    // (req, res) => {
+    //   console.log('logged in', req.user);
+    //   var userInfo = {
+    //     username: req.user.username
+    //   };
+    //   res.send(userInfo);
+    // }
     // )
 
     app.get('/signup', (req, res, next) => {

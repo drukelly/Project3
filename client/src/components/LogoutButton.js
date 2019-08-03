@@ -14,7 +14,8 @@ const Button = styled.button`
 `
 
 const LogoutButton = withRouter(({ history }) => (
-    <Button type='button' onClick={() => {
+    <Button type='button' onClick={(props) => {
+      console.log('props', props)
         history.push('/login')
         sessionStorage.removeItem('loggedIn')
     }}> Logout </Button>

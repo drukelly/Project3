@@ -43,22 +43,33 @@ class Login extends Component {
             }
         })
             .then(response => {
-                console.log('login post response', response)
-                if (response.status === 200) {
-                    console.log('successful login')
-                    sessionStorage.setItem('loggedIn', true)
-                    this.setState({
-                        loggedIn: true,
-                        redirectTo: '/teams'
-                    })
-                    
+                console.log('response', response)
+                if (response.status === 401) {
+                    return this.setState({message: 'Incorrect Password', showDialog: true})
                 } else {
+                    return response.json()
+                }
+            })
+            .then(response => {
+                // let results = response.json()
+                // console.log('results', results)
+                console.log('login post response', response)
+                if (response === undefined) {
                     console.log(response)
                     console.log('login error')
                     this.setState({
                         message: 'Password Incorrect',
                         showDialog: true
                       })
+                } else if (response.length > 0) {
+                    console.log('successful login')
+                    console.log('admin?', response[0].smadmin)
+                    sessionStorage.setItem('loggedIn', true)
+                    sessionStorage.setItem('admin', response[0].smadmin)
+                    this.setState({
+                        loggedIn: true,
+                        redirectTo: '/teams'
+                    })
                 }
             }).catch(error => {
                 console.log('login server error: ')

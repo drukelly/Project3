@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { PrivateRoute } from './helpers/PrivateRoute'
+import { AdminRoute } from './helpers/AdminRoute'
 import Nav from './components/Nav'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
@@ -12,6 +13,7 @@ import PlayView from './components/pages/PlayView'
 import PlayViewHockey from './components/pages/PlayViewHockey'
 import PlayViewBasketball from './components/pages/PlayViewBasketball'
 import FormView from './components/pages/FormView'
+import Notice from './components/pages/Notice'
 // Read more ab out React Router: https://reacttraining.com/react-router/web/guides/quick-start
 
 /**
@@ -44,10 +46,11 @@ function App () {
         <PrivateRoute exact path='/players/basketball/:id' component={PlayViewBasketball} />
         <PrivateRoute exact path='/players/hockey/:id' component={PlayViewHockey} />
         <Route exact path='/signup' component={Signup} />
-        <PrivateRoute exact path='/create' component={CreatePlayer} />
+        <AdminRoute exact path='/create' component={CreatePlayer} />
         <PrivateRoute exact path='/teams' component={TeamsView} />
         <PrivateRoute exact path='/teams/:team' component={Players} />
         <PrivateRoute exact path='/messages' component={FormView} />
+        <PrivateRoute exact path='/notice' component={Notice} />
         <Nav />
       </div>
     </Router>
