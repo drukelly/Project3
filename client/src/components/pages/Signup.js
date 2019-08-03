@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import FormField from '../FormField'
 import styled from 'styled-components'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Modal from './../Modal'
 // import bcrypt from 'bcryptjs'
 
@@ -188,7 +188,7 @@ class Signup extends Component {
                             message: 'Account Successfully Created.'
                         }
                         }} /> : ''}
-                    <p className='f6 tc'>Have An Account? <a href='/login' className='blue link'>Log In</a></p>
+                    <p className='f6 tc'>Have An Account? <Link to='/login' className='blue link'>Log In</Link></p>
                 </form>
             </div>
         )
