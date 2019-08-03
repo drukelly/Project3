@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Image = styled.img`
-  display: block;
-  height: 32px;
-  margin: 0 auto .5rem;
-  width: 32px;
+display: block;
+height: 32px;
+margin: 0 auto .5rem;
+width: 32px;
 `
 
 const NavItem = props => {

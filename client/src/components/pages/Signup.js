@@ -3,7 +3,7 @@ import FormField from '../FormField'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 import Modal from './../Modal'
-import bcrypt from 'bcryptjs'
+// import bcrypt from 'bcryptjs'
 
 const Button = styled.button`
 background: green;
@@ -116,14 +116,14 @@ class Signup extends Component {
         return (
             <div>
                 {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
-                <form action='/signup' method='POST' className='pa4' style={{ paddingBottom: 100 }}>
-                    <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{display: !this.state.created ? 'none' : 'run-in'}}>
-                        <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
-                            <title>info icon</title>
-                            <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
-                        </svg>
-                        <span className="lh-title ml3">{this.state.created}</span>
-                    </div>
+                <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{display: !this.state.created ? 'none' : 'run-in'}}>
+                    <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
+                        <title>info icon</title>
+                        <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
+                    </svg>
+                    <span className="lh-title ml3">{this.state.created}</span>
+                </div>
+                <form action='/signup' method='POST' className='ph4 pv2' style={{ paddingBottom: 100 }}>
                     <h1 className='lh-title tc'>Create An Account</h1>
                     <div>{}</div>
                     <FormField
@@ -184,7 +184,8 @@ class Signup extends Component {
                     {this.state.redirectTo ? <Redirect to={{
                         pathname: this.state.redirectTo,
                         state: {
-                            style: 'run-in'
+                            style: 'run-in',
+                            message: 'Account Successfully Created.'
                         }
                         }} /> : ''}
                     <p className='f6 tc'>Have An Account? <a href='/login' className='blue link'>Log In</a></p>

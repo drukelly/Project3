@@ -6,17 +6,20 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      // browser.cookies.get() ? (
       sessionStorage.getItem('loggedIn') ? (
         <Component {...props} />
       ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: props.location }
-            }}
-          />
-        )
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: {
+              from: props.location,
+              style: 'run-in',
+              message: 'Please log in to view this page.'
+            }
+          }}
+        />
+      )
     }
   />
 )
