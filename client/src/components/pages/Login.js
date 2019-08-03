@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Modal from './../Modal'
 
 const Button = styled.button`
@@ -110,7 +110,7 @@ class Login extends Component {
                     </div>
                     <Button type='submit' onClick={this.handleSubmit}> Log In </Button>
                     {this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : ''}
-                    <p className='f6 tc'>No Account? <a href='/signup' className='blue link'>Sign Up</a></p>
+                    <p className='f6 tc'>No Account? <Link to='/signup' className='blue link'>Sign Up</Link></p>
                 </form>
             </div>
         )
