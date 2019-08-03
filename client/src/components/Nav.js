@@ -24,25 +24,25 @@ width: 100%;
  */
 class Nav extends Component {
   // eslint-disable-next-line no-useless-constructor
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       isLoggedIn: sessionStorage.getItem('loggedIn')
     }
   }
 
-  updateNav () {
+  updateNav() {
     return <LogoutButton image='/images/logout.png' label='Log Out' />
   }
 
-  render () {
+  render() {
     console.log('logout button should be => ' + this.state.isLoggedIn)
     return (
-      <NavWrapper>
-        <NavItem url='/teams' image='/images/teams.png' label='Teams' />
-        <NavItem url='/messages' image='/images/msgs.png' label='Messages' />
-        {this.state.isLoggedIn !== null ? this.updateNav() : ''}
-      </NavWrapper>
+        <NavWrapper>
+          <NavItem url='/teams' image='/images/teams.png' label='Teams' />
+          <NavItem url='/messages' image='/images/msgs.png' label='Messages' />
+          {this.state.isLoggedIn !== null ? this.updateNav() : ''}
+        </NavWrapper>
     )
   }
 }

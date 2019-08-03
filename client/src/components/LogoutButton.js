@@ -24,13 +24,13 @@ class LogoutButton extends Component {
     this.props.history.push('/login')
     // window.location.reload()
   }
-  render () {
+  render() {
     return (
-      <Button className='f7 input-reset link tc white'
-        onClick={this.goToLogin}>
-        <Image src={this.props.image} alt={this.props.label} />
-        {this.props.label}
-      </Button>
+        <Button className='f7 input-reset link tc white'
+          onClick={this.goToLogin}>
+          <Image src={this.props.image} alt={this.props.label} />
+          {this.props.label}
+        </Button>
     )
   }
 }

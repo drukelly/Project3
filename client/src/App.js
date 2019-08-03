@@ -36,23 +36,98 @@ import Notice from './components/pages/Notice'
  * This means if two or more routes match the same path, `BOTH` will render.
  */
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      isLoggedIn: sessionStorage.getItem('loggedIn')
+      isLoggedIn: sessionStorage.getItem('loggedIn'),
+      message: '',
+      showDialog: false,
+      redirectTo: ''
     }
+    console.log(this.state)
   }
 
-  renderNav () {
+  componentDidMount() {
+    this.setState({isLoggedIn: sessionStorage.getItem('loggedIn')})
+  }
+  // Updates username and password in state as it is typed
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    });
+  }
+  // }
+  // Fetches user and compares username and password to database
+  handleSubmit = event => {
+    event.preventDefault()
+    let user = { username: this.state.username, password: this.state.password }
+    fetch('/login', {
+      method: 'post',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        console.log('response', response)
+        if (response.status === 401) {
+          return this.setState({ message: 'Incorrect Password', showDialog: true })
+        } else {
+          return response.json()
+        }
+      })
+      .then(response => {
+        if (response === undefined) {
+          this.setState({
+            message: 'Password Incorrect',
+            showDialog: true
+          })
+        } else if (response.length > 0) {
+          sessionStorage.setItem('loggedIn', true)
+          sessionStorage.setItem('admin', response[0].smadmin)
+          this.setState({
+            loggedIn: true,
+            redirectTo: '/teams'
+          })
+          // window.location.reload()
+        }
+      }).catch(error => {
+        this.setState({
+          message: `Login Server Error: ${error}`,
+          showDialog: true
+        })
+      })
+  }
+
+  dismissModal = () => {
+    this.setState({
+      showDialog: false
+    })
+  }
+
+  renderNav() {
     return (<Nav />)
   }
 
-  render (props) {
+  render(props) {
     return (
-      <Router>
-        <div>
+      <div>
+        <Router>
           <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
+          <Route exact path='/login' render={(props) => 
+            <Login {...props} 
+            handleSubmit={this.handleSubmit}
+            loggedIn={this.state.loggedIn}
+            message={this.state.message}
+            redirectTo={this.state.redirectTo}
+            showDialog={this.state.showDialog}
+            handleChange={this.handleChange}
+            username={this.state.username}
+            password={this.state.password}
+            dismissModal={this.dismissModal} />} 
+            />
           <PrivateRoute exact path='/players/baseball/:id' component={PlayView} />
           <PrivateRoute exact path='/players/basketball/:id' component={PlayViewBasketball} />
           <PrivateRoute exact path='/players/hockey/:id' component={PlayViewHockey} />
@@ -62,9 +137,9 @@ class App extends Component {
           <PrivateRoute exact path='/teams/:team' component={Players} />
           <PrivateRoute exact path='/messages' component={FormView} />
           <PrivateRoute exact path='/notice' component={Notice} />
-          {this.state.isLoggedIn ? this.renderNav() : ''}
-        </div>
-      </Router>
+        {/* {this.state.isLoggedIn ? this.renderNav() : ''} */}
+        </Router>
+      </div>
     )
   }
 }
