@@ -22,18 +22,17 @@ class Login extends Component {
         loggedIn: false,
         showDialog: false
     }
+    // Updates username and password in state as it is typed
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         this.setState({
             [name]: value
         });
-        console.log(this.state.username, this.state.password)
     }
+    // Fetches user and compares username and password to database
     handleSubmit = event => {
         event.preventDefault()
-        // console.log('login-form, username: ')
-        // console.log(this.state.username)
         let user = { username: this.state.username, password: this.state.password }
         fetch('/login', {
             method: 'post',
@@ -51,19 +50,12 @@ class Login extends Component {
                 }
             })
             .then(response => {
-                // let results = response.json()
-                // console.log('results', results)
-                console.log('login post response', response)
                 if (response === undefined) {
-                    console.log(response)
-                    console.log('login error')
                     this.setState({
                         message: 'Password Incorrect',
                         showDialog: true
                       })
                 } else if (response.length > 0) {
-                    console.log('successful login')
-                    console.log('admin?', response[0].smadmin)
                     sessionStorage.setItem('loggedIn', true)
                     sessionStorage.setItem('admin', response[0].smadmin)
                     this.setState({
@@ -72,8 +64,6 @@ class Login extends Component {
                     })
                 }
             }).catch(error => {
-                console.log('login server error: ')
-                console.log(error)
                 this.setState({
                     message: `Login Server Error: ${error}`,
                     showDialog: true

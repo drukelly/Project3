@@ -11,23 +11,6 @@ module.exports = function (app) {
             res.json(req.user)
         })
 
-    // app.post('/login', (req, res, next) => {
-    //     {
-    //         successRedirect: '/teams',
-    //         failureRedirect: '/login'
-    //     })(req, res, next)
-    // })
-    //     passport.authenticate('local'), (req, res) => {
-    // },
-    // (req, res) => {
-    //   console.log('logged in', req.user);
-    //   var userInfo = {
-    //     username: req.user.username
-    //   };
-    //   res.send(userInfo);
-    // }
-    // )
-
     app.get('/signup', (req, res, next) => {
         console.log('===== user!!======')
         console.log(req.user)
@@ -38,6 +21,7 @@ module.exports = function (app) {
         }
     })
 
+    // Posts new users to the database
     app.post('/signup', (req, res) => {
         console.log('route', req.body)
         User.create(req.body)
@@ -51,27 +35,6 @@ module.exports = function (app) {
                 res.json(results)
             })
             .catch(err => console.log(err))
-        // console.log('sign-up submission', req.body)
-        // const { name, email, phone, username, password, password2 } = req.body
-        // console.log(name, email, phone, username, password, password2)
-        // let errors = []
-        // // Check required fields
-        // if (!name || !email || !phone || !username || !password || !password2) {
-        //     errors.push({ msg: 'Please fill in all fields' })
-        // }
-        // // Check passwords match
-        // if (password !== password2) {
-        //     errors.push({ msg: 'Your passwords do not match.' })
-        // }
-        // // Check password length
-        // if (password.length < 8) {
-        //     errors.push({ msg: "Password must be at least 8 characters."})
-        // }
-        // if (errors.length > 0) {
-        //     console.log('something\'s wrong')
-        // } else {
-        //     res.send('pass')
-        // }
     })
 
     // Logout Handle
@@ -79,12 +42,4 @@ module.exports = function (app) {
         req.logout()
         res.redirect('/login')
     })
-    // app.post('/logout', (req, res) => {
-    //     if (req.user) {
-    //         req.logout()
-    //         res.send({ msg: 'logging out' })
-    //     } else {
-    //         res.send({ msg: 'no user to log out' })
-    //     }
-    // })
 }

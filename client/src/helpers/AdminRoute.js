@@ -6,7 +6,7 @@ export const AdminRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            sessionStorage.getItem('loggedIn') && sessionStorage.getItem('admin') === 1 ? (
+            sessionStorage.getItem('loggedIn') && sessionStorage.getItem('admin') === '1' ? (
                 <Component {...props} />
             ) : (
                     <Redirect
