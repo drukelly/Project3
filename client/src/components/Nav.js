@@ -26,21 +26,21 @@ class Nav extends Component {
   // eslint-disable-next-line no-useless-constructor
   constructor (props) {
     super(props)
+    this.state = {
+      isLoggedIn: sessionStorage.getItem('loggedIn')
+    }
   }
-  state = {
-    isLoggedIn: sessionStorage.getItem('loggedIn')
+
+  updateNav () {
+    return <LogoutButton image='/images/logout.png' label='Log Out' />
   }
+
   render () {
-    console.log('logout button should be => ' + sessionStorage.getItem('loggedIn'))
+    console.log('logout button should be => ' + this.state.isLoggedIn)
     return (
       <NavWrapper>
         <NavItem url='/teams' image='/images/teams.png' label='Teams' />
-        {
-          this.state.isLoggedIn ?
-          <LogoutButton image='/images/logout.png' label='Log Out' />
-          :
-          ''
-        }
+        {this.state.isLoggedIn !== null ? this.updateNav() : ''}
       </NavWrapper>
     )
   }

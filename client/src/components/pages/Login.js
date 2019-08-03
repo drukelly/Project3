@@ -51,7 +51,7 @@ class Login extends Component {
                         loggedIn: true,
                         redirectTo: '/teams'
                     })
-                    
+                    window.location.reload()
                 } else {
                     console.log(response)
                     console.log('login error')

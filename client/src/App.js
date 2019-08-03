@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { PrivateRoute } from './helpers/PrivateRoute'
 import Nav from './components/Nav'
@@ -33,25 +33,37 @@ import FormView from './components/pages/FormView'
  * WARNING: Unlike routes in express, React Router will, by default, render routes inclusively rather than exclusively.
  * This means if two or more routes match the same path, `BOTH` will render.
  */
-function App () {
-  return (
-    <Router>
-      <div>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        {/* <Route exact path='/players' component={Players} /> */}
-        <PrivateRoute exact path='/players/baseball/:id' component={PlayView} />
-        <PrivateRoute exact path='/players/basketball/:id' component={PlayViewBasketball} />
-        <PrivateRoute exact path='/players/hockey/:id' component={PlayViewHockey} />
-        <Route exact path='/signup' component={Signup} />
-        <PrivateRoute exact path='/create' component={CreatePlayer} />
-        <PrivateRoute exact path='/teams' component={TeamsView} />
-        <PrivateRoute exact path='/teams/:team' component={Players} />
-        <PrivateRoute exact path='/messages' component={FormView} />
-        <Nav />
-      </div>
-    </Router>
-  )
+class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isLoggedIn: sessionStorage.getItem('loggedIn')
+    }
+  }
+
+  renderNav () {
+    return (<Nav />)
+  }
+
+  render (props) {
+    return (
+      <Router>
+        <div>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <PrivateRoute exact path='/players/baseball/:id' component={PlayView} />
+          <PrivateRoute exact path='/players/basketball/:id' component={PlayViewBasketball} />
+          <PrivateRoute exact path='/players/hockey/:id' component={PlayViewHockey} />
+          <Route exact path='/signup' component={Signup} />
+          <PrivateRoute exact path='/create' component={CreatePlayer} />
+          <PrivateRoute exact path='/teams' component={TeamsView} />
+          <PrivateRoute exact path='/teams/:team' component={Players} />
+          <PrivateRoute exact path='/messages' component={FormView} />
+          {this.state.isLoggedIn ? this.renderNav() : ''}
+        </div>
+      </Router>
+    )
+  }
 }
 
 export default App
