@@ -3,7 +3,7 @@ import FormField from '../FormField'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 import Modal from './../Modal'
-import bcrypt from 'bcryptjs'
+// import bcrypt from 'bcryptjs'
 
 const Button = styled.button`
 background: green;
@@ -184,7 +184,8 @@ class Signup extends Component {
                     {this.state.redirectTo ? <Redirect to={{
                         pathname: this.state.redirectTo,
                         state: {
-                            style: 'run-in'
+                            style: 'run-in',
+                            message: 'Account Successfully Created.'
                         }
                         }} /> : ''}
                     <p className='f6 tc'>Have An Account? <a href='/login' className='blue link'>Log In</a></p>
