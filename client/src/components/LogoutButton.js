@@ -22,7 +22,7 @@ class LogoutButton extends Component {
   goToLogin = props => {
     sessionStorage.clear()
     this.props.history.push('/login')
-    window.location.reload()
+    // window.location.reload()
   }
   render () {
     return (
