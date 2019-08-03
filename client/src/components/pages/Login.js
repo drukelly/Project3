@@ -45,23 +45,24 @@ class Login extends Component {
                 console.log('response', response)
                 if (response.status === 401) {
                     return this.setState({message: 'Incorrect Password', showDialog: true})
-                } else {
-                    return response.json()
-                }
-            })
-            .then(response => {
-                if (response === undefined) {
-                    this.setState({
-                        message: 'Password Incorrect',
-                        showDialog: true
-                      })
-                } else if (response.length > 0) {
-                    sessionStorage.setItem('loggedIn', true)
-                    sessionStorage.setItem('admin', response[0].smadmin)
-                    this.setState({
-                        loggedIn: true,
-                        redirectTo: '/teams'
-                    })
+            } else {
+                return response.json()
+            }
+        })
+        .then(response => {
+            if (response === undefined) {
+                this.setState({
+                    message: 'Password Incorrect',
+                    showDialog: true
+                })
+            } else if (response.length > 0) {
+                sessionStorage.setItem('loggedIn', true)
+                sessionStorage.setItem('admin', response[0].smadmin)
+                this.setState({
+                    loggedIn: true,
+                    redirectTo: '/teams'
+                })
+                window.location.reload()
                 }
             }).catch(error => {
                 this.setState({
@@ -79,14 +80,14 @@ class Login extends Component {
         return (
             <div>
                 {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
-                <form action='/login' method='POST' className='pa4'>
-                    <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{display: this.props.location.state === undefined ? 'none' : this.props.location.state.style}}>
-                        <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
-                            <title>info icon</title>
-                            <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
-                        </svg>
-                        <span className="lh-title ml3">{this.props.location.state === undefined ? null : this.props.location.state.message}</span>
-                    </div>
+                <div className="flex items-center justify-center pa3 bg-lightest-blue navy" style={{display: this.props.location.state === undefined ? 'none' : this.props.location.state.style}}>
+                    <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
+                        <title>info icon</title>
+                        <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
+                    </svg>
+                    <span className="lh-title ml3">{this.props.location.state === undefined ? null : this.props.location.state.message}</span>
+                </div>
+                <form action='/login' method='POST' className='ph4 pv3'>
                     <h1 className='lh-title tc'>Log In</h1>
                     <div className='mb3'>
                         <label className='db f6 mb2' htmlFor='username'>Username</label>

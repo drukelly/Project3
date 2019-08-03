@@ -9,17 +9,17 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
       sessionStorage.getItem('loggedIn') ? (
         <Component {...props} />
       ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { 
-                from: props.location,
-                style: 'run-in',
-                message: 'Please log in to view this page.'
-               }
-            }}
-          />
-        )
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: {
+              from: props.location,
+              style: 'run-in',
+              message: 'Please log in to view this page.'
+            }
+          }}
+        />
+      )
     }
   />
 )
