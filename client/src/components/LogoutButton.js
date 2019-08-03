@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import styled from 'styled-components'
 // this also works with react-router-native
 
@@ -19,18 +19,27 @@ width: 32px;
 `
 
 class LogoutButton extends Component {
+  state = {
+    redirectTo: '/login'
+  }
   goToLogin = props => {
     sessionStorage.clear()
+    console.log('logout props', props)
     this.props.history.push('/login')
     // window.location.reload()
   }
   render() {
     return (
-        <Button className='f7 input-reset link tc white'
-          onClick={this.goToLogin}>
+      <Link to={{
+        pathname: '/',
+        state: {loggedIn: false}
+        }}>
+        <Button className='f7 input-reset link tc white'>
+          {/* // onClick={this.goToLogin}> */}
           <Image src={this.props.image} alt={this.props.label} />
           {this.props.label}
         </Button>
+      </Link>
     )
   }
 }

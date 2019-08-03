@@ -39,16 +39,18 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoggedIn: sessionStorage.getItem('loggedIn'),
       message: '',
       showDialog: false,
       redirectTo: ''
     }
-    console.log(this.state)
+    console.log('app state', this.state)
   }
 
   componentDidMount() {
-    this.setState({isLoggedIn: sessionStorage.getItem('loggedIn')})
+    console.log('component did mount', this.state)
+    if (this.state.loggedIn !== sessionStorage.getItem('loggedIn')) {
+      this.setState({loggedIn: sessionStorage.getItem('loggedIn')})
+    }
   }
   // Updates username and password in state as it is typed
   handleChange = (event) => {
@@ -88,7 +90,9 @@ class App extends Component {
           sessionStorage.setItem('loggedIn', true)
           sessionStorage.setItem('admin', response[0].smadmin)
           this.setState({
-            loggedIn: true,
+            // loggedIn: true,
+            username: '',
+            password: '',
             redirectTo: '/teams'
           })
           // window.location.reload()

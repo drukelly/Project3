@@ -15,7 +15,10 @@ width: 100%;
 `
 
 const Login = (props) => {
-    console.log('props', props)
+    // console.log('props', props)
+    // if (props.location.state.loggedIn === false) {
+    //     sessionStorage.clear()
+    // }
     return (
         <div>
             {props.showDialog ? <Modal message={props.message} dismissModal={props.dismissModal} /> : null}
