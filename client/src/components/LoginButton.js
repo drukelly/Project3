@@ -14,7 +14,7 @@ const Button = styled.button`
 `
 
 const LoginButton = withRouter(({ history }) => (
-  <Button type='button' onClick={() => { history.push('/login') }}> Login </Button>
+  <Button type='button' onClick={() => { history.push('/login') }}> Log In </Button>
 ))
 
 export default LoginButton
