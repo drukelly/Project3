@@ -40,14 +40,14 @@ function App () {
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         {/* <Route exact path='/players' component={Players} /> */}
-        <Route exact path='/players/baseball/:id' component={PlayView} />
-        <Route exact path='/players/basketball/:id' component={PlayViewBasketball} />
-        <Route exact path='/players/hockey/:id' component={PlayViewHockey} />
+        <PrivateRoute exact path='/players/baseball/:id' component={PlayView} />
+        <PrivateRoute exact path='/players/basketball/:id' component={PlayViewBasketball} />
+        <PrivateRoute exact path='/players/hockey/:id' component={PlayViewHockey} />
         <Route exact path='/signup' component={Signup} />
-        <Route exact path='/create' component={CreatePlayer} />
+        <PrivateRoute exact path='/create' component={CreatePlayer} />
         <PrivateRoute exact path='/teams' component={TeamsView} />
-        <Route exact path='/teams/:team' component={Players} />
-        <Route exact path='/messages' component={FormView} />
+        <PrivateRoute exact path='/teams/:team' component={Players} />
+        <PrivateRoute exact path='/messages' component={FormView} />
         <Nav />
       </div>
     </Router>

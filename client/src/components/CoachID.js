@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import LogoutButton from './LogoutButton'
 
 
 const Image = styled.div`
@@ -17,6 +18,7 @@ const CoachID = props => {
   return (
     <div className='bg-gray fixed pa4 tc white w-100'>
       <Image style={{ backgroundImage: `url(${props.src})` }} alt={props.alt} />
+      <LogoutButton />
       <h2 className='fw3 lh-title ma0 pa0 tracked'><span className='ttu'>Coach</span> {props.alt}</h2>
     </div>
   )

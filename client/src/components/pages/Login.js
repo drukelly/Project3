@@ -53,9 +53,10 @@ class Login extends Component {
                     })
                     
                 } else {
+                    console.log(response)
                     console.log('login error')
                     this.setState({
-                        message: 'Login Error',
+                        message: 'Password Incorrect',
                         showDialog: true
                       })
                 }
@@ -83,7 +84,7 @@ class Login extends Component {
                             <title>info icon</title>
                             <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
                         </svg>
-                        <span className="lh-title ml3">Account Successfully Created.</span>
+                        <span className="lh-title ml3">{this.props.location.state === undefined ? null : this.props.location.state.message}</span>
                     </div>
                     <h1 className='lh-title tc'>Log In</h1>
                     <div className='mb3'>
