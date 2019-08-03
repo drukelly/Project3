@@ -4,7 +4,10 @@ import styled from 'styled-components'
 
 const Wrapper = styled.section`
 padding-bottom: 86px;
-padding-top: 118px;
+  padding-top: 96px
+  &.admin {
+    padding-top: 118px;
+  }
 `
 
 const Image = styled.div`
@@ -41,7 +44,7 @@ class PlayerCard extends Component {
 
   render () {
     return (
-      <Wrapper>
+      <Wrapper className={sessionStorage.getItem('admin') === '1' ? 'admin' : ''}>
         {this.state.players.map((player) => (
           <Link to={`/players/${this.props.sport}/${player.id}`} key={player.id} className='link near-black'>
             <div className={ player.on_team ? `bg-green b--black-10 bb flex items-center white w-100` : `bg-animate hover-bg-blue hover-white b--black-10 bb flex items-center w-100`}>
