@@ -62,7 +62,7 @@ class Login extends Component {
                     loggedIn: true,
                     redirectTo: '/teams'
                 })
-                window.location.reload()
+                // window.location.reload()
                 }
             }).catch(error => {
                 this.setState({
