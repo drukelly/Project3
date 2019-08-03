@@ -3,26 +3,30 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
-  padding-bottom: 100px;
-  padding-top: 179px;
+padding-bottom: 86px;
+padding-top: 118px;
 `
 
 const Image = styled.div`
-  background-color: beige;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 60px;
-  height: 60px;
-  margin: .5em 1em;
-  width: 60px;
+background-color: beige;
+background-position: 50% 50%;
+background-repeat: no-repeat;
+background-size: cover;
+border-radius: 60px;
+height: 60px;
+margin: .5em 1em;
+width: 60px;
 `
 
 class PlayerCard extends Component {
-  state = {
-    players: []
+  constructor (props) {
+    super(props)
+    this.state = {
+      players: []
+    }
   }
-  componentDidMount() {
+
+  componentDidMount () {
     console.log('player card props', this.props)
     fetch(`/api/team/${this.props.sport}`)
       .then(results => results.json())
@@ -34,7 +38,8 @@ class PlayerCard extends Component {
       })
       .catch(err => console.log(err))
   }
-  render() {
+
+  render () {
     return (
       <Wrapper>
         {this.state.players.map((player) => (
@@ -49,13 +54,13 @@ class PlayerCard extends Component {
                   {this.props.sport === 'baseball' && player.position === 'Pitcher'
                     ? `ERA: ${player.era} W: ${player.wins} - L: ${player.losses}`
                     : (this.props.sport === 'baseball'
-                    ? `BA: ${player.batting_average}`
-                    : (this.props.sport === 'basketball'
-                      ? `Points: ${player.pts}`
-                      : `Games Played: ${player.games_played}`
-                    ))
+                      ? `BA: ${player.batting_average}`
+                      : (this.props.sport === 'basketball'
+                        ? `Points: ${player.pts}`
+                        : `Games Played: ${player.games_played}`
+                      ))
                   }
-                  </div>
+                </div>
               </div>
             </div>
           </Link>

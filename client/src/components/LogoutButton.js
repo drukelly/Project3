@@ -20,7 +20,7 @@ width: 32px;
 
 class LogoutButton extends Component {
   goToLogin = props => {
-    sessionStorage.removeItem('loggedIn')
+    sessionStorage.clear()
     this.props.history.push('/login')
     window.location.reload()
   }

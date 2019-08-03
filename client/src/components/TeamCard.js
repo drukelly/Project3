@@ -5,12 +5,12 @@ import styled from 'styled-components'
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const Wrapper = styled.section`
-  padding-bottom: 100px;
-  padding-top: 174px;
+padding-bottom: 86px;
+padding-top: 112px;
 `
 
 const Image = styled.img`
-  width: 60px;
+width: 60px;
 `
 
 class TeamCard extends React.Component {

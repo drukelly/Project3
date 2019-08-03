@@ -40,6 +40,7 @@ class Nav extends Component {
     return (
       <NavWrapper>
         <NavItem url='/teams' image='/images/teams.png' label='Teams' />
+        <NavItem url='/messages' image='/images/msgs.png' label='Messages' />
         {this.state.isLoggedIn !== null ? this.updateNav() : ''}
       </NavWrapper>
     )
