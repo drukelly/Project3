@@ -49,9 +49,11 @@ class App extends Component {
   componentDidMount() {
     console.log('component did mount', this.state)
     if (this.state.loggedIn !== sessionStorage.getItem('loggedIn')) {
-      this.setState({loggedIn: sessionStorage.getItem('loggedIn')})
+      this.setState({ loggedIn: sessionStorage.getItem('loggedIn') })
+      this.setState({ redirectTo: '' })
     }
   }
+
   // Updates username and password in state as it is typed
   handleChange = (event) => {
     const name = event.target.name;
@@ -60,7 +62,7 @@ class App extends Component {
       [name]: value
     });
   }
-  // }
+
   // Fetches user and compares username and password to database
   handleSubmit = event => {
     event.preventDefault()
@@ -90,12 +92,13 @@ class App extends Component {
           sessionStorage.setItem('loggedIn', true)
           sessionStorage.setItem('admin', response[0].smadmin)
           this.setState({
-            // loggedIn: true,
             username: '',
             password: '',
             redirectTo: '/teams'
           })
-          // window.location.reload()
+          setTimeout(this.setState({
+            redirectTo: ''
+          }), 1000)
         }
       }).catch(error => {
         this.setState({
@@ -103,6 +106,10 @@ class App extends Component {
           showDialog: true
         })
       })
+  }
+
+  clearSession = () => {
+    sessionStorage.clear();
   }
 
   dismissModal = () => {
@@ -119,19 +126,24 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' render={(props) => 
-            <Login {...props} 
-            handleSubmit={this.handleSubmit}
-            loggedIn={this.state.loggedIn}
-            message={this.state.message}
-            redirectTo={this.state.redirectTo}
-            showDialog={this.state.showDialog}
-            handleChange={this.handleChange}
-            username={this.state.username}
-            password={this.state.password}
-            dismissModal={this.dismissModal} />} 
+          <Route exact path='/' render={(props) =>
+            <Home {...props}
+              clearSession={this.clearSession}
+              redirectTo={this.state.redirectTo}
             />
+          } />
+          <Route exact path='/login' render={(props) =>
+            <Login {...props}
+              handleSubmit={this.handleSubmit}
+              loggedIn={this.state.loggedIn}
+              message={this.state.message}
+              redirectTo={this.state.redirectTo}
+              showDialog={this.state.showDialog}
+              handleChange={this.handleChange}
+              username={this.state.username}
+              password={this.state.password}
+              dismissModal={this.dismissModal} />}
+          />
           <PrivateRoute exact path='/players/baseball/:id' component={PlayView} />
           <PrivateRoute exact path='/players/basketball/:id' component={PlayViewBasketball} />
           <PrivateRoute exact path='/players/hockey/:id' component={PlayViewHockey} />
@@ -141,7 +153,6 @@ class App extends Component {
           <PrivateRoute exact path='/teams/:team' component={Players} />
           <PrivateRoute exact path='/messages' component={FormView} />
           <PrivateRoute exact path='/notice' component={Notice} />
-        {/* {this.state.isLoggedIn ? this.renderNav() : ''} */}
         </Router>
       </div>
     )

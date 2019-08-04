@@ -49,7 +49,7 @@ class Signup extends Component {
         event.preventDefault()
         console.log('sign-up-form, username: ')
         console.log(this.state.username)
-        // let errors = []
+
         // Check required fields
         if (!this.state.name || !this.state.email || !this.state.phone || !this.state.username || !this.state.password || !this.state.password2) {
             this.setState({
@@ -115,9 +115,9 @@ class Signup extends Component {
     render() {
         return (
             <div>
-                {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
-                <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{display: !this.state.created ? 'none' : 'run-in'}}>
-                    <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{fill:"currentcolor"}}>
+                {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null}
+                <div className="flex items-center justify-center pa4 bg-lightest-blue navy" style={{ display: !this.state.created ? 'none' : 'run-in' }}>
+                    <svg className="w1" data-icon="info" viewBox="0 0 32 32" style={{ fill: "currentcolor" }}>
                         <title>info icon</title>
                         <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
                     </svg>
@@ -187,7 +187,7 @@ class Signup extends Component {
                             style: 'run-in',
                             message: 'Account Successfully Created.'
                         }
-                        }} /> : ''}
+                    }} /> : ''}
                     <p className='f6 tc'>Have An Account? <Link to='/login' className='blue link'>Log In</Link></p>
                 </form>
             </div>
