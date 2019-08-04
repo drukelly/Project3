@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link, Redirect } from 'react-router-dom'
 import Modal from './../Modal'
