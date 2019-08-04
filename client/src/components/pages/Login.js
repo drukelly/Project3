@@ -15,10 +15,6 @@ width: 100%;
 `
 
 const Login = (props) => {
-    // console.log('props', props)
-    // if (props.location.state.loggedIn === false) {
-    //     sessionStorage.clear()
-    // }
     return (
         <div>
             {props.showDialog ? <Modal message={props.message} dismissModal={props.dismissModal} /> : null}
@@ -58,59 +54,4 @@ const Login = (props) => {
     )
 }
 
-// dismissModal = () => {
-//     this.setState({
-//         showDialog: false
-//     })
-// }
 export default Login
-
-// // Updates username and password in state as it is typed
-// handleChange = (event) => {
-//     const name = event.target.name;
-//     const value = event.target.value;
-//     this.setState({
-//         [name]: value
-//     });
-// }
-// // Fetches user and compares username and password to database
-// handleSubmit = event => {
-//     event.preventDefault()
-//     let user = { username: this.state.username, password: this.state.password }
-//     fetch('/login', {
-//         method: 'post',
-//         body: JSON.stringify(user),
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//         .then(response => {
-//             console.log('response', response)
-//             if (response.status === 401) {
-//                 return this.setState({message: 'Incorrect Password', showDialog: true})
-//         } else {
-//             return response.json()
-//         }
-//     })
-//     .then(response => {
-//         if (response === undefined) {
-//             this.setState({
-//                 message: 'Password Incorrect',
-//                 showDialog: true
-//             })
-//         } else if (response.length > 0) {
-//             sessionStorage.setItem('loggedIn', true)
-//             sessionStorage.setItem('admin', response[0].smadmin)
-//             this.setState({
-//                 loggedIn: true,
-//                 redirectTo: '/teams'
-//             })
-//             // window.location.reload()
-//             }
-//         }).catch(error => {
-//             this.setState({
-//                 message: `Login Server Error: ${error}`,
-//                 showDialog: true
-//               })
-//         })
-// }

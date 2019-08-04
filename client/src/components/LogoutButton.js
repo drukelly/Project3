@@ -22,20 +22,16 @@ class LogoutButton extends Component {
   state = {
     redirectTo: '/login'
   }
-  goToLogin = props => {
+  goToLogin = () => {
     sessionStorage.clear()
-    console.log('logout props', props)
-    this.props.history.push('/login')
-    // window.location.reload()
   }
+
   render() {
     return (
       <Link to={{
-        pathname: '/',
-        state: {loggedIn: false}
-        }}>
-        <Button className='f7 input-reset link tc white'>
-          {/* // onClick={this.goToLogin}> */}
+        pathname: '/'
+      }}>
+        <Button className='f7 input-reset link tc white' onClick={this.goToLogin}>
           <Image src={this.props.image} alt={this.props.label} />
           {this.props.label}
         </Button>

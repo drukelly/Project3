@@ -13,7 +13,6 @@ margin: 0 auto;
 width: 80%;
 padding: 1rem;
 `
-
 const LoginButton = withRouter(({ history }) => (
   <Button type='button' onClick={() => { history.push('/login') }}> Log In </Button>
 ))
