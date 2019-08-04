@@ -8,6 +8,7 @@ background: green;
 border-radius: 4px;
 border: 2px solid black;
 color: white;
+font-size: .8em;
 font-weight: bold;
 margin: 1rem auto;
 padding: 1rem;

@@ -4,13 +4,14 @@ import styled from 'styled-components'
 // this also works with react-router-native
 
 const Button = styled.button`
-  background: transparent;
-  border: 2px solid;
-  border-radius: 4px;
-  font-weight: bold;
-  margin: 0 auto;
-  width: 80%;
-  padding: 1rem;
+background: rgba(255, 255, 255, .75);
+border: 2px solid;
+border-radius: 4px;
+font-size: .8em;
+font-weight: bold;
+margin: 0 auto;
+width: 80%;
+padding: 1rem;
 `
 
 const LoginButton = withRouter(({ history }) => (
