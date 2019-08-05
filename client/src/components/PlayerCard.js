@@ -6,7 +6,7 @@ const Wrapper = styled.section`
 padding-bottom: 86px;
   padding-top: 96px
   &.admin {
-    padding-top: 118px;
+    padding-top: 105px;
   }
 `
 const Image = styled.div`

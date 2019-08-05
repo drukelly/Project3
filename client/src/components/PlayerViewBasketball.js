@@ -28,6 +28,22 @@ width: 80%;
     background-color: red;
   }
 `
+const UpdateStats = styled.button`
+background: transparent;
+border: 2px solid;
+border-radius: 4px;
+color: white;
+cursor: pointer;
+display: block;
+font-size: .9em;
+margin-top: 1.25em;
+padding: .33em .5em;
+text-transform: uppercase;
+width: calc(100% - 42px);
+  &:hover {
+    background: lightsteelblue;
+  }
+`
 const EditInput = styled.input`
 background: lavender;
 border: none;
@@ -102,27 +118,24 @@ class PlayerViewBasketball extends Component {
               <DetailStatLine stat='PTS' title='Points' statValue={
                 <div className='flex items-center justify-around w-100'> 
                   <EditInput type='number' name='pts' value={this.state.pts} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.pts} step='1' />
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='REB' title='Rebounds' statValue={
                 <div className='flex items-center justify-around w-100'>
                   <EditInput type='number' name='rebounds' value={this.state.rebounds} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.rebounds} step='1' />
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='FG%' title='Field Goal Percentage' statValue={
                 <div className='flex items-center justify-around w-100'>
                   <EditInput type='number' name='field_goals' value={this.state.field_goals} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.field_goals} step='1' />
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='AST' title='Assists' statValue={
                 <div className='flex items-center justify-around w-100'>
                   <EditInput type='number' name='assists' value={this.state.ast} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='1' />
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
+              <UpdateStats onClick={this.updateStats}> Update </UpdateStats>
             </div>
           </div>
         </div>
@@ -206,7 +219,7 @@ class PlayerViewBasketball extends Component {
       <div>
         {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
         {this.state.players.map((player) => (
-          <div>
+          <div key={player.id}>
             <PlayerPhoto key={player.id} id={player.id} style={{ backgroundImage: `url(${player.image})`}}>
               <BackButton src='/images/btn-back.png' alt='Go Back' />
               <div className='absolute bottom-0 f4 flex flex-column pa4'>
