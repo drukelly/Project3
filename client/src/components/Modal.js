@@ -5,7 +5,6 @@ class Modal extends Component {
   constructor (props) {
     super(props)
   }
-
   render () {
     return (
       <div className='bg-black-50 fixed flex flex-column items-center justify-center min-vh-100 w-100 z-1'>

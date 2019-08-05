@@ -11,7 +11,7 @@ width: 32px;
 
 const NavItem = props => {
   return (
-    <Link to={props.url} className='f7 link tc white'>
+    <Link to={props.url} className='dim f7 link tc white'>
       <Image src={props.image} alt={props.label} />
       {props.label}
     </Link>

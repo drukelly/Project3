@@ -1,7 +1,7 @@
 import React from 'react'
 import PlayerViewHockey from '../PlayerViewHockey'
 
-const PlayViewHockey = (props) => {
+const PlayViewHockey = props => {
   return (
     <PlayerViewHockey id={props.match.params.id} />
   )

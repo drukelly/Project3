@@ -13,12 +13,10 @@ z-index: -1;
 `
 
 class Home extends Component {
-  componentDidMount (props) {
+  componentDidMount () {
     document.getElementById('playVideo').click()
-    console.log(this.props)
   }
-
-  render (props) {
+  render () {
     return (
       <div className='flex flex-column min-vh-100 justify-center'>
         <Video autoplay loop muted preload='auto' id='bgLoop'>

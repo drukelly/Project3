@@ -2,7 +2,7 @@ import React from 'react'
 import TeamHeader from './../TeamHeader'
 import PlayerCard from './../PlayerCard'
 
-const Coach = (props) => {
+const Coach = props => {
   console.log('props', props)
   console.log('sport', props.match.params.team)
   return (

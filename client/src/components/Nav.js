@@ -24,21 +24,19 @@ width: 100%;
  */
 class Nav extends Component {
   // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
-
-  updateNav() {
+  updateNav () {
     return <LogoutButton image='/images/logout.png' label='Log Out' />
   }
-
-  render() {
+  render () {
     return (
-        <NavWrapper>
-          <NavItem url='/teams' image='/images/teams.png' label='Teams' />
-          <NavItem url='/messages' image='/images/msgs.png' label='Messages' />
-          <LogoutButton image='/images/logout.png' label='Log Out' />
-        </NavWrapper>
+      <NavWrapper>
+        <NavItem url='/teams' image='/images/teams.png' label='Teams' />
+        <NavItem url='/messages' image='/images/msgs.png' label='Messages' />
+        <LogoutButton image='/images/logout.png' label='Log Out' />
+      </NavWrapper>
     )
   }
 }

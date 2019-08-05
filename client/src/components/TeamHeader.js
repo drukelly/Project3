@@ -15,7 +15,7 @@ padding: .25em .65em .25em .5em;
   }
 `
 
-const TeamHeader = (props) => {
+const TeamHeader = props => {
   return (
     <div className='bg-gray fixed pa3 white w-100'>
       <div className='flex items-center'>
@@ -26,6 +26,7 @@ const TeamHeader = (props) => {
             <h3 className='lh-title ma0 mr3 pa0'>{props.wins}-{props.losses}-{props.tie}</h3>
             <h3 className='lh-title ma0 pa0'>{props.seeding} Place</h3>
           </div>
+          {/* eslint-disable-next-line no-undef */}
           {sessionStorage.getItem('admin') === '1' ? <Button href='/create' className='dib link'> + Add Player </Button> : null}
         </div>
       </div>
