@@ -4,9 +4,8 @@ import FormField from '../FormField'
 import styled from 'styled-components'
 
 const Wrapper = styled.form`
-padding-bottom: 100px;
+padding-bottom: 86px;
 `
-
 const Button = styled.button`
 background: transparent;
 border: 2px solid;
@@ -19,24 +18,28 @@ padding: 1rem;
 `
 
 class CreatePlayer extends Component {
-  state = {
-    name: '',
-    image: '',
-    jersey_number: '',
-    sport: '',
-    position: '',
-    redirectTo: '',
-    teamName: '',
-    teamLogo: ''
+  // eslint-disable-next-line no-useless-constructor
+  constructor (props) {
+    super(props)
+    this.state = {
+      name: '',
+      image: '',
+      jersey_number: '',
+      sport: '',
+      position: '',
+      redirectTo: '',
+      teamName: '',
+      teamLogo: ''
+    }
   }
-  handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  handleChange = event => {
+    const name = event.target.name
+    const value = event.target.value
     this.setState({
       [name]: value
-    });
+    })
   }
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault()
     event.persist()
     let sport = event.target.previousSibling.previousSibling.children[1].value
@@ -53,8 +56,8 @@ class CreatePlayer extends Component {
     position: this.state.position
   }
   console.log('create new player: ')
-  fetch("/api/team", {
-    method: "POST",
+  fetch('/api/team', {
+    method: 'post',
     body: JSON.stringify(newPlayer),
     headers: {
       'Content-Type': 'application/json'
@@ -76,27 +79,27 @@ class CreatePlayer extends Component {
       console.log('fatal error (player creation)')
       console.log(error)
     })
-}
-render() {
-  return (
-    <Wrapper className='pa4'>
-      <h1 className='lh-title mt0 tc'>Add Player</h1>
-      <FormField htmlFor='name' type='text' name='name' onChange={this.handleChange} />
-      <FormField htmlFor='image' type='text' name='image' label='Photo (URL)' onChange={this.handleChange} />
-      <FormField htmlFor='jersey_number' type='number' name='jersey_number' label='Jersey Number' onChange={this.handleChange} />
-      <FormField htmlFor='sport' type='text' name='sport' onChange={this.handleChange} />
-      <FormField htmlFor='position' type='text' name='position' onChange={this.handleChange} />
-      <Button type='submit' onClick={this.handleSubmit}> Add Player </Button>
-      { this.state.redirectTo ? <Redirect to={{
-          pathname: this.state.redirectTo,
-          state: {
-            name: this.state.teamName,
-            image: this.state.teamLogo,
-            team: this.state.sport
-          }}} /> : '' }
-    </Wrapper>
-  )
-}
+  }
+  render () {
+    return (
+      <Wrapper className='pa4'>
+        <h1 className='lh-title mt0 tc'>Add Player</h1>
+        <FormField htmlFor='name' type='text' name='name' onChange={this.handleChange} />
+        <FormField htmlFor='image' type='text' name='image' label='Photo (URL)' onChange={this.handleChange} />
+        <FormField htmlFor='jersey_number' type='number' name='jersey_number' label='Jersey Number' onChange={this.handleChange} />
+        <FormField htmlFor='sport' type='text' name='sport' onChange={this.handleChange} />
+        <FormField htmlFor='position' type='text' name='position' onChange={this.handleChange} />
+        <Button type='submit' onClick={this.handleSubmit}> Add Player </Button>
+        { this.state.redirectTo ? <Redirect to={{
+            pathname: this.state.redirectTo,
+            state: {
+              name: this.state.teamName,
+              image: this.state.teamLogo,
+              team: this.state.sport
+            }}} /> : '' }
+      </Wrapper>
+    )
+  }
 }
 
 export default CreatePlayer

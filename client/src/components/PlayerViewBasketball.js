@@ -13,7 +13,6 @@ background-size: cover;
 height: 50vh;
 position: relative;
 `
-
 const Button = styled.button`
 border-radius: 4px;
 border: 2px solid black;
@@ -29,7 +28,22 @@ width: 80%;
     background-color: red;
   }
 `
-
+const UpdateStats = styled.button`
+background: transparent;
+border: 2px solid;
+border-radius: 4px;
+color: white;
+cursor: pointer;
+display: block;
+font-size: .9em;
+margin-top: 1.25em;
+padding: .33em .5em;
+text-transform: uppercase;
+width: calc(100% - 42px);
+  &:hover {
+    background: lightsteelblue;
+  }
+`
 const EditInput = styled.input`
 background: lavender;
 border: none;
@@ -43,7 +57,6 @@ width: 48px;
 class PlayerViewBasketball extends Component {
   constructor (props) {
     super (props)
-
     this.state = {
       players: [],
       isInEditMode: false,
@@ -52,18 +65,15 @@ class PlayerViewBasketball extends Component {
     }
     this.dismissModal = this.dismissModal.bind(this)
   }
-
   // for click edit functionality
   changeEditMode = () => {
     this.setState({
       isInEditMode: !this.state.isInEditMode
     })
   }
-  
-  _handleChangeEvent = (val) => {
+  _handleChangeEvent = val => {
     return val
   }
-
   updateComponentStatValue = event => {
     console.log(event)
     this.setState({
@@ -72,7 +82,6 @@ class PlayerViewBasketball extends Component {
     console.log(event.target.value)
     this._handleChangeEvent = event.target.value
   }
-  
   updateStats = event => {
     event.preventDefault()
     this.setState({ 
@@ -96,11 +105,10 @@ class PlayerViewBasketball extends Component {
     .then(data => {
       console.log(data)
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(error => {
+      console.log(error)
     })
   }
-    
   renderEditView = () => {
     return <div>
       {this.state.players.map((player) => (
@@ -110,38 +118,30 @@ class PlayerViewBasketball extends Component {
               <DetailStatLine stat='PTS' title='Points' statValue={
                 <div className='flex items-center justify-around w-100'> 
                   <EditInput type='number' name='pts' value={this.state.pts} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.pts} step='1' />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='REB' title='Rebounds' statValue={
                 <div className='flex items-center justify-around w-100'>
                   <EditInput type='number' name='rebounds' value={this.state.rebounds} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.rebounds} step='1' />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='FG%' title='Field Goal Percentage' statValue={
                 <div className='flex items-center justify-around w-100'>
                   <EditInput type='number' name='field_goals' value={this.state.field_goals} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.field_goals} step='1' />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='AST' title='Assists' statValue={
                 <div className='flex items-center justify-around w-100'>
                   <EditInput type='number' name='assists' value={this.state.ast} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.ast} step='1' />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
+              <UpdateStats onClick={this.updateStats}> Update </UpdateStats>
             </div>
           </div>
         </div>
       ))}
     </div>
   }
-
   renderDefaultView = () => {
     return <div>
       {this.state.players.map((player) => (
@@ -158,8 +158,7 @@ class PlayerViewBasketball extends Component {
       ))}
     </div>
   }
-
-  componentDidMount() {
+  componentDidMount () {
     let id = this.props.id
     fetch(`/api/players/basketball/` + id)
     .then(results => results.json())
@@ -168,7 +167,6 @@ class PlayerViewBasketball extends Component {
       this.setState({ players: res })
     })
   }
-
   active () {
     let id = this.props.id
     let on_team = 1
@@ -190,7 +188,6 @@ class PlayerViewBasketball extends Component {
     const button = (<Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
-
   inactive () {
     let id = this.props.id
     let on_team = 0
@@ -212,19 +209,17 @@ class PlayerViewBasketball extends Component {
     const button = (<Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
-
   dismissModal = () => {
     this.setState({
       showDialog: false
     })
   }
-
   render () {
     return (
       <div>
         {this.state.showDialog ? <Modal message={this.state.message} dismissModal={this.dismissModal} /> : null }
         {this.state.players.map((player) => (
-          <div>
+          <div key={player.id}>
             <PlayerPhoto key={player.id} id={player.id} style={{ backgroundImage: `url(${player.image})`}}>
               <BackButton src='/images/btn-back.png' alt='Go Back' />
               <div className='absolute bottom-0 f4 flex flex-column pa4'>

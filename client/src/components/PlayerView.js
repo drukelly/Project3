@@ -5,7 +5,6 @@ import DetailStatLine from './DetailStatLine'
 import Modal from './Modal'
 import styled from 'styled-components'
 
-
 const PlayerPhoto = styled.div`
 background-color: beige;
 background-position: 50% 50%;
@@ -14,7 +13,6 @@ background-size: cover;
 height: 50vh;
 position: relative;
 `
-
 const Button = styled.button`
 border-radius: 4px;
 border: 2px solid black;
@@ -30,7 +28,22 @@ width: 80%;
     background-color: red;
   }
 `
-
+const UpdateStats = styled.button`
+background: transparent;
+border: 2px solid;
+border-radius: 4px;
+color: white;
+cursor: pointer;
+display: block;
+font-size: .9em;
+margin-top: 1.25em;
+padding: .33em .5em;
+text-transform: uppercase;
+width: calc(100% - 42px);
+  &:hover {
+    background: lightsteelblue;
+  }
+`
 const EditInput = styled.input`
 background: lavender;
 border: none;
@@ -44,7 +57,6 @@ width: 50px;
 class PlayerView extends Component {
   constructor (props) {
     super (props)
-
     this.state = {
       players: [],
       isInEditMode: false,
@@ -53,18 +65,15 @@ class PlayerView extends Component {
     }
     this.dismissModal = this.dismissModal.bind(this)
   }
-
   // for click edit functionality
   changeEditMode = () => {
     this.setState({
       isInEditMode: !this.state.isInEditMode
     })
   }
-  
-  _handleChangeEvent = (val) => {
+  _handleChangeEvent = val => {
     return val
   }
-
   updateComponentStatValue = event => {
     console.log(event)
     this.setState({
@@ -73,7 +82,6 @@ class PlayerView extends Component {
     console.log(event.target.value)
     this._handleChangeEvent = event.target.value
   }
-  
   updateStats = event => {
     event.preventDefault()
     this.setState({ isInEditMode: false})
@@ -99,11 +107,10 @@ class PlayerView extends Component {
     .then(data => {
       console.log(data)
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(error => {
+      console.log(error)
     })
   }
-    
   renderEditView = () => {
     return <div>
       {this.state.players.map((player) => (
@@ -116,64 +123,50 @@ class PlayerView extends Component {
               <DetailStatLine stat='ERA' title='Earned Run Average' statValue={
                 <div> 
                   <EditInput type='number' name='era' value={this.state.era} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.era} step='0.01' style={{ width: 65 }} />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='W' title='Wins' statValue={
                 <div>
                   <EditInput type='number' name='wins' value={this.state.wins} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.wins} step='1' />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='L' title='Losses' statValue={
                 <div>
                   <EditInput type='number' name='losses' value={this.state.losses} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.losses} step='1' />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='K' title='Strikeouts' statValue={
                 <div>
                   <EditInput type='number' name='so' value={this.state.so} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} defaultValue={player.so} step='1' style={{ width: 65 }} />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
+              <UpdateStats onClick={this.updateStats}> Update </UpdateStats>
             </div>
             
             :
             
-            <div className='flex items-center justify-center w-100' id='statState'>
+            <div className='flex flex-wrap items-center justify-center w-100' id='statState'>
               <DetailStatLine stat='BA' title='Batting Average' statValue={
                 <div>
                   <EditInput type='number' name='batting_average' value={this.state.batting_average} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} step='0.01' defaultValue={player.batting_average} style={{ width: 70 }} />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='HR' title='Home Runs' statValue={
                 <div>
                   <EditInput type='number' name='hr' value={this.state.hr} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hr} />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='H' title='Hits' statValue={
                 <div> 
                   <EditInput type='number' name='hits' value={this.state.hits} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} step='1' defaultValue={player.hits} />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
               <DetailStatLine stat='SB' title='Stolen Bases' statValue={
                 <div>
                   <EditInput type='number' name='sb' value={this.state.sb} onBlur={this.changeEditMode} onChange={this.updateComponentStatValue} step='1' defaultValue={player.sb} style={{ width: 55 }} />
-                  {/* <button onClick={this.changeEditMode}>X</button> */}
-                  {/* <button onClick={this.updateStats}>OK</button> */}
                 </div>
               } />
+              <UpdateStats onClick={this.updateStats}> Update </UpdateStats>
             </div>
           }
           </div>
@@ -181,7 +174,6 @@ class PlayerView extends Component {
       ))}
     </div>
   }
-
   renderDefaultView = () => {
     return <div>
       {this.state.players.map((player) => (
@@ -213,8 +205,7 @@ class PlayerView extends Component {
       ))}
     </div>
   }
-
-  componentDidMount() {
+  componentDidMount () {
     let id = this.props.id
     console.log(id)
     fetch(`/api/players/baseball/` + id)
@@ -224,7 +215,6 @@ class PlayerView extends Component {
       this.setState({ players: res })
     })
   }
-
   active () {
     let id = this.props.id
     let on_team = 1
@@ -246,7 +236,6 @@ class PlayerView extends Component {
     const button = (<Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
-
   inactive () {
     let id = this.props.id
     let on_team = 0
@@ -268,13 +257,11 @@ class PlayerView extends Component {
     const button = (<Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button>)
     ReactDOM.render(button, document.getElementById('ButtonState'))
   }
-
   dismissModal = () => {
     this.setState({
       showDialog: false
     })
   }
-
   render () {
     return (
       <div>

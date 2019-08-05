@@ -12,7 +12,7 @@ top: 1.5em;
 `
 
 class BackButton extends Component {
-  goBack = props => {
+  goBack = () => {
     this.props.history.goBack()
   }
   render () {

@@ -3,14 +3,6 @@ import { withRouter, Link } from 'react-router-dom'
 import styled from 'styled-components'
 // this also works with react-router-native
 
-const Button = styled.button`
-background: transparent;
-border: none;
-cursor: pointer;
-padding: 0;
-margin: 0;
-`
-
 const Image = styled.img`
 display: block;
 height: 32px;
@@ -19,22 +11,24 @@ width: 32px;
 `
 
 class LogoutButton extends Component {
-  state = {
-    redirectTo: '/login'
+  constructor (props) {
+    super(props)
+    this.state = {
+      redirectTo: '/login'
+    }
   }
-  goToLogin = () => {
+  clearSession = () => {
     sessionStorage.clear()
   }
-
-  render() {
+  render () {
     return (
-      <Link to={{
+      <Link className='dim f7 link tc white' to={{
         pathname: '/'
       }}>
-        <Button className='f7 input-reset link tc white' onClick={this.goToLogin}>
+        <div onClick={this.clearSession}>
           <Image src={this.props.image} alt={this.props.label} />
           {this.props.label}
-        </Button>
+        </div>
       </Link>
     )
   }

@@ -19,7 +19,6 @@ const CoachID = props => {
         <Image style={{ backgroundImage: `url(${props.src})` }} alt={props.alt} />
         <div>
           <h2 className='fw3 lh-title ma0 pa0 tracked'><span className='ttu'>Coach</span> {props.alt}</h2>
-          {/* <button>Add Team</button> */}
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ const path = require('path')
 const PORT = process.env.PORT || 3001
 const app = express()
 const passport = require('passport')
-// const db = require('./models/sqldb')
 // Passort config
 require('./config/passport')(passport)
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { PrivateRoute } from './helpers/PrivateRoute'
 import { AdminRoute } from './helpers/AdminRoute'
-import Nav from './components/Nav'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
 import Players from './components/pages/Players'
@@ -45,24 +44,21 @@ class App extends Component {
     }
     console.log('app state', this.state)
   }
-
-  componentDidMount() {
+  componentDidMount () {
     console.log('component did mount', this.state)
     if (this.state.loggedIn !== sessionStorage.getItem('loggedIn')) {
       this.setState({ loggedIn: sessionStorage.getItem('loggedIn') })
       this.setState({ redirectTo: '' })
     }
   }
-
   // Updates username and password in state as it is typed
-  handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  handleChange = event => {
+    const name = event.target.name
+    const value = event.target.value
     this.setState({
       [name]: value
-    });
+    })
   }
-
   // Fetches user and compares username and password to database
   handleSubmit = event => {
     event.preventDefault()
@@ -107,21 +103,14 @@ class App extends Component {
         })
       })
   }
-
   clearSession = () => {
-    sessionStorage.clear();
+    sessionStorage.clear()
   }
-
   dismissModal = () => {
     this.setState({
       showDialog: false
     })
   }
-
-  renderNav() {
-    return (<Nav />)
-  }
-
   render(props) {
     return (
       <div>

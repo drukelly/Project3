@@ -20,7 +20,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // Get sum of each position
   app.get('/api/position', function (req, res) {
     Team.findPosition()
@@ -28,7 +27,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // Get the current players on the team
   app.get('/api/current', function (req, res) {
     Team.currentTeam()
@@ -36,7 +34,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // Updates current players most recent statistics
   app.put('/api/current', function (req, res) {
     console.log(req.body)
@@ -49,7 +46,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // Add player from bench to the current team
   app.put('/api/team', function (req, res) {
     console.log('test', req.body)
@@ -62,7 +58,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // Create a new player for the team
   app.post('/api/team', function (req, res) {
     var player = req.body
@@ -76,7 +71,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // get one player
   app.get('/api/players/baseball/:id', function (req, res) {
     console.log(req.params)
@@ -86,7 +80,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // post one player as active or inactive
   app.put('/api/players/baseball/:id', function (req, res) {
     console.log(`what are you now ${req.body}`)
@@ -96,7 +89,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // post to update stats
   app.post('/api/players/baseball/:id', function (req, res) {
     console.log(`what are you ${req.body}`)
@@ -106,7 +98,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // get one player hockey
   app.get('/api/players/hockey/:id', function (req, res) {
     console.log(req.params)
@@ -116,7 +107,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // post one player as active or inactive hockey
   app.put('/api/players/hockey/:id', function (req, res) {
     console.log(`what are you now ${req.body}`)
@@ -126,7 +116,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // post to update stats hockey
   app.post('/api/players/hockey/:id', function (req, res) {
     console.log(`what are you ${req.body}`)
@@ -136,7 +125,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // get one player basketball
   app.get('/api/players/basketball/:id', function (req, res) {
     console.log(req.params)
@@ -146,7 +134,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // post one player as active or inactive basketball
   app.put('/api/players/basketball/:id', function (req, res) {
     console.log(`what are you now ${req.body}`)
@@ -156,7 +143,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // post to update stats basketball
   app.post('/api/players/basketball/:id', function (req, res) {
     console.log(`what are you ${req.body}`)
@@ -166,7 +152,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   // Delete an example by id
   app.delete('/api/examples/:id', function (req, res) {
     Team.destroy(req.params)
@@ -174,7 +159,6 @@ module.exports = function (app) {
         res.json(results)
       })
   })
-
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/public/index.html'))
   })
