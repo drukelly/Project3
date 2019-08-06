@@ -48,7 +48,6 @@ class App extends Component {
     console.log('component did mount', this.state)
     if (this.state.loggedIn !== sessionStorage.getItem('loggedIn')) {
       this.setState({ loggedIn: sessionStorage.getItem('loggedIn') })
-      this.setState({ redirectTo: '' })
     }
   }
   // Updates username and password in state as it is typed
@@ -111,7 +110,7 @@ class App extends Component {
       showDialog: false
     })
   }
-  render(props) {
+  render (props) {
     return (
       <div>
         <Router>
