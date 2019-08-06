@@ -110,7 +110,7 @@ class App extends Component {
       showDialog: false
     })
   }
-  render(props) {
+  render (props) {
     return (
       <div>
         <Router>
