@@ -231,15 +231,17 @@ class PlayerViewBasketball extends Component {
                 </div>
               </div>
             </PlayerPhoto>
-            <div>{this.state.isInEditMode ? this.renderEditView() : this.renderDefaultView()}</div>
-            <div className="form-group" style={{margin:'15px'}}>
-              <div id="Team" ref={ inTeam => this.inputTeam = inTeam }/></div>
-              <div id="ButtonState" className='tc'>
-                {player.on_team === 0 ?
-                  <Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button> :
-                  <Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
-              </div>
-            </div>
+            {sessionStorage.getItem('admin') === '1' ? <div>{this.state.isInEditMode ? this.renderEditView() : this.renderDefaultView()}</div> : this.renderDefaultView()}
+            <div style={{ margin:15 }}>
+             <div id='Team' ref={ inTeam => this.inputTeam = inTeam }/></div>
+             {sessionStorage.getItem('admin') === '1' ?
+             <div id='ButtonState' className='tc'>
+               {player.on_team === 0 ?
+                 <Button className='activate' onClick={this.active.bind(this)}>Activate Player</Button> :
+                 <Button className='deactivate' onClick={this.inactive.bind(this)}>Deactivate Player</Button>}
+             </div>
+             : null}
+          </div>
         ))}
       </div>
     )
