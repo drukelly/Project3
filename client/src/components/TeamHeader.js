@@ -1,20 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Image = styled.img`
 width: 64px;
-`
-const Button = styled.a`
-background: transparent;
-border: 2px solid;
-border-radius: 4px;
-color: white;
-cursor: pointer;
-font-size: .9em;
-padding: .25em .65em .25em .5em;
-  &:hover {
-    background: green;
-  }
 `
 
 const TeamHeader = props => {
@@ -29,7 +18,7 @@ const TeamHeader = props => {
             <h3 className='lh-title ma0 pa0'>{props.seeding} Place</h3>
           </div>
           {/* eslint-disable-next-line no-undef */}
-          {sessionStorage.getItem('admin') === '1' ? <Button href='/create' className='dib link'> + Add Player </Button> : null}
+          {sessionStorage.getItem('admin') === '1' ? <Link to={{ pathname: '/create' }} className='bg-transparent hover-bg-green dib link pointer white' style={{ border: '2px solid', borderRadius: 4, fontSize: '.9em', padding: '.25em .65em .25em .5em' }}> + Add Player </Link> : null}
         </div>
       </div>
     </div>
